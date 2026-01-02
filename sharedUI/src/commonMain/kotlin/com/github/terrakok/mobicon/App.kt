@@ -6,6 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.terrakok.mobicon.ui.RootContent
 import com.github.terrakok.mobicon.ui.events.EventsListScreen
 import com.materialkolor.PaletteStyle
 import com.materialkolor.dynamiccolor.ColorSpec
@@ -53,12 +54,7 @@ fun App(
         )
         MaterialTheme(
             colorScheme = colorScheme,
-            content = { Surface { Content() } }
+            content = { Surface { RootContent() } }
         )
     }
-}
-
-@Composable
-private fun Content() {
-    EventsListScreen()
 }

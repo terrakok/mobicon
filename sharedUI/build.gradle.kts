@@ -54,6 +54,7 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.materialKolor)
             implementation(libs.resaca)
+            implementation(libs.androidx.material3.adaptive)
         }
 
         commonTest.dependencies {
@@ -75,6 +76,11 @@ kotlin {
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+        }
+
+        webMain.dependencies {
+            implementation(npm("@js-joda/timezone", "2.22.0"))
+            implementation(libs.navigation3.browser)
         }
 
     }

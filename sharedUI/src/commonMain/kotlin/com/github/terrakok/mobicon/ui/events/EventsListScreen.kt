@@ -1,5 +1,6 @@
 package com.github.terrakok.mobicon.ui.events
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -25,7 +26,9 @@ import kotlinx.datetime.format.char
 import kotlinx.datetime.toLocalDateTime
 
 @Composable
-internal fun EventsListScreen() {
+internal fun EventsListScreen(
+    onEventClick: (EventInfo) -> Unit
+) {
     val vm = metroVmScoped<EventsListViewModel>()
 
     LazyColumn(
@@ -34,7 +37,7 @@ internal fun EventsListScreen() {
         contentPadding = PaddingValues(8.dp),
     ) {
         items(vm.items, key = { it.id }) { event ->
-            EventInfoCard(event)
+            EventInfoCard(event, onEventClick)
         }
     }
 }
@@ -46,7 +49,10 @@ private val dateFormat = LocalDate.Format {
 }
 
 @Composable
-private fun EventInfoCard(info: EventInfo) {
+private fun EventInfoCard(
+    info: EventInfo,
+    onClick: (EventInfo) -> Unit
+) {
     val cardBgColor = remember(info.id) { Colors.getForString(info.id) }
     Card(
         modifier = Modifier.fillMaxWidth().height(200.dp),
@@ -55,7 +61,12 @@ private fun EventInfoCard(info: EventInfo) {
             containerColor = cardBgColor
         )
     ) {
-        Box(modifier = Modifier.padding(16.dp)) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onClick(info) }
+                .padding(16.dp)
+        ) {
             Column {
                 Text(
                     text = info.title.replaceFirstChar { it.titlecase() },
