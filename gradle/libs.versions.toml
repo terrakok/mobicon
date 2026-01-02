@@ -11,11 +11,12 @@ ktor = "3.3.3"
 androidx-lifecycle = "2.10.0-alpha07"
 androidx-nav3 = "1.1.0-alpha01"
 kotlinx-serialization = "1.9.0"
-metro = "0.9.1"
+metro = "0.9.3"
 coil = "3.3.0"
 multiplatformSettings = "1.3.0"
 kotlinx-datetime = "0.7.1"
 materialKolor = "4.0.5"
+resaca = "4.6.4"
 
 [libraries]
 
@@ -47,11 +48,12 @@ androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:life
 androidx-lifecycle-runtime = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 compose-nav3 = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "androidx-nav3" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
-coil = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coil" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 multiplatformSettings = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 materialKolor = { module = "com.materialkolor:material-kolor", version.ref = "materialKolor" }
+resaca = { module = "io.github.sebaslogen:resaca", version.ref = "resaca" }
 
 [plugins]
 

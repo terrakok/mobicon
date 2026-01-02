@@ -48,11 +48,12 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime)
             implementation(libs.compose.nav3)
             implementation(libs.kotlinx.serialization.json)
-            implementation(libs.coil)
+            implementation(libs.coil.compose)
             implementation(libs.coil.network.ktor)
             implementation(libs.multiplatformSettings)
             implementation(libs.kotlinx.datetime)
             implementation(libs.materialKolor)
+            implementation(libs.resaca)
         }
 
         commonTest.dependencies {
