@@ -16,8 +16,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.github.terrakok.mobicon.Colors
 import com.github.terrakok.mobicon.EventInfo
-import com.github.terrakok.mobicon.metroVmScoped
 import com.materialkolor.ktx.harmonize
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.format.MonthNames
@@ -29,7 +29,7 @@ import kotlinx.datetime.toLocalDateTime
 internal fun EventsListScreen(
     onEventClick: (EventInfo) -> Unit
 ) {
-    val vm = metroVmScoped<EventsListViewModel>()
+    val vm = metroViewModel<EventsListViewModel>()
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),

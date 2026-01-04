@@ -1,27 +1,32 @@
-package com.github.terrakok.mobicon.ui.events
+package com.github.terrakok.mobicon.ui.event
 
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.mobicon.ApiService
+import com.github.terrakok.mobicon.EventFullData
 import com.github.terrakok.mobicon.EventInfo
-import dev.zacsweers.metro.AppScope
-import dev.zacsweers.metro.ContributesIntoMap
-import dev.zacsweers.metro.Inject
-import dev.zacsweers.metrox.viewmodel.ViewModelKey
+import dev.zacsweers.metro.*
+import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
+import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-@ContributesIntoMap(AppScope::class)
-@ViewModelKey(EventsListViewModel::class)
-@Inject
-internal class EventsListViewModel(
-    private val api: ApiService
+@AssistedInject
+internal class EventViewModel(
+    @Assisted val eventInfo: EventInfo,
+    private val apiService: ApiService,
 ) : ViewModel() {
-    var items = mutableStateListOf<EventInfo>()
+    @AssistedFactory
+    @ManualViewModelAssistedFactoryKey(Factory::class)
+    @ContributesIntoMap(AppScope::class)
+    interface Factory : ManualViewModelAssistedFactory {
+        fun create(eventInfo: EventInfo): EventViewModel
+    }
+
+    var eventFullData by mutableStateOf<EventFullData?>(null)
         private set
 
     var progress by mutableStateOf(false)
@@ -33,21 +38,16 @@ internal class EventsListViewModel(
     private var job: Job? = null
 
     init {
-        loadItems()
+        loadData()
     }
 
-    fun refresh() {
-        loadItems()
-    }
-
-    private fun loadItems() {
+    private fun loadData() {
         if (job?.isActive == true) return
         job = viewModelScope.launch {
             try {
                 progress = true
                 error = null
-                items.clear()
-                items.addAll(api.loadEvents().sortedByDescending { it.startDate })
+                eventFullData = apiService.loadEventData(eventInfo.sessionizeDataUrl)
             } catch (e: Throwable) {
                 error = e
             } finally {

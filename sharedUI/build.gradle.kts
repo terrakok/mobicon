@@ -53,7 +53,7 @@ kotlin {
             implementation(libs.multiplatformSettings)
             implementation(libs.kotlinx.datetime)
             implementation(libs.materialKolor)
-            implementation(libs.resaca)
+            implementation(libs.metro.viewmodel)
             implementation(libs.androidx.material3.adaptive)
         }
 

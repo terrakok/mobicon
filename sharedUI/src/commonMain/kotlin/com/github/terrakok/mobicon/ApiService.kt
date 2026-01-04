@@ -2,6 +2,7 @@ package com.github.terrakok.mobicon
 
 import dev.zacsweers.metro.Inject
 import io.ktor.client.*
+import io.ktor.client.call.body
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.Json
@@ -48,4 +49,7 @@ internal class ApiService(
             )
         }
     }
+
+    suspend fun loadEventData(sessionizeDataUrl: String) =
+        httpClient.get(sessionizeDataUrl).body<EventFullData>()
 }

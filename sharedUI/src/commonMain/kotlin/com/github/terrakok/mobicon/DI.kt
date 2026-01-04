@@ -3,14 +3,13 @@ package com.github.terrakok.mobicon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.lifecycle.ViewModel
 import co.touchlab.kermit.NoTagFormatter
 import co.touchlab.kermit.Severity
 import co.touchlab.kermit.loggerConfigInit
 import co.touchlab.kermit.platformLogWriter
-import com.sebaslogen.resaca.viewModelScoped
 import dev.zacsweers.metro.*
+import dev.zacsweers.metrox.viewmodel.*
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.cache.*
@@ -20,7 +19,7 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import kotlin.reflect.KClass
 
-private const val DEBUG = false
+private const val DEBUG = true
 
 internal val Log = object : co.touchlab.kermit.Logger(
     config = loggerConfigInit(
@@ -32,9 +31,7 @@ internal val Log = object : co.touchlab.kermit.Logger(
 
 @SingleIn(AppScope::class)
 @DependencyGraph(AppScope::class)
-internal interface AppGraph {
-    val viewModelFactory: MetroViewModelFactory
-
+internal interface AppGraph: ViewModelGraph {
     @SingleIn(AppScope::class)
     @Provides
     fun provideJson(): Json = Json {
@@ -64,38 +61,23 @@ internal interface AppGraph {
     }
 }
 
-internal val LocalAppGraph = staticCompositionLocalOf<AppGraph> {
-    error("No app graph provided")
-}
-
 @Composable
 internal fun WithAppGraph(
     content: @Composable () -> Unit,
 ) {
     val graph = remember { createGraph<AppGraph>() }
-    CompositionLocalProvider(LocalAppGraph provides graph, content = content)
-}
-
-@MapKey
-@Target(AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.RUNTIME)
-annotation class ViewModelKey(val value: KClass<out ViewModel>)
-
-@Inject
-internal class MetroViewModelFactory(
-    private val viewModelProviders: Map<KClass<out ViewModel>, Provider<ViewModel>>
-) {
-
-    @Suppress("UNCHECKED_CAST")
-    fun <T : ViewModel> create(modelClass: KClass<T>): T {
-        val provider = viewModelProviders[modelClass]
-            ?: throw IllegalArgumentException("Unknown model class $modelClass")
-        return provider() as T
+    CompositionLocalProvider(
+        LocalMetroViewModelFactory provides graph.metroViewModelFactory
+    ) {
+        content()
     }
 }
 
-@Composable
-internal inline fun <reified T : ViewModel> metroVmScoped(): T {
-    val factory = LocalAppGraph.current.viewModelFactory
-    return viewModelScoped<T> { factory.create(T::class) }
-}
+@Inject
+@ContributesBinding(AppScope::class)
+@SingleIn(AppScope::class)
+internal class MyViewModelFactory(
+    override val viewModelProviders: Map<KClass<out ViewModel>, Provider<ViewModel>>,
+    override val assistedFactoryProviders: Map<KClass<out ViewModel>, Provider<ViewModelAssistedFactory>>,
+    override val manualAssistedFactoryProviders: Map<KClass<out ManualViewModelAssistedFactory>, Provider<ManualViewModelAssistedFactory>>,
+) : MetroViewModelFactory()
