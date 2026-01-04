@@ -53,9 +53,9 @@ data class Session(
     @SerialName("description")
     val description: String?,
     @SerialName("startsAt")
-    val startsAt: Instant,
+    val startsAt: Instant?,
     @SerialName("endsAt")
-    val endsAt: Instant,
+    val endsAt: Instant?,
     @SerialName("isServiceSession")
     val isServiceSession: Boolean,
     @SerialName("isPlenumSession")
@@ -65,7 +65,7 @@ data class Session(
     @SerialName("categoryItems")
     val categoryItems: List<Int>,
     @SerialName("roomId")
-    val roomId: Int,
+    val roomId: Int?,
     @SerialName("liveUrl")
     val liveUrl: String?,
     @SerialName("recordingUrl")
@@ -90,7 +90,7 @@ data class Speaker(
     @SerialName("bio")
     val bio: String?,
     @SerialName("tagLine")
-    val tagLine: String,
+    val tagLine: String?,
     @SerialName("profilePicture")
     val profilePicture: String?,
     @SerialName("isTopSpeaker")
