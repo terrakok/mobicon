@@ -20,17 +20,6 @@ internal object Colors {
     val Green = Color(0xFF71C09D)
     val Yellow = Color(0xFFF3BB54)
     val Orange = Color(0xFFF8643A)
-
-    fun getForString(str: String): Color {
-        val index = str.map { it.code }.sum() % 5
-        return when (index) {
-            0 -> Blue
-            1 -> Purple
-            2 -> Green
-            3 -> Yellow
-            else -> Orange
-        }
-    }
 }
 
 @Preview

@@ -53,7 +53,13 @@ private fun EventInfoCard(
     info: EventInfo,
     onClick: (EventInfo) -> Unit
 ) {
-    val cardBgColor = remember(info.id) { Colors.getForString(info.id) }
+    val cardBgColor = remember(info.title) {
+        when {
+            info.title.contains("droid", true) -> Colors.Green
+            info.title.contains("flutter", true) -> Colors.Blue
+            else -> Colors.Yellow
+        }
+    }
     Card(
         modifier = Modifier.fillMaxWidth().height(200.dp),
         shape = MaterialTheme.shapes.large,
