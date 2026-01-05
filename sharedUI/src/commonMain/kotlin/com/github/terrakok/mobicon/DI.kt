@@ -4,10 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
-import co.touchlab.kermit.NoTagFormatter
-import co.touchlab.kermit.Severity
-import co.touchlab.kermit.loggerConfigInit
-import co.touchlab.kermit.platformLogWriter
 import dev.zacsweers.metro.*
 import dev.zacsweers.metrox.viewmodel.*
 import io.ktor.client.*
@@ -18,16 +14,6 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
 import kotlin.reflect.KClass
-
-private const val DEBUG = true
-
-internal val Log = object : co.touchlab.kermit.Logger(
-    config = loggerConfigInit(
-        platformLogWriter(NoTagFormatter),
-        minSeverity = if (DEBUG) Severity.Verbose else Severity.Error,
-    ),
-    tag = "MobiCon"
-) {}
 
 @SingleIn(AppScope::class)
 @DependencyGraph(AppScope::class)

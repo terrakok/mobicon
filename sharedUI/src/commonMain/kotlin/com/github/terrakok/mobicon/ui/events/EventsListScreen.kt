@@ -1,29 +1,36 @@
 package com.github.terrakok.mobicon.ui.events
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.terrakok.mobicon.Colors
 import com.github.terrakok.mobicon.EventInfo
-import com.materialkolor.ktx.harmonize
+import com.github.terrakok.mobicon.TZ
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalTime
 import kotlinx.datetime.TimeZone
-import kotlinx.datetime.format.MonthNames
-import kotlinx.datetime.format.Padding
-import kotlinx.datetime.format.char
+import kotlinx.datetime.format.*
 import kotlinx.datetime.toLocalDateTime
+import mobicon.sharedui.generated.resources.Res
+import mobicon.sharedui.generated.resources.ic_calendar
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun EventsListScreen(
@@ -32,20 +39,38 @@ internal fun EventsListScreen(
     val vm = metroViewModel<EventsListViewModel>()
 
     LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(8.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surfaceContainer),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(16.dp),
     ) {
-        items(vm.items, key = { it.id }) { event ->
+        itemsIndexed(vm.items, key = { _, e -> e.id }) { index, event ->
+            val y = event.startDate.toLocalDateTime(TZ).year
+            if (index == 0 || y != vm.items[index - 1].startDate.toLocalDateTime(TZ).year) {
+                Text(
+                    text = y.toString(),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)
+                )
+            }
             EventInfoCard(event, onEventClick)
         }
     }
 }
 
 private val dateFormat = LocalDate.Format {
-    day(padding = Padding.NONE)
+    monthName(MonthNames.ENGLISH_ABBREVIATED)
     char(' ')
-    monthName(MonthNames.ENGLISH_FULL)
+    day(padding = Padding.NONE)
+}
+
+private val timeFormat = LocalTime.Format {
+    hour(padding = Padding.NONE)
+    char(':')
+    minute(padding = Padding.ZERO)
 }
 
 @Composable
@@ -53,54 +78,81 @@ private fun EventInfoCard(
     info: EventInfo,
     onClick: (EventInfo) -> Unit
 ) {
-    val cardBgColor = remember(info.title) {
-        when {
-            info.title.contains("droid", true) -> Colors.Green
-            info.title.contains("flutter", true) -> Colors.Blue
-            else -> Colors.Yellow
-        }
-    }
     Card(
-        modifier = Modifier.fillMaxWidth().height(200.dp),
         shape = MaterialTheme.shapes.large,
         colors = CardDefaults.cardColors(
-            containerColor = cardBgColor
-        )
+            containerColor = MaterialTheme.colorScheme.surfaceContainerLowest
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { onClick(info) }
-                .padding(16.dp)
         ) {
-            Column {
+            Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = info.title.replaceFirstChar { it.titlecase() },
-                    style = MaterialTheme.typography.headlineLarge,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onPrimary.harmonize(cardBgColor)
+                    color = MaterialTheme.colorScheme.onSurface
                 )
-                Text(text = info.venueName)
-                val start = info.startDate.toLocalDateTime(TimeZone.currentSystemDefault()).date
-                val end = info.endDate.toLocalDateTime(TimeZone.currentSystemDefault()).date
-
-                val dateText = if (start != end) {
-                    if (start.month != end.month) {
-                        "${dateFormat.format(start)} - ${dateFormat.format(end)}"
-                    } else {
-                        "${start.day} - ${dateFormat.format(end)}"
-                    }
-                } else {
-                    dateFormat.format(start)
-                }
-                Text(dateText + " " + end.year.toString())
-
-                Spacer(Modifier.weight(1f))
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = info.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = info.venueName,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
                 Text(
                     text = info.venueAddress,
-                    style = MaterialTheme.typography.labelSmall
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.Gray
+                )
+            }
+            val startDateTime = info.startDate.toLocalDateTime(TZ)
+            val endDateTime = info.endDate.toLocalDateTime(TZ)
+            val start = startDateTime.date
+            val end = endDateTime.date
+
+            val dateText = if (start != end) {
+                if (start.month != end.month) {
+                    "${dateFormat.format(start)} - ${dateFormat.format(end)}"
+                } else {
+                    "${dateFormat.format(start)} - ${end.day}"
+                }
+            } else {
+                dateFormat.format(start)
+            }
+            val timeText = timeFormat.format(startDateTime.time)
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    modifier = Modifier.size(20.dp),
+                    painter = painterResource(Res.drawable.ic_calendar),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = "$dateText • $timeText",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
                 )
             }
         }

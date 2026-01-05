@@ -7,19 +7,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.terrakok.mobicon.ui.RootContent
-import com.github.terrakok.mobicon.ui.events.EventsListScreen
 import com.materialkolor.PaletteStyle
+import com.materialkolor.dynamicColorScheme
 import com.materialkolor.dynamiccolor.ColorSpec
 import com.materialkolor.rememberDynamicColorScheme
+import com.materialkolor.rememberDynamicMaterialThemeState
 
 internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
 internal object Colors {
-    val Blue = Color(0xFF61C7EA)
-    val Purple = Color(0xFFC2BCF5)
-    val Green = Color(0xFF71C09D)
-    val Yellow = Color(0xFFF3BB54)
-    val Orange = Color(0xFFF8643A)
+    val Primary = Color(0xff0496ff)
+    val Secondary = Color(0xFFffbc42)
+    val Tertiary = Color(0xFF8f2d56)
+    val Error = Color(0xFFd81159)
+    val Neutral = Color(0xFFEEEEEE)
+    val NeutralVariant = Color(0xFF444444)
 }
 
 @Preview
@@ -35,14 +37,18 @@ fun App(
         val isDark by isDarkState
         onThemeChanged(!isDark)
 
-        val colorScheme = rememberDynamicColorScheme(
-            seedColor = Color(0xFF61C7EA),
+        val colorScheme = rememberDynamicMaterialThemeState(
             isDark = isDark,
-            specVersion = ColorSpec.SpecVersion.SPEC_2025,
-            style = PaletteStyle.Neutral
+            style = PaletteStyle.FruitSalad,
+            primary = Colors.Primary,
+            secondary = Colors.Secondary,
+            tertiary = Colors.Tertiary,
+            error = Colors.Error,
+            neutral = Colors.Neutral,
+            neutralVariant = Colors.NeutralVariant,
         )
         MaterialTheme(
-            colorScheme = colorScheme,
+            colorScheme = colorScheme.colorScheme,
             content = { Surface { RootContent() } }
         )
     }
