@@ -29,7 +29,8 @@ internal class ApiService(
             val endDate = item["endDate"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content + "Z"
             val bannerUrl = item["banerUrl"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
             val venueName = item["venueName"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
-            val venueAddress = item["venueAddress"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content.replace("\n", ", ")
+            val venueAddress =
+                item["venueAddress"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content.replace("\n", ", ")
             val sessionizeDataUrl = item["sessionizeData"]!!
                 .jsonObject["mapValue"]!!
                 .jsonObject["fields"]!!
@@ -51,5 +52,11 @@ internal class ApiService(
     }
 
     suspend fun loadEventData(sessionizeDataUrl: String) =
-        httpClient.get(sessionizeDataUrl).body<EventFullData>()
+        httpClient.get(sessionizeDataUrl).body<EventFullData>().let { response ->
+            response.copy(
+                sessions = response.sessions.filter {
+                    it.startsAt != Instant.DISTANT_PAST && it.endsAt != Instant.DISTANT_PAST
+                }
+            )
+        }
 }

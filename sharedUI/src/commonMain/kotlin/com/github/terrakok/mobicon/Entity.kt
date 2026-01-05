@@ -53,9 +53,9 @@ data class Session(
     @SerialName("description")
     val description: String?,
     @SerialName("startsAt")
-    val startsAt: Instant?,
+    val startsAt: Instant = Instant.DISTANT_PAST,
     @SerialName("endsAt")
-    val endsAt: Instant?,
+    val endsAt: Instant = Instant.DISTANT_PAST,
     @SerialName("isServiceSession")
     val isServiceSession: Boolean,
     @SerialName("isPlenumSession")
