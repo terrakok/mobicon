@@ -1,7 +1,7 @@
 package com.github.terrakok.mobicon.ui.event
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -17,14 +17,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.*
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
-import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import mobicon.sharedui.generated.resources.Res
@@ -69,17 +66,37 @@ internal fun EventScreen(
         var selectedDay by remember { mutableStateOf(days.first()) }
         Column(
             modifier = Modifier
+                .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
-            if (days.size > 1) {
-                DaySelector(
-                    days = days,
-                    selectedDay = selectedDay,
-                    onSelect = { selectedDay = it }
+            Column(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+            ) {
+                Text(
+                    text = eventInfo.title.replaceFirstChar { it.uppercase() },
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                )
+                if (days.size > 1) {
+                    DaySelector(
+                        days = days,
+                        selectedDay = selectedDay,
+                        onSelect = { selectedDay = it }
+                    )
+                }
+                HorizontalDivider(
+                    thickness = 1.dp,
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
                 )
             }
             Row(
                 modifier = Modifier
+                    .fillMaxSize()
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
@@ -88,7 +105,7 @@ internal fun EventScreen(
                 val shortest = data.sessions
                     .filter { !it.isServiceSession }
                     .minOf { it.endsAt.time - it.startsAt.time }
-                val height = ((180 * (end - begin)) / shortest).toInt()
+                val height = ((190 * (end - begin)) / shortest).toInt()
 
                 val times = selectedDay.roomAgendas
                     .flatMap { it.sessions }
@@ -214,28 +231,14 @@ private fun DaySelector(
     selectedDay: DaySessions,
     onSelect: (DaySessions) -> Unit
 ) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shadowElevation = 8.dp,
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surfaceContainerLowest),
-            contentAlignment = Alignment.Center
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                days.forEach { day ->
-                    DayItem(
-                        day = day,
-                        isSelected = day == selectedDay,
-                        onClick = { onSelect(day) },
-                        modifier = Modifier.padding(8.dp).size(width = 72.dp, height = 84.dp)
-                    )
-                }
-            }
+    Row(modifier = modifier) {
+        days.forEach { day ->
+            DayItem(
+                day = day,
+                isSelected = day == selectedDay,
+                onClick = { onSelect(day) },
+                modifier = Modifier.padding(horizontal = 16.dp)
+            )
         }
     }
 }
@@ -247,38 +250,32 @@ private fun DayItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val dayOfWeek = day.date.dayOfWeek.name.lowercase().take(3).replaceFirstChar { it.uppercase() }
-    val dayOfMonth = day.date.dayOfMonth.toString()
+    val text = day.date.let { date ->
+        val dayOfWeek = date.dayOfWeek.name.lowercase().take(3).replaceFirstChar { it.uppercase() }
+        val month = date.month.name.lowercase().take(3).replaceFirstChar { it.uppercase() }
+        "$dayOfWeek, $month ${date.day}"
+    }
 
-    Surface(
-        onClick = onClick,
-        shape = RoundedCornerShape(20.dp),
-        color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceContainerLowest,
-        contentColor = if (isSelected) MaterialTheme.colorScheme.surfaceContainerLowest else MaterialTheme.colorScheme.outline,
-        border = if (isSelected) null else BorderStroke(1.dp, Color(0xFFE0E0E0)),
-        modifier = modifier,
-        shadowElevation = if (isSelected) 8.dp else 0.dp
+    Column(
+        modifier = modifier.clickable { onClick() },
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = dayOfWeek,
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Medium,
-                color = if (isSelected) MaterialTheme.colorScheme.surfaceContainerLowest.copy(alpha = 0.7f) else Color(
-                    0xFF6B6E70
+        Text(
+            text = text,
+            modifier = Modifier.padding(16.dp),
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline,
+        )
+        Box(
+            modifier = Modifier
+                .width(100.dp)
+                .height(3.dp)
+                .background(
+                    color = if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent,
+                    shape = RoundedCornerShape(topStart = 3.dp, topEnd = 3.dp)
                 )
-            )
-            Text(
-                text = dayOfMonth,
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                fontSize = 28.sp
-            )
-        }
+        )
     }
 }
 
@@ -303,13 +300,13 @@ private fun SessionCard(
                 if (category != null) {
                     Surface(
                         color = MaterialTheme.colorScheme.secondaryContainer,
-                        shape = RoundedCornerShape(16.dp)
+                        shape = RoundedCornerShape(50)
                     ) {
                         Text(
                             text = category.name,
-                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                             color = MaterialTheme.colorScheme.onSecondaryContainer,
-                            style = MaterialTheme.typography.labelMedium,
+                            style = MaterialTheme.typography.labelSmall,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -317,30 +314,41 @@ private fun SessionCard(
                 }
                 Spacer(Modifier.weight(1f))
             }
-
             Spacer(Modifier.height(8.dp))
 
-            Text(
-                text = session.title,
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+            Column(modifier = Modifier.weight(1f)) {
+                Text(
+                    text = session.title,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f, fill = false)
+                )
 
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = "${session.startsAt.time} - ${session.endsAt.time}",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.outline,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+                Column {
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = "${session.startsAt.time} - ${session.endsAt.time}",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.outline,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    if (room != null) {
+                        Text(
+                            text = room.name,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.outline,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+                }
 
-            Spacer(Modifier.weight(1f))
+            }
 
             if (speaker != null) {
-                Spacer(Modifier.height(12.dp))
+                Spacer(Modifier.height(4.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     AsyncImage(
                         model = speaker.profilePicture,
