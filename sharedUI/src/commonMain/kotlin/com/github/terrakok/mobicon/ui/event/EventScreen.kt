@@ -1,6 +1,7 @@
 package com.github.terrakok.mobicon.ui.event
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -12,10 +13,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -100,15 +103,15 @@ internal fun EventScreen(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
-                val begin = selectedDay.roomAgendas.first().startTime
-                val end = selectedDay.roomAgendas.first().endTime
-                val shortest = data.sessions
+                val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
+                val begin = daySessions.minOf { it.startsAt.time }
+                val end = daySessions.maxOf { it.endsAt.time }
+                val shortest = daySessions
                     .filter { !it.isServiceSession }
                     .minOf { it.endsAt.time - it.startsAt.time }
-                val height = ((190 * (end - begin)) / shortest).toInt()
+                val height = ((160 * (end - begin)) / shortest).toInt()
 
-                val times = selectedDay.roomAgendas
-                    .flatMap { it.sessions }
+                val times = daySessions
                     .map { it.startsAt.time }
                     .distinct()
                     .sorted()
@@ -165,18 +168,43 @@ private fun Agenda(
                 Spacer(modifier = Modifier.weight(pause.toFloat() / lengthInMinutes))
             }
 
-            val sessionSpeaker = session.speakers.firstNotNullOfOrNull { agenda.speakers[it] }
-            val sessionRoom = agenda.rooms[agenda.roomId]
-            val sessionCategory = session.categoryItems.firstNotNullOfOrNull { agenda.categories[it] }
+            if (!session.isServiceSession) {
+                val sessionSpeaker = session.speakers.firstNotNullOfOrNull { agenda.speakers[it] }
+                val sessionRoom = agenda.rooms[agenda.roomId]
+                val sessionCategory = session.categoryItems.firstNotNullOfOrNull { agenda.categories[it] }
 
-            SessionCard(
-                session = session,
-                category = sessionCategory,
-                room = sessionRoom,
-                speaker = sessionSpeaker,
-                modifier = Modifier.padding(vertical = 4.dp).fillMaxWidth()
-                    .weight(sessionLen.toFloat() / lengthInMinutes)
-            )
+                SessionCard(
+                    session = session,
+                    category = sessionCategory,
+                    room = sessionRoom,
+                    speaker = sessionSpeaker,
+                    modifier = Modifier.padding(vertical = 4.dp).fillMaxWidth()
+                        .weight(sessionLen.toFloat() / lengthInMinutes)
+                )
+            } else {
+                Column(
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .fillMaxWidth()
+                        .weight(sessionLen.toFloat() / lengthInMinutes)
+                        .border(
+                            2.dp,
+                            color = MaterialTheme.colorScheme.primaryFixedDim,
+                            RoundedCornerShape(16.dp)
+                        )
+                        .padding(horizontal = 16.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = session.title,
+                        color = MaterialTheme.colorScheme.primary,
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
         }
         val lastPause = agenda.endTime - agenda.sessions.last().endsAt.time
         if (lastPause > 0) {
@@ -296,8 +324,8 @@ private fun SessionCard(
         Column(
             modifier = Modifier.padding(12.dp),
         ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                if (category != null) {
+            if (category != null) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Surface(
                         color = MaterialTheme.colorScheme.secondaryContainer,
                         shape = RoundedCornerShape(50)
@@ -311,10 +339,10 @@ private fun SessionCard(
                             overflow = TextOverflow.Ellipsis
                         )
                     }
+                    Spacer(Modifier.weight(1f))
                 }
-                Spacer(Modifier.weight(1f))
+                Spacer(Modifier.height(8.dp))
             }
-            Spacer(Modifier.height(8.dp))
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
