@@ -8,10 +8,10 @@ import com.github.terrakok.mobicon.App
 fun main() = application {
     Window(
         title = "MobiCon",
-        state = rememberWindowState(width = 800.dp, height = 600.dp),
+        state = rememberWindowState(width = 500.dp, height = 900.dp),
         onCloseRequest = ::exitApplication,
     ) {
-        window.minimumSize = Dimension(350, 600)
+        window.minimumSize = Dimension(500, 900)
         App()
     }
 }

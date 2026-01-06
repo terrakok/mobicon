@@ -56,6 +56,7 @@ kotlin {
             implementation(libs.materialKolor)
             implementation(libs.metro.viewmodel)
             implementation(libs.androidx.material3.adaptive)
+            implementation(libs.kotlinx.collections.immutable)
         }
 
         commonTest.dependencies {

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -28,6 +29,7 @@ internal class TwoPaneScene<T : Any>(
             Column(modifier = Modifier.width(400.dp)) {
                 firstEntry.Content()
             }
+            VerticalDivider()
             Column(modifier = Modifier.weight(1f)) {
                 secondEntry.Content()
             }
