@@ -1,20 +1,15 @@
-@file:UseSerializers(InstantSerializer::class)
+//@file:UseSerializers(LocalDateTimeSerializer::class)
 
 package com.github.terrakok.mobicon
 
 import androidx.compose.runtime.Immutable
-import kotlinx.datetime.format.DateTimeComponents
-import kotlinx.datetime.format.char
-import kotlinx.serialization.KSerializer
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
-import kotlinx.serialization.descriptors.PrimitiveKind
-import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import kotlin.time.Instant
+
+private val past = LocalDateTime(1, 1, 1, 0, 0, 0)
+internal val LocalDateTime.Companion.DISTANT_PAST get() = past
 
 @Immutable
 @Serializable
@@ -22,8 +17,8 @@ internal data class EventInfo(
     val id: String,
     val title: String,
     val description: String,
-    val startDate: Instant,
-    val endDate: Instant,
+    val startDate: LocalDateTime,
+    val endDate: LocalDateTime,
     val bannerUrl: String,
     val venueName: String,
     val venueAddress: String,
@@ -53,9 +48,9 @@ data class Session(
     @SerialName("description")
     val description: String?,
     @SerialName("startsAt")
-    val startsAt: Instant = Instant.DISTANT_PAST,
+    val startsAt: LocalDateTime = LocalDateTime.DISTANT_PAST,
     @SerialName("endsAt")
-    val endsAt: Instant = Instant.DISTANT_PAST,
+    val endsAt: LocalDateTime = LocalDateTime.DISTANT_PAST,
     @SerialName("isServiceSession")
     val isServiceSession: Boolean,
     @SerialName("isPlenumSession")
@@ -148,28 +143,28 @@ data class Room(
     val sort: Int
 )
 
-object InstantSerializer : KSerializer<Instant> {
-    //2025-01-03T15:15:50
-    private val format = DateTimeComponents.Format {
-        year(); char('-'); monthNumber(); char('-'); day()
-        char('T')
-        hour(); char(':'); minute(); char(':'); second()
-    }
-
-    override fun serialize(encoder: Encoder, value: Instant) {
-        encoder.encodeString(value.epochSeconds.toString())
-    }
-
-    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(
-        "com.github.terrakok.mobicon.InstantSerializer",
-        PrimitiveKind.STRING
-    )
-
-    override fun deserialize(decoder: Decoder): Instant {
-        val str = decoder.decodeString()
-        return parseInstant(str)
-    }
-
-    fun parseInstant(str: String): Instant =
-        format.parse(str).toInstantUsingOffset()
-}
+//object InstantSerializer : KSerializer<Instant> {
+//    //2025-01-03T15:15:50
+//    private val format = DateTimeComponents.Format {
+//        year(); char('-'); monthNumber(); char('-'); day()
+//        char('T')
+//        hour(); char(':'); minute(); char(':'); second()
+//    }
+//
+//    override fun serialize(encoder: Encoder, value: Instant) {
+//        encoder.encodeString(value.epochSeconds.toString())
+//    }
+//
+//    override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor(
+//        "com.github.terrakok.mobicon.InstantSerializer",
+//        PrimitiveKind.STRING
+//    )
+//
+//    override fun deserialize(decoder: Decoder): Instant {
+//        val str = decoder.decodeString()
+//        return parseInstant(str)
+//    }
+//
+//    fun parseInstant(str: String): Instant =
+//        format.parse(str).toInstantUsingOffset()
+//}

@@ -4,12 +4,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,20 +14,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.github.terrakok.mobicon.Colors
 import com.github.terrakok.mobicon.EventInfo
-import com.github.terrakok.mobicon.TZ
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
-import kotlinx.datetime.TimeZone
-import kotlinx.datetime.format.*
-import kotlinx.datetime.toLocalDateTime
+import kotlinx.datetime.format.MonthNames
+import kotlinx.datetime.format.Padding
+import kotlinx.datetime.format.char
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_calendar
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.vectorResource
 
 @Composable
 internal fun EventsListScreen(
@@ -46,8 +39,8 @@ internal fun EventsListScreen(
         contentPadding = PaddingValues(16.dp),
     ) {
         itemsIndexed(vm.items, key = { _, e -> e.id }) { index, event ->
-            val y = event.startDate.toLocalDateTime(TZ).year
-            if (index == 0 || y != vm.items[index - 1].startDate.toLocalDateTime(TZ).year) {
+            val y = event.startDate.year
+            if (index == 0 || y != vm.items[index - 1].startDate.year) {
                 Text(
                     text = y.toString(),
                     style = MaterialTheme.typography.titleMedium,
@@ -118,10 +111,8 @@ private fun EventInfoCard(
                     color = Color.Gray
                 )
             }
-            val startDateTime = info.startDate.toLocalDateTime(TZ)
-            val endDateTime = info.endDate.toLocalDateTime(TZ)
-            val start = startDateTime.date
-            val end = endDateTime.date
+            val start = info.startDate.date
+            val end = info.endDate.date
 
             val dateText = if (start != end) {
                 if (start.month != end.month) {
@@ -132,7 +123,7 @@ private fun EventInfoCard(
             } else {
                 dateFormat.format(start)
             }
-            val timeText = timeFormat.format(startDateTime.time)
+            val timeText = timeFormat.format(info.startDate.time)
 
             Row(
                 modifier = Modifier

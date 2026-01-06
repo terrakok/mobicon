@@ -15,15 +15,6 @@ import com.materialkolor.rememberDynamicMaterialThemeState
 
 internal val LocalThemeIsDark = compositionLocalOf { mutableStateOf(true) }
 
-internal object Colors {
-    val Primary = Color(0xff0496ff)
-    val Secondary = Color(0xFFffbc42)
-    val Tertiary = Color(0xFF8f2d56)
-    val Error = Color(0xFFd81159)
-    val Neutral = Color(0xFFEEEEEE)
-    val NeutralVariant = Color(0xFF444444)
-}
-
 @Preview
 @Composable
 fun App(
@@ -40,12 +31,10 @@ fun App(
         val colorScheme = rememberDynamicMaterialThemeState(
             isDark = isDark,
             style = PaletteStyle.FruitSalad,
-            primary = Colors.Primary,
-            secondary = Colors.Secondary,
-            tertiary = Colors.Tertiary,
-            error = Colors.Error,
-            neutral = Colors.Neutral,
-            neutralVariant = Colors.NeutralVariant,
+            primary = Color(0xFF3713EC),
+            secondary = Color(0xFFF97316),
+            tertiary = Color(0xFF22C55E),
+            error = Color(0xFFEC4899),
         )
         MaterialTheme(
             colorScheme = colorScheme.colorScheme,

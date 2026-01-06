@@ -5,6 +5,7 @@ import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
@@ -25,8 +26,8 @@ internal class ApiService(
             val id = item["uniqueId"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
             val title = item["title"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content.trim()
             val description = item["description"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content.trim()
-            val startDate = item["startDate"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content + "Z"
-            val endDate = item["endDate"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content + "Z"
+            val startDate = item["startDate"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
+            val endDate = item["endDate"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
             val bannerUrl = item["banerUrl"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
             val venueName = item["venueName"]!!.jsonObject["stringValue"]!!.jsonPrimitive.content
             val venueAddress =
@@ -41,8 +42,8 @@ internal class ApiService(
                 id = id,
                 title = title,
                 description = description,
-                startDate = Instant.parse(startDate),
-                endDate = Instant.parse(endDate),
+                startDate = LocalDateTime.parse(startDate),
+                endDate = LocalDateTime.parse(endDate),
                 bannerUrl = bannerUrl,
                 venueName = venueName,
                 venueAddress = venueAddress,
@@ -55,7 +56,7 @@ internal class ApiService(
         httpClient.get(sessionizeDataUrl).body<EventFullData>().let { response ->
             response.copy(
                 sessions = response.sessions.filter {
-                    it.startsAt != Instant.DISTANT_PAST && it.endsAt != Instant.DISTANT_PAST
+                    it.startsAt != LocalDateTime.DISTANT_PAST && it.endsAt != LocalDateTime.DISTANT_PAST
                 }
             )
         }
