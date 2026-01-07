@@ -39,6 +39,7 @@ import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_arrow_drop_down
 import mobicon.sharedui.generated.resources.ic_sentiment
 import org.jetbrains.compose.resources.painterResource
+import kotlin.text.toFloat
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -95,7 +96,7 @@ internal fun EventScreen(
             )
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isWide = windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)
-            val onSessionClick : (Session) -> Unit = { session ->
+            val onSessionClick: (Session) -> Unit = { session ->
                 val info = SessionInfo(
                     session = session,
                     speakers = speakers.entries.filter { session.speakers.contains(it.key) }.map { it.value },
@@ -156,9 +157,9 @@ private fun Agenda(
                 Spacer(modifier = Modifier.weight(pause.toFloat() / lengthInMinutes))
             }
 
+            val sessionRoom = rooms[agenda.roomId]
             if (!session.isServiceSession) {
                 val sessionSpeaker = session.speakers.firstNotNullOfOrNull { speakers[it] }
-                val sessionRoom = rooms[agenda.roomId]
                 val sessionCategory = session.categoryItems.firstNotNullOfOrNull { categories[it] }
 
                 SessionCard(
@@ -171,36 +172,14 @@ private fun Agenda(
                         .weight(sessionLen.toFloat() / lengthInMinutes)
                 )
             } else {
-                val borderColor = MaterialTheme.colorScheme.outlineVariant
-                Column(
+                ServiceSessionCard(
+                    session = session,
+                    room = sessionRoom,
                     modifier = Modifier
                         .padding(vertical = 4.dp)
                         .fillMaxWidth()
                         .weight(sessionLen.toFloat() / lengthInMinutes)
-                        .drawBehind {
-                            val strokeWidthValue = 2.dp
-                            val cornerRadiusValue = 16.dp
-                            drawRoundRect(
-                                color = borderColor,
-                                style = Stroke(
-                                    width = strokeWidthValue.toPx(),
-                                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f))
-                                ),
-                                cornerRadius = CornerRadius(cornerRadiusValue.toPx())
-                            )
-                        }
-                        .padding(horizontal = 16.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = session.title,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Medium,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                )
             }
         }
         val lastPause = agenda.endTime - agenda.sessions.last().endsAt.time
@@ -260,7 +239,7 @@ private fun DaySelector(
         modifier = modifier,
         contentPadding = PaddingValues(horizontal = 16.dp),
     ) {
-        items(days) {day ->
+        items(days) { day ->
             DayItem(
                 day = day,
                 isSelected = day == selectedDay,
@@ -514,7 +493,6 @@ private fun WideScreenSchedule(
 private fun NarrowScreenSchedule(
     selectedDay: DaySessions,
     onSessionClick: (Session) -> Unit,
-    modifier: Modifier = Modifier
 ) {
     val daySessions = selectedDay.roomAgendas
         .flatMap { it.sessions }
@@ -535,15 +513,65 @@ private fun NarrowScreenSchedule(
                     fontSize = 14.sp
                 )
             } else if (item is Session) {
-                SessionCard(
-                    session = item,
-                    category = selectedDay.categories[item.categoryItems.firstOrNull()],
-                    room = selectedDay.rooms[item.roomId],
-                    speaker = selectedDay.speakers[item.speakers.firstOrNull()],
-                    onSessionClick = onSessionClick,
-                    modifier = Modifier.fillMaxWidth().height(200.dp)
-                )
+                if (item.isServiceSession) {
+                    ServiceSessionCard(
+                        session = item,
+                        room = selectedDay.rooms[item.roomId],
+                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                    )
+                } else {
+                    SessionCard(
+                        session = item,
+                        category = selectedDay.categories[item.categoryItems.firstOrNull()],
+                        room = selectedDay.rooms[item.roomId],
+                        speaker = selectedDay.speakers[item.speakers.firstOrNull()],
+                        onSessionClick = onSessionClick,
+                        modifier = Modifier.fillMaxWidth().height(200.dp)
+                    )
+                }
             }
         }
+    }
+}
+
+@Composable
+private fun ServiceSessionCard(
+    session: Session,
+    room: Room?,
+    modifier: Modifier = Modifier,
+) {
+    val borderColor = MaterialTheme.colorScheme.outlineVariant
+    Column(
+        modifier = modifier
+            .drawBehind {
+                val strokeWidthValue = 2.dp
+                val cornerRadiusValue = 16.dp
+                drawRoundRect(
+                    color = borderColor,
+                    style = Stroke(
+                        width = strokeWidthValue.toPx(),
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f))
+                    ),
+                    cornerRadius = CornerRadius(cornerRadiusValue.toPx())
+                )
+            }
+            .padding(horizontal = 16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = session.title,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.titleMedium,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
+        Text(
+            text = room?.name.orEmpty(),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            style = MaterialTheme.typography.labelSmall,
+            fontWeight = FontWeight.Medium,
+            textAlign = TextAlign.Center
+        )
     }
 }
