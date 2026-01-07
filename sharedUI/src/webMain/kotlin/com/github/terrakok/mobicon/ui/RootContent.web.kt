@@ -9,7 +9,8 @@ import com.github.terrakok.navigation3.browser.HierarchicalBrowserNavigation
 internal actual fun BrowserNavigation(backStack: NavBackStack<NavKey>) {
     HierarchicalBrowserNavigation {
         when (val current = backStack.last() as AppScreen) {
-            is Event -> "#event?id=${current.info.id}"
+            is EventScreen -> "#event?id=${current.info.id}"
+            is SessionScreen -> "#session?id=${current.info.session.id}"
             else -> ""
         }
     }

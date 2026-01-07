@@ -3,11 +3,7 @@ package com.github.terrakok.mobicon.ui
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
@@ -16,11 +12,11 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
-import com.github.terrakok.mobicon.EventInfo
+import com.github.terrakok.mobicon.*
 import com.github.terrakok.mobicon.ui.event.EmptyEventScreen
 import com.github.terrakok.mobicon.ui.event.EventScreen
 import com.github.terrakok.mobicon.ui.events.EventsListScreen
+import com.github.terrakok.mobicon.ui.session.Session
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -28,27 +24,33 @@ import kotlinx.serialization.modules.polymorphic
 sealed interface AppScreen : NavKey
 
 @Serializable
-internal object EventsList : AppScreen
+internal object EventsListScreen : AppScreen
 
 @Serializable
-internal data class Event(val info: EventInfo) : AppScreen
+internal data class EventScreen(val info: EventInfo) : AppScreen
 
 @Serializable
-internal object EmptyEvent : AppScreen
+internal data class SessionScreen(
+    val info: SessionInfo
+) : AppScreen
+
+@Serializable
+internal object EmptyEventScreen : AppScreen
 
 private val config = SavedStateConfiguration {
     serializersModule = SerializersModule {
         polymorphic(NavKey::class) {
-            subclass(EventsList::class, EventsList.serializer())
-            subclass(Event::class, Event.serializer())
-            subclass(EmptyEvent::class, EmptyEvent.serializer())
+            subclass(EventsListScreen::class, EventsListScreen.serializer())
+            subclass(EventScreen::class, EventScreen.serializer())
+            subclass(EmptyEventScreen::class, EmptyEventScreen.serializer())
+            subclass(SessionScreen::class, SessionScreen.serializer())
         }
     }
 }
 
 @Composable
 internal fun RootContent() {
-    val backStack = rememberNavBackStack(config, EmptyEvent, EventsList)
+    val backStack = rememberNavBackStack(config, EmptyEventScreen, EventsListScreen)
     BrowserNavigation(backStack)
 
     NavDisplay(
@@ -75,23 +77,32 @@ internal fun RootContent() {
             )
         },
         entryProvider = entryProvider {
-            entry<EventsList>(
+            entry<EventsListScreen>(
                 metadata = DesktopDialogSceneStrategy.dialog()
             ) {
                 EventsListScreen(
                     onEventClick = {
                         backStack.clear()
-                        backStack.add(Event(it))
+                        backStack.add(EventScreen(it))
                     }
                 )
             }
-            entry<EmptyEvent> {
+            entry<EmptyEventScreen> {
                 EmptyEventScreen()
             }
-            entry<Event> { key ->
+            entry<EventScreen> { key ->
                 EventScreen(
                     eventInfo = key.info,
-                    onSelectConferenceClick = { backStack.add(EventsList) }
+                    onSelectConferenceClick = { backStack.add(EventsListScreen) },
+                    onSessionClick = { backStack.add(SessionScreen(it)) }
+                )
+            }
+            entry<SessionScreen>(
+                metadata = DesktopDialogSceneStrategy.dialog()
+            ) { key ->
+                Session(
+                    data = key.info,
+                    onBack = { backStack.removeLast() }
                 )
             }
         }

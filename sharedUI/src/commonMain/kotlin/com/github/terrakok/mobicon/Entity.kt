@@ -70,6 +70,14 @@ data class Session(
     val isConfirmed: Boolean
 )
 
+@Serializable
+internal data class SessionInfo(
+    val session: Session,
+    val speakers: List<Speaker>,
+    val room: Room,
+    val categories: List<CategoryItem>
+)
+
 @Immutable
 @Serializable
 data class Speaker(

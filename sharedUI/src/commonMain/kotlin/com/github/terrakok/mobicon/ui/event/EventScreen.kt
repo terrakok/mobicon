@@ -1,7 +1,6 @@
 package com.github.terrakok.mobicon.ui.event
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -23,7 +22,6 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.font.FontWeight
@@ -46,7 +44,8 @@ import kotlin.time.Duration.Companion.seconds
 @Composable
 internal fun EventScreen(
     eventInfo: EventInfo,
-    onSelectConferenceClick: () -> Unit
+    onSelectConferenceClick: () -> Unit,
+    onSessionClick: (SessionInfo) -> Unit,
 ) {
     val vm = assistedMetroViewModel<EventViewModel, EventViewModel.Factory> {
         create(eventInfo)
@@ -96,10 +95,19 @@ internal fun EventScreen(
             )
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isWide = windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)
+            val onSessionClick : (Session) -> Unit = { session ->
+                val info = SessionInfo(
+                    session = session,
+                    speakers = speakers.entries.filter { session.speakers.contains(it.key) }.map { it.value },
+                    room = rooms[session.roomId]!!,
+                    categories = categories.entries.filter { session.categoryItems.contains(it.key) }.map { it.value }
+                )
+                onSessionClick(info)
+            }
             if (isWide) {
-                WideScreenSchedule(selectedDay)
+                WideScreenSchedule(selectedDay, onSessionClick)
             } else {
-                NarrowScreenSchedule(selectedDay)
+                NarrowScreenSchedule(selectedDay, onSessionClick)
             }
         }
     }
@@ -135,7 +143,8 @@ private fun Agenda(
     agenda: RoomAgenda,
     speakers: Map<String, Speaker>,
     rooms: Map<Int, Room>,
-    categories: Map<Int, CategoryItem>
+    categories: Map<Int, CategoryItem>,
+    onSessionClick: (Session) -> Unit
 ) {
     Column(modifier = modifier) {
         val lengthInMinutes = agenda.endTime - agenda.startTime
@@ -157,6 +166,7 @@ private fun Agenda(
                     category = sessionCategory,
                     room = sessionRoom,
                     speaker = sessionSpeaker,
+                    onSessionClick = onSessionClick,
                     modifier = Modifier.padding(vertical = 4.dp).fillMaxWidth()
                         .weight(sessionLen.toFloat() / lengthInMinutes)
                 )
@@ -305,6 +315,7 @@ private fun SessionCard(
     category: CategoryItem?,
     room: Room?,
     speaker: Speaker?,
+    onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -314,7 +325,9 @@ private fun SessionCard(
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier
+                .clickable { onSessionClick(session) }
+                .padding(12.dp),
         ) {
             if (category != null) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -461,10 +474,10 @@ private fun Header(
 @Composable
 private fun WideScreenSchedule(
     selectedDay: DaySessions,
-    modifier: Modifier = Modifier
+    onSessionClick: (Session) -> Unit
 ) {
     Row(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
@@ -490,7 +503,8 @@ private fun WideScreenSchedule(
                 agenda = it,
                 speakers = selectedDay.speakers,
                 rooms = selectedDay.rooms,
-                categories = selectedDay.categories
+                categories = selectedDay.categories,
+                onSessionClick = onSessionClick
             )
         }
     }
@@ -499,6 +513,7 @@ private fun WideScreenSchedule(
 @Composable
 private fun NarrowScreenSchedule(
     selectedDay: DaySessions,
+    onSessionClick: (Session) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val daySessions = selectedDay.roomAgendas
@@ -525,6 +540,7 @@ private fun NarrowScreenSchedule(
                     category = selectedDay.categories[item.categoryItems.firstOrNull()],
                     room = selectedDay.rooms[item.roomId],
                     speaker = selectedDay.speakers[item.speakers.firstOrNull()],
+                    onSessionClick = onSessionClick,
                     modifier = Modifier.fillMaxWidth().height(200.dp)
                 )
             }
