@@ -7,6 +7,7 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
@@ -47,18 +48,7 @@ private val config = SavedStateConfiguration {
 
 @Composable
 internal fun RootContent() {
-    val backStack = rememberNavBackStack(config, EventsList)
-    val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
-    val isWide = remember(windowSizeClass) {
-        windowSizeClass.isWidthAtLeastBreakpoint(WIDTH_DP_EXPANDED_LOWER_BOUND)
-    }
-    LaunchedEffect(isWide) {
-        if (isWide && backStack.size == 1) {
-            backStack.add(EmptyEvent)
-        } else if (!isWide && backStack.last() is EmptyEvent) {
-            backStack.removeLast()
-        }
-    }
+    val backStack = rememberNavBackStack(config, EmptyEvent, EventsList)
     BrowserNavigation(backStack)
 
     NavDisplay(
@@ -68,10 +58,10 @@ internal fun RootContent() {
             rememberViewModelStoreNavEntryDecorator()
         ),
         onBack = {
-            val canGoBack = (isWide && backStack.size > 2) || (!isWide && backStack.size > 1)
+            val canGoBack = backStack.size > 1
             if (canGoBack) backStack.removeLast()
         },
-        sceneStrategy = rememberTwoPaneSceneStrategy(),
+        sceneStrategy = rememberDesktopDialogSceneStrategy(),
         transitionSpec = {
             ContentTransform(
                 targetContentEnter = EnterTransition.None,
@@ -86,24 +76,23 @@ internal fun RootContent() {
         },
         entryProvider = entryProvider {
             entry<EventsList>(
-                metadata = TwoPaneScene.twoPane()
+                metadata = DesktopDialogSceneStrategy.dialog()
             ) {
                 EventsListScreen(
                     onEventClick = {
-                        backStack.removeAll { it is Event || it is EmptyEvent }
+                        backStack.clear()
                         backStack.add(Event(it))
                     }
                 )
             }
-            entry<EmptyEvent>(
-                metadata = TwoPaneScene.twoPane()
-            ) {
+            entry<EmptyEvent> {
                 EmptyEventScreen()
             }
-            entry<Event>(
-                metadata = TwoPaneScene.twoPane()
-            ) { key ->
-                EventScreen(key.info)
+            entry<Event> { key ->
+                EventScreen(
+                    eventInfo = key.info,
+                    onSelectConferenceClick = { backStack.add(EventsList) }
+                )
             }
         }
     )

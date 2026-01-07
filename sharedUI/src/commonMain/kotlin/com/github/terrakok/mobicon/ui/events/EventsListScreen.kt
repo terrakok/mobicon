@@ -85,7 +85,7 @@ private fun EventInfoCard(
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
-                    text = info.title.replaceFirstChar { it.titlecase() },
+                    text = info.title,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface

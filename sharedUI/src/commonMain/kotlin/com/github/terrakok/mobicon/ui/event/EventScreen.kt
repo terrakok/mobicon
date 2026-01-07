@@ -3,6 +3,7 @@ package com.github.terrakok.mobicon.ui.event
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -13,7 +14,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
@@ -28,13 +28,15 @@ import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
 import mobicon.sharedui.generated.resources.Res
+import mobicon.sharedui.generated.resources.ic_arrow_drop_down
 import mobicon.sharedui.generated.resources.ic_sentiment
 import org.jetbrains.compose.resources.painterResource
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 internal fun EventScreen(
-    eventInfo: EventInfo
+    eventInfo: EventInfo,
+    onSelectConferenceClick: () -> Unit
 ) {
     val vm = assistedMetroViewModel<EventViewModel, EventViewModel.Factory> {
         create(eventInfo)
@@ -76,15 +78,32 @@ internal fun EventScreen(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.surfaceContainerLowest)
             ) {
-                Text(
-                    text = eventInfo.title.replaceFirstChar { it.uppercase() },
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(24.dp),
-                )
+                        .padding(12.dp)
+                        .clip(RoundedCornerShape(50))
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = { onSelectConferenceClick() }
+                        )
+                        .padding(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = eventInfo.title,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_arrow_drop_down),
+                        contentDescription = null,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
                 if (days.size > 1) {
                     DaySelector(
                         days = days,

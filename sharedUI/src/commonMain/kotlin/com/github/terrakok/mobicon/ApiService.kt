@@ -40,8 +40,8 @@ internal class ApiService(
                 .jsonPrimitive.content
             EventInfo(
                 id = id,
-                title = title,
-                description = description,
+                title = title.replaceFirstChar { it.titlecase() },
+                description = description.replaceFirstChar { it.titlecase() },
                 startDate = LocalDateTime.parse(startDate),
                 endDate = LocalDateTime.parse(endDate),
                 bannerUrl = bannerUrl,
