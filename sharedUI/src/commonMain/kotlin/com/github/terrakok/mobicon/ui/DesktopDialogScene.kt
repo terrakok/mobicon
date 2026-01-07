@@ -1,6 +1,5 @@
 package com.github.terrakok.mobicon.ui
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -18,7 +17,7 @@ import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.scene.SceneStrategyScope
 import androidx.window.core.layout.WindowSizeClass
-import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
+import com.github.terrakok.mobicon.WIDE_SIZE
 
 internal class DesktopDialogScene<T : Any>(
     override val key: Any,
@@ -86,7 +85,7 @@ internal class DesktopDialogSceneStrategy<T : Any>(
     override fun SceneStrategyScope<T>.calculateScene(
         entries: List<NavEntry<T>>
     ): Scene<T>? {
-        if (!windowSizeClass.isWidthAtLeastBreakpoint(WIDTH_DP_EXPANDED_LOWER_BOUND)) {
+        if (!windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)) {
             return null
         }
         val lastEntry = entries.lastOrNull()

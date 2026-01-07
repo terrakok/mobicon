@@ -5,11 +5,14 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,10 +25,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.*
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_arrow_drop_down
@@ -58,13 +63,16 @@ internal fun EventScreen(
                         roomId = roomId,
                         startTime = startTime,
                         endTime = endTime,
-                        sessions = sessions.sortedBy { it.startsAt },
-                        speakers = speakers,
-                        rooms = rooms,
-                        categories = categories
+                        sessions = sessions.sortedBy { it.startsAt }
                     )
                 }
-                DaySessions(date, roomAgendas)
+                DaySessions(
+                    date = date,
+                    roomAgendas = roomAgendas,
+                    speakers = speakers,
+                    rooms = rooms,
+                    categories = categories
+                )
             }
             .sortedBy { it.date }
 
@@ -74,75 +82,19 @@ internal fun EventScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
-            Column(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.surfaceContainerLowest)
-            ) {
-                Row(
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .clip(RoundedCornerShape(50))
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            onClick = { onSelectConferenceClick() }
-                        )
-                        .padding(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = eventInfo.title,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f, fill = false)
-                    )
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_arrow_drop_down),
-                        contentDescription = null,
-                        modifier = Modifier.padding(start = 8.dp),
-                    )
-                }
-                if (days.size > 1) {
-                    DaySelector(
-                        days = days,
-                        selectedDay = selectedDay,
-                        onSelect = { selectedDay = it }
-                    )
-                }
-                HorizontalDivider(
-                    thickness = 1.dp,
-                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
-                )
-            }
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState())
-                    .padding(16.dp)
-            ) {
-                val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
-                val begin = daySessions.minOf { it.startsAt.time }
-                val end = daySessions.maxOf { it.endsAt.time }
-                val shortest = daySessions
-                    .filter { !it.isServiceSession }
-                    .minOf { it.endsAt.time - it.startsAt.time }
-                val height = ((160 * (end - begin)) / shortest).toInt()
-
-                val times = daySessions
-                    .map { it.startsAt.time }
-                    .distinct()
-                    .sorted()
-
-                Timeline(TimelineData(begin, end, times), Modifier.width(60.dp).height(height.dp))
-                selectedDay.roomAgendas.forEachIndexed { index, it ->
-                    if (index > 0) Spacer(modifier = Modifier.width(8.dp))
-                    Agenda(
-                        modifier = Modifier.height(height.dp).weight(1f),
-                        agenda = it
-                    )
-                }
+            Header(
+                eventInfo = eventInfo,
+                days = days,
+                selectedDay = selectedDay,
+                onDaySelect = { selectedDay = it },
+                onSelectConferenceClick = onSelectConferenceClick
+            )
+            val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
+            val isWide = windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)
+            if (isWide) {
+                WideScreenSchedule(selectedDay)
+            } else {
+                NarrowScreenSchedule(selectedDay)
             }
         }
     }
@@ -151,7 +103,10 @@ internal fun EventScreen(
 @Immutable
 private data class DaySessions(
     val date: LocalDate,
-    val roomAgendas: List<RoomAgenda>
+    val roomAgendas: List<RoomAgenda>,
+    val speakers: Map<String, Speaker>,
+    val rooms: Map<Int, Room>,
+    val categories: Map<Int, CategoryItem>,
 )
 
 @Immutable
@@ -166,16 +121,16 @@ private data class RoomAgenda(
     val roomId: Int?,
     val startTime: LocalTime,
     val endTime: LocalTime,
-    val sessions: List<Session>,
-    val speakers: Map<String, Speaker>,
-    val rooms: Map<Int, Room>,
-    val categories: Map<Int, CategoryItem>,
+    val sessions: List<Session>
 )
 
 @Composable
 private fun Agenda(
     modifier: Modifier = Modifier,
-    agenda: RoomAgenda
+    agenda: RoomAgenda,
+    speakers: Map<String, Speaker>,
+    rooms: Map<Int, Room>,
+    categories: Map<Int, CategoryItem>
 ) {
     Column(modifier = modifier) {
         val lengthInMinutes = agenda.endTime - agenda.startTime
@@ -188,9 +143,9 @@ private fun Agenda(
             }
 
             if (!session.isServiceSession) {
-                val sessionSpeaker = session.speakers.firstNotNullOfOrNull { agenda.speakers[it] }
-                val sessionRoom = agenda.rooms[agenda.roomId]
-                val sessionCategory = session.categoryItems.firstNotNullOfOrNull { agenda.categories[it] }
+                val sessionSpeaker = session.speakers.firstNotNullOfOrNull { speakers[it] }
+                val sessionRoom = rooms[agenda.roomId]
+                val sessionCategory = session.categoryItems.firstNotNullOfOrNull { categories[it] }
 
                 SessionCard(
                     session = session,
@@ -250,7 +205,7 @@ private fun Timeline(
                     text = time.toString(),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF1D212B),
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 14.sp
                 )
             }
@@ -427,6 +382,133 @@ private fun SessionCard(
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Header(
+    eventInfo: EventInfo,
+    days: List<DaySessions>,
+    selectedDay: DaySessions,
+    onDaySelect: (DaySessions) -> Unit,
+    onSelectConferenceClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(12.dp)
+                .clip(RoundedCornerShape(50))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    onClick = { onSelectConferenceClick() }
+                )
+                .padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = eventInfo.title,
+                style = MaterialTheme.typography.headlineSmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f, fill = false)
+            )
+            Icon(
+                painter = painterResource(Res.drawable.ic_arrow_drop_down),
+                contentDescription = null,
+                modifier = Modifier.padding(start = 8.dp),
+            )
+        }
+        if (days.size > 1) {
+            DaySelector(
+                days = days,
+                selectedDay = selectedDay,
+                onSelect = onDaySelect
+            )
+        }
+        HorizontalDivider(
+            thickness = 1.dp,
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+        )
+    }
+}
+
+@Composable
+private fun WideScreenSchedule(
+    selectedDay: DaySessions,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp)
+    ) {
+        val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
+        val begin = daySessions.minOf { it.startsAt.time }
+        val end = daySessions.maxOf { it.endsAt.time }
+        val shortest = daySessions
+            .filter { !it.isServiceSession }
+            .minOf { it.endsAt.time - it.startsAt.time }
+        val height = ((160 * (end - begin)) / shortest).toInt()
+
+        val times = daySessions
+            .map { it.startsAt.time }
+            .distinct()
+            .sorted()
+
+        Timeline(TimelineData(begin, end, times), Modifier.width(60.dp).height(height.dp))
+        selectedDay.roomAgendas.forEachIndexed { index, it ->
+            if (index > 0) Spacer(modifier = Modifier.width(8.dp))
+            Agenda(
+                modifier = Modifier.height(height.dp).weight(1f),
+                agenda = it,
+                speakers = selectedDay.speakers,
+                rooms = selectedDay.rooms,
+                categories = selectedDay.categories
+            )
+        }
+    }
+}
+
+@Composable
+private fun NarrowScreenSchedule(
+    selectedDay: DaySessions,
+    modifier: Modifier = Modifier
+) {
+    val daySessions = selectedDay.roomAgendas
+        .flatMap { it.sessions }
+        .sortedBy { it.startsAt }
+        .groupBy { it.startsAt }
+        .flatMap { (time, sessions) -> listOf(time) + sessions }
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        items(daySessions) { item ->
+            if (item is LocalDateTime) {
+                Text(
+                    text = item.time.toString(),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontSize = 14.sp
+                )
+            } else if (item is Session) {
+                SessionCard(
+                    session = item,
+                    category = selectedDay.categories[item.categoryItems.firstOrNull()],
+                    room = selectedDay.rooms[item.roomId],
+                    speaker = selectedDay.speakers[item.speakers.firstOrNull()],
+                    modifier = Modifier.fillMaxWidth().height(200.dp)
+                )
             }
         }
     }
