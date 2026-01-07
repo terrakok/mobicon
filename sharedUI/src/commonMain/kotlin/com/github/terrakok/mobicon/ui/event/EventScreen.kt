@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -17,7 +18,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +31,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.window.core.layout.WindowSizeClass.Companion.WIDTH_DP_EXPANDED_LOWER_BOUND
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.*
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
@@ -156,25 +161,33 @@ private fun Agenda(
                         .weight(sessionLen.toFloat() / lengthInMinutes)
                 )
             } else {
+                val borderColor = MaterialTheme.colorScheme.outlineVariant
                 Column(
                     modifier = Modifier
                         .padding(vertical = 4.dp)
                         .fillMaxWidth()
                         .weight(sessionLen.toFloat() / lengthInMinutes)
-                        .border(
-                            2.dp,
-                            color = MaterialTheme.colorScheme.primaryFixedDim,
-                            RoundedCornerShape(16.dp)
-                        )
+                        .drawBehind {
+                            val strokeWidthValue = 2.dp
+                            val cornerRadiusValue = 16.dp
+                            drawRoundRect(
+                                color = borderColor,
+                                style = Stroke(
+                                    width = strokeWidthValue.toPx(),
+                                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f))
+                                ),
+                                cornerRadius = CornerRadius(cornerRadiusValue.toPx())
+                            )
+                        }
                         .padding(horizontal = 16.dp),
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
                         text = session.title,
-                        color = MaterialTheme.colorScheme.primary,
-                        style = MaterialTheme.typography.labelLarge,
-                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Medium,
                         textAlign = TextAlign.Center
                     )
                 }
@@ -233,13 +246,15 @@ private fun DaySelector(
     selectedDay: DaySessions,
     onSelect: (DaySessions) -> Unit
 ) {
-    Row(modifier = modifier) {
-        days.forEach { day ->
+    LazyRow(
+        modifier = modifier,
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) {
+        items(days) {day ->
             DayItem(
                 day = day,
                 isSelected = day == selectedDay,
-                onClick = { onSelect(day) },
-                modifier = Modifier.padding(horizontal = 16.dp)
+                onClick = { onSelect(day) }
             )
         }
     }
@@ -259,7 +274,10 @@ private fun DayItem(
     }
 
     Column(
-        modifier = modifier.clickable { onClick() },
+        modifier = modifier
+            .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
+            .clickable { onClick() }
+            .padding(horizontal = 12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
