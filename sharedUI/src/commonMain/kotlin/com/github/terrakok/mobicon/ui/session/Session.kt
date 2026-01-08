@@ -19,12 +19,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.SessionInfo
+import com.github.terrakok.mobicon.Speaker
 import mobicon.sharedui.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun Session(
     data: SessionInfo,
+    onSpeakerClick: (Speaker) -> Unit,
     onBack: () -> Unit
 ) {
     Scaffold(
@@ -194,7 +196,7 @@ internal fun Session(
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
                         .clip(RoundedCornerShape(50))
-                        .clickable { },
+                        .clickable { onSpeakerClick(speaker) },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AsyncImage(

@@ -10,9 +10,11 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.github.terrakok.mobicon.EventInfo
 import com.github.terrakok.mobicon.SessionInfo
+import com.github.terrakok.mobicon.Speaker
 import com.github.terrakok.mobicon.ui.event.EventScreen
 import com.github.terrakok.mobicon.ui.events.EventsListScreen
 import com.github.terrakok.mobicon.ui.session.Session
+import com.github.terrakok.mobicon.ui.speaker.SpeakerScreen
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -30,12 +32,18 @@ internal data class SessionScreen(
     val info: SessionInfo
 ) : AppScreen
 
+@Serializable
+internal data class SpeakerScreen(
+    val info: Speaker
+) : AppScreen
+
 private val config = SavedStateConfiguration {
     serializersModule = SerializersModule {
         polymorphic(NavKey::class) {
             subclass(EventsListScreen::class, EventsListScreen.serializer())
             subclass(EventScreen::class, EventScreen.serializer())
             subclass(SessionScreen::class, SessionScreen.serializer())
+            subclass(SpeakerScreen::class, SpeakerScreen.serializer())
         }
     }
 }
@@ -91,6 +99,15 @@ internal fun RootContent() {
             ) { key ->
                 Session(
                     data = key.info,
+                    onSpeakerClick = { backStack.add(SpeakerScreen(it)) },
+                    onBack = { backStack.removeLast() }
+                )
+            }
+            entry<SpeakerScreen>(
+                metadata = DesktopDialogSceneStrategy.dialog()
+            ) { key ->
+                SpeakerScreen(
+                    info = key.info,
                     onBack = { backStack.removeLast() }
                 )
             }
