@@ -28,6 +28,7 @@ internal fun Session(
     onBack: () -> Unit
 ) {
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
             Row(
                 modifier = Modifier

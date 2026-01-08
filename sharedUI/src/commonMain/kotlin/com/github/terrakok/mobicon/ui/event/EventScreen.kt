@@ -305,6 +305,7 @@ private fun SessionCard(
     ) {
         Column(
             modifier = Modifier
+                .fillMaxWidth()
                 .clickable { onSessionClick(session) }
                 .padding(12.dp),
         ) {
