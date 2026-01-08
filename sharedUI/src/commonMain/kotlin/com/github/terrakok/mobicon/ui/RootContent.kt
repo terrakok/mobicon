@@ -5,15 +5,11 @@ import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.entryProvider
-import androidx.navigation3.runtime.rememberNavBackStack
-import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
+import androidx.navigation3.runtime.*
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import com.github.terrakok.mobicon.*
-import com.github.terrakok.mobicon.ui.event.EmptyEventScreen
+import com.github.terrakok.mobicon.EventInfo
+import com.github.terrakok.mobicon.SessionInfo
 import com.github.terrakok.mobicon.ui.event.EventScreen
 import com.github.terrakok.mobicon.ui.events.EventsListScreen
 import com.github.terrakok.mobicon.ui.session.Session
@@ -34,15 +30,11 @@ internal data class SessionScreen(
     val info: SessionInfo
 ) : AppScreen
 
-@Serializable
-internal object EmptyEventScreen : AppScreen
-
 private val config = SavedStateConfiguration {
     serializersModule = SerializersModule {
         polymorphic(NavKey::class) {
             subclass(EventsListScreen::class, EventsListScreen.serializer())
             subclass(EventScreen::class, EventScreen.serializer())
-            subclass(EmptyEventScreen::class, EmptyEventScreen.serializer())
             subclass(SessionScreen::class, SessionScreen.serializer())
         }
     }
@@ -50,7 +42,7 @@ private val config = SavedStateConfiguration {
 
 @Composable
 internal fun RootContent() {
-    val backStack = rememberNavBackStack(config, EmptyEventScreen, EventsListScreen)
+    val backStack = rememberNavBackStack(config, EventsListScreen)
     BrowserNavigation(backStack)
 
     NavDisplay(
@@ -86,9 +78,6 @@ internal fun RootContent() {
                         backStack.add(EventScreen(it))
                     }
                 )
-            }
-            entry<EmptyEventScreen> {
-                EmptyEventScreen()
             }
             entry<EventScreen> { key ->
                 EventScreen(

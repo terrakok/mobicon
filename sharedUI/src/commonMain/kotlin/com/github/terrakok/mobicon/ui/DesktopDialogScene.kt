@@ -85,7 +85,7 @@ internal class DesktopDialogSceneStrategy<T : Any>(
     override fun SceneStrategyScope<T>.calculateScene(
         entries: List<NavEntry<T>>
     ): Scene<T>? {
-        if (!windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)) {
+        if (!windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE) || entries.size < 2) {
             return null
         }
         val lastEntry = entries.lastOrNull()
