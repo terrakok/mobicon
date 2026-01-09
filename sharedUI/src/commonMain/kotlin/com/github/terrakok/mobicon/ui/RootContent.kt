@@ -4,6 +4,7 @@ import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.*
 import androidx.navigation3.ui.NavDisplay
@@ -43,7 +44,7 @@ private val config = SavedStateConfiguration {
 
 @Composable
 internal fun RootContent() {
-    val backStack = rememberNavBackStack(config, EventsListScreen)
+    val backStack = rememberNavBackStack(config, *getInitialBackStack().toTypedArray())
     BrowserNavigation(backStack)
 
     NavDisplay(
@@ -109,6 +110,8 @@ internal fun RootContent() {
         }
     )
 }
+
+internal expect fun getInitialBackStack(): List<NavKey>
 
 @Composable
 internal expect fun BrowserNavigation(backStack: NavBackStack<NavKey>)
