@@ -8,13 +8,10 @@ import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDe
 import androidx.navigation3.runtime.*
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import com.github.terrakok.mobicon.EventInfo
-import com.github.terrakok.mobicon.SessionInfo
-import com.github.terrakok.mobicon.Speaker
-import com.github.terrakok.mobicon.ui.event.EventScreen
-import com.github.terrakok.mobicon.ui.events.EventsListScreen
-import com.github.terrakok.mobicon.ui.session.Session
-import com.github.terrakok.mobicon.ui.speaker.SpeakerScreen
+import com.github.terrakok.mobicon.ui.event.EventPage
+import com.github.terrakok.mobicon.ui.events.EventsListPage
+import com.github.terrakok.mobicon.ui.session.SessionPage
+import com.github.terrakok.mobicon.ui.speaker.SpeakerPage
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -25,17 +22,13 @@ sealed interface AppScreen : NavKey
 internal object EventsListScreen : AppScreen
 
 @Serializable
-internal data class EventScreen(val info: EventInfo) : AppScreen
+internal data class EventScreen(val id: String) : AppScreen
 
 @Serializable
-internal data class SessionScreen(
-    val info: SessionInfo
-) : AppScreen
+internal data class SessionScreen(val eventId: String, val id: String) : AppScreen
 
 @Serializable
-internal data class SpeakerScreen(
-    val info: Speaker
-) : AppScreen
+internal data class SpeakerScreen(val eventId: String, val id: String) : AppScreen
 
 private val config = SavedStateConfiguration {
     serializersModule = SerializersModule {
@@ -80,7 +73,7 @@ internal fun RootContent() {
             entry<EventsListScreen>(
                 metadata = DesktopDialogSceneStrategy.dialog()
             ) {
-                EventsListScreen(
+                EventsListPage(
                     onEventClick = {
                         backStack.clear()
                         backStack.add(EventScreen(it))
@@ -88,26 +81,28 @@ internal fun RootContent() {
                 )
             }
             entry<EventScreen> { key ->
-                EventScreen(
-                    eventInfo = key.info,
+                EventPage(
+                    eventId = key.id,
                     onSelectConferenceClick = { backStack.add(EventsListScreen) },
-                    onSessionClick = { backStack.add(SessionScreen(it)) }
+                    onSessionClick = { backStack.add(SessionScreen(key.id, it)) }
                 )
             }
             entry<SessionScreen>(
                 metadata = DesktopDialogSceneStrategy.dialog()
             ) { key ->
-                Session(
-                    data = key.info,
-                    onSpeakerClick = { backStack.add(SpeakerScreen(it)) },
+                SessionPage(
+                    eventId = key.eventId,
+                    sessionId = key.id,
+                    onSpeakerClick = { backStack.add(SpeakerScreen(key.eventId, it)) },
                     onBack = { backStack.removeLast() }
                 )
             }
             entry<SpeakerScreen>(
                 metadata = DesktopDialogSceneStrategy.dialog()
             ) { key ->
-                SpeakerScreen(
-                    info = key.info,
+                SpeakerPage(
+                    eventId = key.eventId,
+                    speakerId = key.id,
                     onBack = { backStack.removeLast() }
                 )
             }

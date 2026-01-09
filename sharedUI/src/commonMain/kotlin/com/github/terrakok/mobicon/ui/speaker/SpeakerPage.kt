@@ -1,6 +1,5 @@
 package com.github.terrakok.mobicon.ui.speaker
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -12,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
@@ -22,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.Speaker
+import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_business_center
 import mobicon.sharedui.generated.resources.ic_close
@@ -34,10 +33,13 @@ import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SpeakerScreen(
-    info: Speaker,
+internal fun SpeakerPage(
+    eventId: String,
+    speakerId: String,
     onBack: () -> Unit
 ) {
+    val vm = assistedMetroViewModel<SpeakerViewModel, SpeakerViewModel.Factory> { create(eventId, speakerId) }
+    val speaker = vm.speaker ?: return
     Scaffold(
         topBar = {
             Row(
@@ -69,8 +71,8 @@ internal fun SpeakerScreen(
                 modifier = Modifier.size(160.dp)
             ) {
                 AsyncImage(
-                    model = info.profilePicture,
-                    contentDescription = info.fullName,
+                    model = speaker.profilePicture,
+                    contentDescription = speaker.fullName,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop,
                     placeholder = painterResource(Res.drawable.ic_person),
@@ -81,14 +83,14 @@ internal fun SpeakerScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = info.fullName,
+                text = speaker.fullName,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurface
             )
 
-            info.tagLine?.let { tagLine ->
+            speaker.tagLine?.let { tagLine ->
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = tagLine,
@@ -98,7 +100,7 @@ internal fun SpeakerScreen(
                 )
             }
 
-            if (info.isTopSpeaker) {
+            if (speaker.isTopSpeaker) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Surface(
                     color = MaterialTheme.colorScheme.primaryContainer,
@@ -124,7 +126,7 @@ internal fun SpeakerScreen(
                 }
             }
 
-            if (info.links.isNotEmpty()) {
+            if (speaker.links.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(32.dp))
 
                 Row(
@@ -132,7 +134,7 @@ internal fun SpeakerScreen(
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
                     val uriHandler = LocalUriHandler.current
-                    info.links.forEach { link ->
+                    speaker.links.forEach { link ->
                         SocialLinkItem(
                             label = link.title,
                             onClick = { uriHandler.openUri(link.url) }
@@ -141,7 +143,7 @@ internal fun SpeakerScreen(
                 }
             }
 
-            if (info.bio != null) {
+            if (speaker.bio != null) {
                 Spacer(modifier = Modifier.height(48.dp))
 
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -153,7 +155,7 @@ internal fun SpeakerScreen(
                     )
                     Spacer(modifier = Modifier.height(12.dp))
                     Text(
-                        text = info.bio,
+                        text = speaker.bio,
                         style = MaterialTheme.typography.bodyLarge,
                         lineHeight = 24.sp,
                         color = MaterialTheme.colorScheme.onSurfaceVariant

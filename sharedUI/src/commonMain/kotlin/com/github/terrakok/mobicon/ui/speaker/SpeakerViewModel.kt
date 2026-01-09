@@ -1,4 +1,4 @@
-package com.github.terrakok.mobicon.ui.event
+package com.github.terrakok.mobicon.ui.speaker
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,42 +6,42 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.mobicon.DataService
-import com.github.terrakok.mobicon.EventFullData
-import com.github.terrakok.mobicon.EventInfo
+import com.github.terrakok.mobicon.Speaker
 import dev.zacsweers.metro.*
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import kotlinx.coroutines.launch
 
 @AssistedInject
-internal class EventViewModel(
-    @Assisted val eventId: String,
+internal class SpeakerViewModel(
+    @Assisted("eventId") val eventId: String,
+    @Assisted("speakerId") val speakerId: String,
     private val dataService: DataService
 ) : ViewModel() {
     @AssistedFactory
     @ManualViewModelAssistedFactoryKey(Factory::class)
     @ContributesIntoMap(AppScope::class)
     interface Factory : ManualViewModelAssistedFactory {
-        fun create(eventId: String): EventViewModel
+        fun create(
+            @Assisted("eventId") eventId: String,
+            @Assisted("speakerId") speakerId: String
+        ): SpeakerViewModel
     }
 
-    var eventFullData by mutableStateOf<EventFullData?>(null)
-        private set
-
-    var eventInfo by mutableStateOf<EventInfo?>(null)
+    var speaker by mutableStateOf<Speaker?>(null)
         private set
 
     init {
-        loadData()
+        loadSpeaker()
     }
 
-    private fun loadData() {
+    private fun loadSpeaker() {
         viewModelScope.launch {
             try {
-                eventInfo = dataService.getEventInfo(eventId)
-                eventFullData = dataService.getEventFullData(eventId)
+                speaker = dataService.getSpeaker(eventId, speakerId)
             } catch (e: Throwable) {
             }
         }
     }
+
 }

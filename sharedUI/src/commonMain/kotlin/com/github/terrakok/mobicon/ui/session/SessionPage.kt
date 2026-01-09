@@ -18,17 +18,21 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import com.github.terrakok.mobicon.SessionInfo
 import com.github.terrakok.mobicon.Speaker
+import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-internal fun Session(
-    data: SessionInfo,
-    onSpeakerClick: (Speaker) -> Unit,
+internal fun SessionPage(
+    eventId: String,
+    sessionId: String,
+    onSpeakerClick: (String) -> Unit,
     onBack: () -> Unit
 ) {
+    val vm = assistedMetroViewModel<SessionViewModel, SessionViewModel.Factory> { create(eventId, sessionId) }
+    val session = vm.session ?: return
+    val room = vm.room ?: return
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
@@ -53,7 +57,7 @@ internal fun Session(
                 .padding(16.dp)
         ) {
             Text(
-                text = data.session.title,
+                text = session.title,
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -65,7 +69,7 @@ internal fun Session(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                data.categories.forEach { category ->
+                vm.categoryItems.forEach { category ->
                     Surface(
                         shape = RoundedCornerShape(8.dp),
                         color = MaterialTheme.colorScheme.secondaryContainer
@@ -116,7 +120,7 @@ internal fun Session(
                                 color = MaterialTheme.colorScheme.outline
                             )
                             Text(
-                                text = "${data.session.startsAt.time} - ${data.session.endsAt.time}",
+                                text = "${session.startsAt.time} - ${session.endsAt.time}",
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold
                             )
@@ -154,7 +158,7 @@ internal fun Session(
                                 color = MaterialTheme.colorScheme.outline
                             )
                             Text(
-                                text = data.room.name,
+                                text = room.name,
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold
                             )
@@ -174,7 +178,7 @@ internal fun Session(
             Spacer(modifier = Modifier.height(12.dp))
 
             Text(
-                text = data.session.description ?: "",
+                text = session.description ?: "",
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 lineHeight = 24.sp
@@ -190,13 +194,13 @@ internal fun Session(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            data.speakers.forEach { speaker ->
+            vm.speakers.forEach { speaker ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
                         .clip(RoundedCornerShape(50))
-                        .clickable { onSpeakerClick(speaker) },
+                        .clickable { onSpeakerClick(speaker.id) },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     AsyncImage(

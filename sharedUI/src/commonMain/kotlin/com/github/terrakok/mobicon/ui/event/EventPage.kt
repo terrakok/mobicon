@@ -39,17 +39,16 @@ import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_arrow_drop_down
 import mobicon.sharedui.generated.resources.ic_sentiment
 import org.jetbrains.compose.resources.painterResource
-import kotlin.text.toFloat
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-internal fun EventScreen(
-    eventInfo: EventInfo,
+internal fun EventPage(
+    eventId: String,
     onSelectConferenceClick: () -> Unit,
-    onSessionClick: (SessionInfo) -> Unit,
+    onSessionClick: (String) -> Unit,
 ) {
     val vm = assistedMetroViewModel<EventViewModel, EventViewModel.Factory> {
-        create(eventInfo)
+        create(eventId)
     }
 
     val data = vm.eventFullData
@@ -87,23 +86,20 @@ internal fun EventScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.surfaceContainer)
         ) {
-            Header(
-                eventInfo = eventInfo,
-                days = days,
-                selectedDay = selectedDay,
-                onDaySelect = { selectedDay = it },
-                onSelectConferenceClick = onSelectConferenceClick
-            )
+            val eventInfo = vm.eventInfo
+            if (eventInfo != null) {
+                Header(
+                    eventInfo = eventInfo,
+                    days = days,
+                    selectedDay = selectedDay,
+                    onDaySelect = { selectedDay = it },
+                    onSelectConferenceClick = onSelectConferenceClick
+                )
+            }
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isWide = windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)
             val onSessionClick: (Session) -> Unit = { session ->
-                val info = SessionInfo(
-                    session = session,
-                    speakers = speakers.entries.filter { session.speakers.contains(it.key) }.map { it.value },
-                    room = rooms[session.roomId]!!,
-                    categories = categories.entries.filter { session.categoryItems.contains(it.key) }.map { it.value }
-                )
-                onSessionClick(info)
+                onSessionClick(session.id)
             }
             if (isWide) {
                 WideScreenSchedule(selectedDay, onSessionClick)

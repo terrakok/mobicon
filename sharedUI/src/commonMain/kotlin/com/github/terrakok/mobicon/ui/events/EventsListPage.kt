@@ -26,8 +26,8 @@ import mobicon.sharedui.generated.resources.ic_calendar
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-internal fun EventsListScreen(
-    onEventClick: (EventInfo) -> Unit
+internal fun EventsListPage(
+    onEventClick: (String) -> Unit
 ) {
     val vm = metroViewModel<EventsListViewModel>()
 
@@ -69,7 +69,7 @@ private val timeFormat = LocalTime.Format {
 @Composable
 private fun EventInfoCard(
     info: EventInfo,
-    onClick: (EventInfo) -> Unit
+    onClick: (String) -> Unit
 ) {
     Card(
         shape = MaterialTheme.shapes.large,
@@ -81,7 +81,7 @@ private fun EventInfoCard(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .clickable { onClick(info) }
+                .clickable { onClick(info.id) }
         ) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
