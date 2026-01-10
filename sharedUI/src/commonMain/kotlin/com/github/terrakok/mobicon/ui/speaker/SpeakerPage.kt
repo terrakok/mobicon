@@ -54,6 +54,10 @@ internal fun SpeakerPage(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .windowInsetsPadding(
+                            WindowInsets.safeDrawing
+                                .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                        )
                         .padding(8.dp),
                     contentAlignment = Alignment.CenterStart
                 ) {
@@ -72,9 +76,9 @@ internal fun SpeakerPage(
     ) { padding ->
         Column(
             modifier = Modifier
-                .padding(padding)
                 .fillMaxSize()
                 .verticalScroll(scrollState)
+                .padding(padding)
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

@@ -1,6 +1,7 @@
 package com.github.terrakok.mobicon.androidApp
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,14 +11,25 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import com.github.terrakok.mobicon.App
+import com.github.terrakok.mobicon.ui.DeeplinkService
 
 class AppActivity : ComponentActivity() {
+    private val deepLinkService = DeeplinkService()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent { 
-            App(onThemeChanged = { ThemeChanged(it) }) 
+            App(
+                deeplink = deepLinkService,
+                onThemeChanged = { ThemeChanged(it) }
+            )
         }
+        onNewIntent(intent)
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        deepLinkService.setDeepLink(intent.dataString.orEmpty())
     }
 }
 

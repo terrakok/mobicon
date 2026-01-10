@@ -43,7 +43,11 @@ internal fun EventsListPage(
             ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .windowInsetsPadding(
+                            WindowInsets.safeDrawing
+                                .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                        ),
                     contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
@@ -61,10 +65,9 @@ internal fun EventsListPage(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
                 .background(MaterialTheme.colorScheme.surfaceContainer),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = padding.plus(PaddingValues(16.dp)),
             state = scrollState
         ) {
             itemsIndexed(vm.items, key = { _, e -> e.id }) { index, event ->

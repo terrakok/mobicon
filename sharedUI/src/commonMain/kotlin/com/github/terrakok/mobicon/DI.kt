@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
+import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.russhwolf.settings.Settings
 import dev.zacsweers.metro.*
 import dev.zacsweers.metrox.viewmodel.*
 import io.ktor.client.*
@@ -18,6 +20,11 @@ import kotlin.reflect.KClass
 @SingleIn(AppScope::class)
 @DependencyGraph(AppScope::class)
 internal interface AppGraph: ViewModelGraph {
+    @DependencyGraph.Factory
+    fun interface Factory {
+        fun create(@Provides deeplink: DeeplinkService): AppGraph
+    }
+
     @SingleIn(AppScope::class)
     @Provides
     fun provideJson(): Json = Json {
@@ -45,13 +52,17 @@ internal interface AppGraph: ViewModelGraph {
             socketTimeoutMillis = 50000
         }
     }
+    @SingleIn(AppScope::class)
+    @Provides
+    fun provideSettings(): Settings = Settings()
 }
 
 @Composable
 internal fun WithAppGraph(
+    deeplink: DeeplinkService,
     content: @Composable () -> Unit,
 ) {
-    val graph = remember { createGraph<AppGraph>() }
+    val graph = remember { createGraphFactory<AppGraph.Factory>().create(deeplink) }
     CompositionLocalProvider(
         LocalMetroViewModelFactory provides graph.metroViewModelFactory
     ) {

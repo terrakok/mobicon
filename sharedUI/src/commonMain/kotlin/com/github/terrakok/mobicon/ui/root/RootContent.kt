@@ -1,17 +1,29 @@
-package com.github.terrakok.mobicon.ui
+package com.github.terrakok.mobicon.ui.root
 
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.*
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.github.terrakok.mobicon.ui.DesktopDialogSceneStrategy
 import com.github.terrakok.mobicon.ui.event.EventPage
 import com.github.terrakok.mobicon.ui.events.EventsListPage
+import com.github.terrakok.mobicon.ui.rememberDesktopDialogSceneStrategy
 import com.github.terrakok.mobicon.ui.session.SessionPage
 import com.github.terrakok.mobicon.ui.speaker.SpeakerPage
+import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -43,7 +55,10 @@ private val config = SavedStateConfiguration {
 
 @Composable
 internal fun RootContent() {
-    val backStack = rememberNavBackStack(config, *getInitialBackStack().toTypedArray())
+    val vm = metroViewModel<RootViewModel>()
+    val initialStack = vm.initialStack
+    if (initialStack.isEmpty()) return
+    val backStack = rememberNavBackStack(config, *initialStack.toTypedArray())
     BrowserNavigation(backStack)
 
     NavDisplay(
@@ -75,6 +90,7 @@ internal fun RootContent() {
             ) {
                 EventsListPage(
                     onEventClick = {
+                        vm.selectEvent(it)
                         backStack.clear()
                         backStack.add(EventScreen(it))
                     }
@@ -110,8 +126,6 @@ internal fun RootContent() {
         }
     )
 }
-
-internal expect fun getInitialBackStack(): List<NavKey>
 
 @Composable
 internal expect fun BrowserNavigation(backStack: NavBackStack<NavKey>)

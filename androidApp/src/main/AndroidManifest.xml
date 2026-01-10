@@ -2,18 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:icon="@mipmap/ic_launcher"
-        android:label="MobiCon"
-        android:theme="@android:style/Theme.Material.NoActionBar">
+            android:icon="@mipmap/ic_launcher"
+            android:label="MobiCon"
+            android:theme="@android:style/Theme.Material.NoActionBar">
         <activity
-            android:name=".AppActivity"
-            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
-            android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+                android:name=".AppActivity"
+                android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+                android:launchMode="singleInstance"
+                android:windowSoftInputMode="adjustPan"
+                android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!-- https://developer.android.com/training/app-links/verify-applinks -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                        android:scheme="https"
+                        android:host="terrakok.github.io"
+                        android:pathPrefix="/mobicon"
+                />
             </intent-filter>
         </activity>
     </application>

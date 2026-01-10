@@ -52,63 +52,60 @@ internal fun EventPage(
         create(eventId)
     }
 
-    val data = vm.eventFullData
-    if (data != null) {
-        val speakers = remember(data.speakers) { data.speakers.associateBy { it.id } }
-        val rooms = remember(data.rooms) { data.rooms.associateBy { it.id } }
-        val categories = remember(data.categories) { data.categories.flatMap { it.items }.associateBy { it.id } }
+    val data = vm.eventFullData ?: return
+    val eventInfo = vm.eventInfo ?: return
+    val speakers = remember(data.speakers) { data.speakers.associateBy { it.id } }
+    val rooms = remember(data.rooms) { data.rooms.associateBy { it.id } }
+    val categories = remember(data.categories) { data.categories.flatMap { it.items }.associateBy { it.id } }
 
-        val days = data.sessions
-            .groupBy { session -> session.startsAt.date }
-            .map { (date, sessions) ->
-                val startTime = sessions.minOf { it.startsAt.time }
-                val endTime = sessions.maxOf { it.endsAt.time }
-                val roomAgendas = sessions.groupBy { session -> session.roomId }.map { (roomId, sessions) ->
-                    RoomAgenda(
-                        roomId = roomId,
-                        startTime = startTime,
-                        endTime = endTime,
-                        sessions = sessions.sortedBy { it.startsAt }
-                    )
-                }
-                DaySessions(
-                    date = date,
-                    roomAgendas = roomAgendas,
-                    speakers = speakers,
-                    rooms = rooms,
-                    categories = categories
+    val days = data.sessions
+        .groupBy { session -> session.startsAt.date }
+        .map { (date, sessions) ->
+            val startTime = sessions.minOf { it.startsAt.time }
+            val endTime = sessions.maxOf { it.endsAt.time }
+            val roomAgendas = sessions.groupBy { session -> session.roomId }.map { (roomId, sessions) ->
+                RoomAgenda(
+                    roomId = roomId,
+                    startTime = startTime,
+                    endTime = endTime,
+                    sessions = sessions.sortedBy { it.startsAt }
                 )
             }
-            .sortedBy { it.date }
+            DaySessions(
+                date = date,
+                roomAgendas = roomAgendas,
+                speakers = speakers,
+                rooms = rooms,
+                categories = categories
+            )
+        }
+        .sortedBy { it.date }
 
-        var selectedDay by remember { mutableStateOf(days.first()) }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceContainer)
-        ) {
-            val eventInfo = vm.eventInfo
-            if (eventInfo != null) {
-                Header(
-                    eventInfo = eventInfo,
-                    days = days,
-                    selectedDay = selectedDay,
-                    onDaySelect = { selectedDay = it },
-                    onSelectConferenceClick = onSelectConferenceClick
-                )
-            }
+    var selectedDay by remember { mutableStateOf(days.first()) }
+
+    Scaffold(
+        topBar = {
+            Header(
+                eventInfo = eventInfo,
+                days = days,
+                selectedDay = selectedDay,
+                onDaySelect = { selectedDay = it },
+                onSelectConferenceClick = onSelectConferenceClick
+            )
+        },
+        content = { paddingValues ->
             val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
             val isWide = windowSizeClass.isWidthAtLeastBreakpoint(WIDE_SIZE)
             val onSessionClick: (Session) -> Unit = { session ->
                 onSessionClick(session.id)
             }
             if (isWide) {
-                WideScreenSchedule(selectedDay, onSessionClick)
+                WideScreenSchedule(paddingValues, selectedDay, onSessionClick)
             } else {
-                NarrowScreenSchedule(selectedDay, onSessionClick)
+                NarrowScreenSchedule(paddingValues, selectedDay, onSessionClick)
             }
         }
-    }
+    )
 }
 
 @Immutable
@@ -398,42 +395,49 @@ private fun Header(
     onSelectConferenceClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .background(MaterialTheme.colorScheme.surfaceContainerLowest)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(12.dp)
-                .clip(RoundedCornerShape(50))
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    onClick = { onSelectConferenceClick() }
+    Column {
+        Column(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+                .windowInsetsPadding(
+                    WindowInsets.safeDrawing
+                        .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
                 )
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = eventInfo.title,
-                style = MaterialTheme.typography.headlineSmall,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onSurface,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f, fill = false)
-            )
-            Icon(
-                painter = painterResource(Res.drawable.ic_arrow_drop_down),
-                contentDescription = null,
-                modifier = Modifier.padding(start = 8.dp),
-            )
-        }
-        if (days.size > 1) {
-            DaySelector(
-                days = days,
-                selectedDay = selectedDay,
-                onSelect = onDaySelect
-            )
+            Row(
+                modifier = Modifier
+                    .padding(12.dp)
+                    .clip(RoundedCornerShape(50))
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = { onSelectConferenceClick() }
+                    )
+                    .padding(12.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = eventInfo.title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f, fill = false)
+                )
+                Icon(
+                    painter = painterResource(Res.drawable.ic_arrow_drop_down),
+                    contentDescription = null,
+                    modifier = Modifier.padding(start = 8.dp),
+                )
+            }
+            if (days.size > 1) {
+                DaySelector(
+                    days = days,
+                    selectedDay = selectedDay,
+                    onSelect = onDaySelect
+                )
+            }
         }
         HorizontalDivider(
             thickness = 1.dp,
@@ -444,6 +448,7 @@ private fun Header(
 
 @Composable
 private fun WideScreenSchedule(
+    paddingValues: PaddingValues,
     selectedDay: DaySessions,
     onSessionClick: (Session) -> Unit
 ) {
@@ -456,6 +461,7 @@ private fun WideScreenSchedule(
             .fillMaxSize()
             .verticalScroll(scrollState)
             .padding(16.dp)
+            .padding(paddingValues),
     ) {
         val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
         val begin = daySessions.minOf { it.startsAt.time }
@@ -487,6 +493,7 @@ private fun WideScreenSchedule(
 
 @Composable
 private fun NarrowScreenSchedule(
+    paddingValues: PaddingValues,
     selectedDay: DaySessions,
     onSessionClick: (Session) -> Unit,
 ) {
@@ -500,7 +507,7 @@ private fun NarrowScreenSchedule(
         .groupBy { it.startsAt }
         .flatMap { (time, sessions) -> listOf(time) + sessions }
     LazyColumn(
-        contentPadding = PaddingValues(16.dp),
+        contentPadding = paddingValues.plus(PaddingValues(16.dp)),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         state = scrollState
     ) {

@@ -47,6 +47,10 @@ internal fun SessionPage(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .windowInsetsPadding(
+                            WindowInsets.safeDrawing
+                                .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
+                        )
                         .padding(8.dp),
                     contentAlignment = Alignment.CenterStart
                 ) {
@@ -67,9 +71,9 @@ internal fun SessionPage(
     ) { padding ->
         Column(
             modifier = Modifier
-                .padding(padding)
                 .fillMaxSize()
                 .verticalScroll(scrollState)
+                .padding(padding)
                 .padding(16.dp)
         ) {
             Text(

@@ -1,4 +1,4 @@
-package com.github.terrakok.mobicon.ui
+package com.github.terrakok.mobicon.ui.root
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -6,7 +6,6 @@ import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import com.github.terrakok.navigation3.browser.HierarchicalBrowserNavigation
-import kotlinx.browser.window
 
 @Composable
 internal actual fun BrowserNavigation(backStack: NavBackStack<NavKey>) {
@@ -21,25 +20,4 @@ internal actual fun BrowserNavigation(backStack: NavBackStack<NavKey>) {
             }
         }
     )
-}
-
-internal actual fun getInitialBackStack(): List<NavKey> {
-    val initLocation = window.location.toString()
-        .substringAfter("#/event/", "")
-    when {
-        initLocation.isBlank() -> {
-            return listOf(EventsListScreen)
-        }
-        initLocation.contains("?session=") -> {
-            val (eventId, sessionId) = initLocation.split("?session=")
-            return listOf(EventScreen(eventId), SessionScreen(eventId, sessionId))
-        }
-        initLocation.contains("?speaker=") -> {
-            val (eventId, speakerId) = initLocation.split("?speaker=")
-            return listOf(EventScreen(eventId), SpeakerScreen(eventId, speakerId))
-        }
-        else -> {
-            return listOf(EventScreen(initLocation))
-        }
-    }
 }
