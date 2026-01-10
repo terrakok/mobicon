@@ -29,6 +29,7 @@ import mobicon.sharedui.generated.resources.ic_close
 import mobicon.sharedui.generated.resources.ic_person
 import mobicon.sharedui.generated.resources.ic_raven
 import mobicon.sharedui.generated.resources.ic_rss_feed
+import mobicon.sharedui.generated.resources.ic_sentiment
 import mobicon.sharedui.generated.resources.ic_verified
 import mobicon.sharedui.generated.resources.ic_web_traffic
 import org.jetbrains.compose.resources.painterResource
@@ -87,15 +88,16 @@ internal fun SpeakerPage(
             Surface(
                 shape = CircleShape,
                 shadowElevation = 8.dp,
-                modifier = Modifier.size(160.dp)
+                modifier = Modifier.size(160.dp),
+                color = MaterialTheme.colorScheme.surfaceVariant
             ) {
                 AsyncImage(
                     model = speaker.profilePicture,
                     contentDescription = speaker.fullName,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(Res.drawable.ic_person),
-                    error = painterResource(Res.drawable.ic_person)
+                    placeholder = painterResource(Res.drawable.ic_sentiment),
+                    error = painterResource(Res.drawable.ic_sentiment)
                 )
             }
 

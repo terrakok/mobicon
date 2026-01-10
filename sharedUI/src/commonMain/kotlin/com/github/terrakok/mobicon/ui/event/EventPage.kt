@@ -359,6 +359,7 @@ private fun SessionCard(
                             .clip(CircleShape)
                             .background(MaterialTheme.colorScheme.tertiary),
                         contentScale = ContentScale.Crop,
+                        placeholder = painterResource(Res.drawable.ic_sentiment),
                         error = painterResource(Res.drawable.ic_sentiment)
                     )
                     Spacer(Modifier.width(8.dp))

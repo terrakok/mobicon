@@ -231,6 +231,7 @@ internal fun SessionPage(
                             .clip(CircleShape)
                             .background(MaterialTheme.colorScheme.surfaceVariant),
                         contentScale = ContentScale.Crop,
+                        placeholder = painterResource(Res.drawable.ic_sentiment),
                         error = painterResource(Res.drawable.ic_sentiment)
                     )
                     Spacer(modifier = Modifier.width(16.dp))
