@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.terrakok.mobicon.CategoryItem
 import com.github.terrakok.mobicon.DataService
+import com.github.terrakok.mobicon.EventInfo
 import com.github.terrakok.mobicon.Room
 import com.github.terrakok.mobicon.Session
 import com.github.terrakok.mobicon.Speaker
@@ -33,6 +34,8 @@ internal class SessionViewModel(
         ): SessionViewModel
     }
 
+    var event by mutableStateOf<EventInfo?>(null)
+        private set
     var session by mutableStateOf<Session?>(null)
         private set
     var room by mutableStateOf<Room?>(null)
@@ -49,6 +52,7 @@ internal class SessionViewModel(
     private fun loadSession() {
         viewModelScope.launch {
             try {
+                event = dataService.getEventInfo(eventId)
                 val s = dataService.getSession(eventId, sessionId)
                 session = s
                 if (s.roomId != null) {

@@ -103,6 +103,7 @@ internal fun RootContent() {
                 SpeakerPage(
                     eventId = key.eventId,
                     speakerId = key.id,
+                    onSessionClick = { backStack.add(SessionScreen(key.eventId, it)) },
                     onBack = { backStack.removeLast() }
                 )
             }

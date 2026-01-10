@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.Speaker
+import com.github.terrakok.mobicon.dayShortString
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
@@ -31,20 +32,30 @@ internal fun SessionPage(
     onBack: () -> Unit
 ) {
     val vm = assistedMetroViewModel<SessionViewModel, SessionViewModel.Factory> { create(eventId, sessionId) }
+    val event = vm.event ?: return
     val session = vm.session ?: return
     val room = vm.room ?: return
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            Surface(
+                shadowElevation = 8.dp,
+                color = MaterialTheme.colorScheme.surfaceContainerLowest
             ) {
-                IconButton(onClick = onBack) {
-                    Icon(painterResource(Res.drawable.ic_close), contentDescription = "Close")
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    IconButton(onClick = onBack) {
+                        Icon(painterResource(Res.drawable.ic_close), contentDescription = "Close")
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Text(
+                        text = event.title,
+                        style = MaterialTheme.typography.titleLarge,
+                    )
                 }
             }
         }
@@ -120,7 +131,7 @@ internal fun SessionPage(
                                 color = MaterialTheme.colorScheme.outline
                             )
                             Text(
-                                text = "${session.startsAt.time} - ${session.endsAt.time}",
+                                text = "${session.startsAt.date.dayShortString()}, ${session.startsAt.time} - ${session.endsAt.time}",
                                 style = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold
                             )

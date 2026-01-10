@@ -252,12 +252,6 @@ private fun DayItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val text = day.date.let { date ->
-        val dayOfWeek = date.dayOfWeek.name.lowercase().take(3).replaceFirstChar { it.uppercase() }
-        val month = date.month.name.lowercase().take(3).replaceFirstChar { it.uppercase() }
-        "$dayOfWeek, $month ${date.day}"
-    }
-
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
@@ -266,7 +260,7 @@ private fun DayItem(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = text,
+            text = day.date.dayShortString(),
             modifier = Modifier.padding(16.dp),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
@@ -452,10 +446,14 @@ private fun WideScreenSchedule(
     selectedDay: DaySessions,
     onSessionClick: (Session) -> Unit
 ) {
+    val scrollState = rememberScrollState()
+    LaunchedEffect(selectedDay) {
+        scrollState.scrollTo(0)
+    }
     Row(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
         val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }

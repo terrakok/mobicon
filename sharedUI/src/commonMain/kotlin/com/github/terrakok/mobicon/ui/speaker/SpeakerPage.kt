@@ -19,7 +19,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.github.terrakok.mobicon.Session
 import com.github.terrakok.mobicon.Speaker
+import com.github.terrakok.mobicon.dayShortString
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_business_center
@@ -36,11 +38,13 @@ import org.jetbrains.compose.resources.painterResource
 internal fun SpeakerPage(
     eventId: String,
     speakerId: String,
+    onSessionClick: (String) -> Unit,
     onBack: () -> Unit
 ) {
     val vm = assistedMetroViewModel<SpeakerViewModel, SpeakerViewModel.Factory> { create(eventId, speakerId) }
     val speaker = vm.speaker ?: return
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
             Row(
                 modifier = Modifier
@@ -163,7 +167,60 @@ internal fun SpeakerPage(
                 }
             }
 
+            if (vm.sessions.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(32.dp))
+
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = "Sessions",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                    vm.sessions.forEach { session ->
+                        SpeakerSession(
+                            session = session,
+                            onSessionClick = onSessionClick,
+                            modifier = Modifier.padding(top = 16.dp)
+                        )
+                    }
+                }
+            }
+
             Spacer(modifier = Modifier.height(32.dp))
+        }
+    }
+}
+
+
+@Composable
+private fun SpeakerSession(
+    session: Session,
+    onSessionClick: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Card(modifier = modifier) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { onSessionClick(session.id) }
+                .padding(12.dp),
+        ) {
+            Text(
+                text = session.title,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                overflow = TextOverflow.Ellipsis
+            )
+
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = "${session.startsAt.date.dayShortString()}, ${session.startsAt.time} - ${session.endsAt.time}",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.outline,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
         }
     }
 }

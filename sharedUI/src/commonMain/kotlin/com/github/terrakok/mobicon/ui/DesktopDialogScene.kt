@@ -92,10 +92,10 @@ internal class DesktopDialogSceneStrategy<T : Any>(
         val dialogProperties = lastEntry?.metadata?.get(DIALOG_KEY) as? DialogProperties
         return dialogProperties?.let { properties ->
             DesktopDialogScene(
-                key = lastEntry.contentKey,
+                key = lastEntry.contentKey.toString() + entries.size,
                 entry = lastEntry,
                 previousEntries = entries.dropLast(1),
-                overlaidEntries = entries.dropLast(1),
+                overlaidEntries = entries.dropLastWhile { it.metadata[DIALOG_KEY] != null },
                 dialogProperties = properties,
                 onBack = onBack,
             )
