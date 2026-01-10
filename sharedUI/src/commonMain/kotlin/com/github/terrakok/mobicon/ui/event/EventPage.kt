@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -489,6 +490,10 @@ private fun NarrowScreenSchedule(
     selectedDay: DaySessions,
     onSessionClick: (Session) -> Unit,
 ) {
+    val scrollState = rememberLazyListState()
+    LaunchedEffect(selectedDay) {
+        scrollState.scrollToItem(0)
+    }
     val daySessions = selectedDay.roomAgendas
         .flatMap { it.sessions }
         .sortedBy { it.startsAt }
@@ -496,7 +501,8 @@ private fun NarrowScreenSchedule(
         .flatMap { (time, sessions) -> listOf(time) + sessions }
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        state = scrollState
     ) {
         items(daySessions) { item ->
             if (item is LocalDateTime) {
