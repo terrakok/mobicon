@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,26 +36,30 @@ internal fun SessionPage(
     val event = vm.event ?: return
     val session = vm.session ?: return
     val room = vm.room ?: return
+    val scrollState = rememberScrollState()
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
             Surface(
-                shadowElevation = 8.dp,
+                shadowElevation = if (scrollState.value > 0) 8.dp else 0.dp,
                 color = MaterialTheme.colorScheme.surfaceContainerLowest
             ) {
-                Row(
+                Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    contentAlignment = Alignment.CenterStart
                 ) {
                     IconButton(onClick = onBack) {
                         Icon(painterResource(Res.drawable.ic_close), contentDescription = "Close")
                     }
-                    Spacer(modifier = Modifier.width(16.dp))
                     Text(
                         text = event.title,
                         style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.align(Alignment.Center).padding(horizontal = 60.dp),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
             }
@@ -64,7 +69,7 @@ internal fun SessionPage(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scrollState)
                 .padding(16.dp)
         ) {
             Text(

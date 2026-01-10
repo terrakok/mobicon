@@ -43,18 +43,29 @@ internal fun SpeakerPage(
 ) {
     val vm = assistedMetroViewModel<SpeakerViewModel, SpeakerViewModel.Factory> { create(eventId, speakerId) }
     val speaker = vm.speaker ?: return
+    val scrollState = rememberScrollState()
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,
         topBar = {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+            Surface(
+                shadowElevation = if (scrollState.value > 0) 8.dp else 0.dp,
+                color = MaterialTheme.colorScheme.surfaceContainerLowest
             ) {
-                IconButton(onClick = onBack) {
-                    Icon(painterResource(Res.drawable.ic_close), contentDescription = "Close")
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    IconButton(onClick = onBack) {
+                        Icon(painterResource(Res.drawable.ic_close), contentDescription = "Close")
+                    }
+                    Text(
+                        text = "Speaker",
+                        style = MaterialTheme.typography.titleLarge,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
                 }
             }
         }
@@ -63,7 +74,7 @@ internal fun SpeakerPage(
             modifier = Modifier
                 .padding(padding)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(scrollState)
                 .padding(horizontal = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -199,7 +210,10 @@ private fun SpeakerSession(
     onSessionClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Card(modifier = modifier) {
+    Card(
+        modifier = modifier,
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
