@@ -429,6 +429,7 @@ private fun Header(
             modifier = modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.surfaceContainerLowest)
+                .clickable(enabled = false, onClick = {}) //prevent clicks through the header
                 .windowInsetsPadding(
                     WindowInsets.safeDrawing
                         .only(WindowInsetsSides.Horizontal + WindowInsetsSides.Top)
