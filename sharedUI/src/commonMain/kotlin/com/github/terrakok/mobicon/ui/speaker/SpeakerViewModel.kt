@@ -48,7 +48,7 @@ internal class SpeakerViewModel(
                 sessiosState.addAll(
                     s.sessions
                         .map { dataService.getSession(eventId, it.toString()) }
-                        .sortedByDescending { it.startsAt }
+                        .sortedBy { it.startsAt }
                 )
             } catch (e: Throwable) {
             }

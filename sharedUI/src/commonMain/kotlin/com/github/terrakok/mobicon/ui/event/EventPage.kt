@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -33,6 +34,9 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.*
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
@@ -82,6 +86,13 @@ internal fun EventPage(
         .sortedBy { it.date }
 
     var selectedDay by remember { mutableStateOf(days.first()) }
+    val scrollToTopEvents = remember { MutableSharedFlow<Boolean>() }
+    val coroutineScope = rememberCoroutineScope()
+    fun scrollToTop() {
+        coroutineScope.launch {
+            scrollToTopEvents.emit(true)
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -89,7 +100,10 @@ internal fun EventPage(
                 eventInfo = eventInfo,
                 days = days,
                 selectedDay = selectedDay,
-                onDaySelect = { selectedDay = it },
+                onDaySelect = {
+                    selectedDay = it
+                    scrollToTop()
+                },
                 onSelectConferenceClick = onSelectConferenceClick
             )
         },
@@ -100,9 +114,9 @@ internal fun EventPage(
                 onSessionClick(session.id)
             }
             if (isWide) {
-                WideScreenSchedule(paddingValues, selectedDay, onSessionClick)
+                WideScreenSchedule(paddingValues, selectedDay, scrollToTopEvents, onSessionClick)
             } else {
-                NarrowScreenSchedule(paddingValues, selectedDay, onSessionClick)
+                NarrowScreenSchedule(paddingValues, selectedDay, scrollToTopEvents, onSessionClick)
             }
         }
     )
@@ -451,11 +465,14 @@ private fun Header(
 private fun WideScreenSchedule(
     paddingValues: PaddingValues,
     selectedDay: DaySessions,
+    scrollToTop: Flow<Boolean>,
     onSessionClick: (Session) -> Unit
 ) {
     val scrollState = rememberScrollState()
-    LaunchedEffect(selectedDay) {
-        scrollState.scrollTo(0)
+    LaunchedEffect(Unit) {
+        scrollToTop.collect {
+            scrollState.scrollTo(0)
+        }
     }
     Row(
         modifier = Modifier
@@ -496,11 +513,14 @@ private fun WideScreenSchedule(
 private fun NarrowScreenSchedule(
     paddingValues: PaddingValues,
     selectedDay: DaySessions,
+    scrollToTop: Flow<Boolean>,
     onSessionClick: (Session) -> Unit,
 ) {
     val scrollState = rememberLazyListState()
-    LaunchedEffect(selectedDay) {
-        scrollState.scrollToItem(0)
+    LaunchedEffect(Unit) {
+        scrollToTop.collect {
+            scrollState.animateScrollToItem(0)
+        }
     }
     val daySessions = selectedDay.roomAgendas
         .flatMap { it.sessions }
