@@ -1,11 +1,10 @@
-package com.github.terrakok.mobicon.ui.event
+package com.github.terrakok.mobicon.ui.schedule
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -42,17 +41,19 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_arrow_drop_down
+import mobicon.sharedui.generated.resources.ic_info
 import mobicon.sharedui.generated.resources.ic_sentiment
 import org.jetbrains.compose.resources.painterResource
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-internal fun EventPage(
+internal fun SchedulePage(
     eventId: String,
     onSelectConferenceClick: () -> Unit,
     onSessionClick: (String) -> Unit,
+    onEventInfoClick: (String) -> Unit,
 ) {
-    val vm = assistedMetroViewModel<EventViewModel, EventViewModel.Factory> {
+    val vm = assistedMetroViewModel<ScheduleViewModel, ScheduleViewModel.Factory> {
         create(eventId)
     }
 
@@ -104,7 +105,8 @@ internal fun EventPage(
                     selectedDay = it
                     scrollToTop()
                 },
-                onSelectConferenceClick = onSelectConferenceClick
+                onSelectConferenceClick = onSelectConferenceClick,
+                onEventInfoClick = onEventInfoClick
             )
         },
         content = { paddingValues ->
@@ -408,6 +410,7 @@ private fun Header(
     selectedDay: DaySessions,
     onDaySelect: (DaySessions) -> Unit,
     onSelectConferenceClick: () -> Unit,
+    onEventInfoClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column {
@@ -421,30 +424,44 @@ private fun Header(
                 )
         ) {
             Row(
-                modifier = Modifier
-                    .padding(12.dp)
-                    .clip(RoundedCornerShape(50))
-                    .clickable(
-                        interactionSource = remember { MutableInteractionSource() },
-                        onClick = { onSelectConferenceClick() }
-                    )
-                    .padding(12.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text(
-                    text = eventInfo.title,
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f, fill = false)
-                )
-                Icon(
-                    painter = painterResource(Res.drawable.ic_arrow_drop_down),
-                    contentDescription = null,
-                    modifier = Modifier.padding(start = 8.dp),
-                )
+                Row(
+                    modifier = Modifier
+                        .padding(12.dp)
+                        .clip(RoundedCornerShape(50))
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = { onSelectConferenceClick() }
+                        )
+                        .padding(12.dp)
+                        .weight(1f),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = eventInfo.title,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false)
+                    )
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_arrow_drop_down),
+                        contentDescription = null,
+                        modifier = Modifier.padding(start = 8.dp),
+                    )
+                }
+                IconButton(
+                    onClick = { onEventInfoClick(eventInfo.id) },
+                    modifier = Modifier.padding(12.dp)
+                ) {
+                    Icon(
+                        painter = painterResource(Res.drawable.ic_info),
+                        contentDescription = null,
+                    )
+                }
             }
             if (days.size > 1) {
                 DaySelector(

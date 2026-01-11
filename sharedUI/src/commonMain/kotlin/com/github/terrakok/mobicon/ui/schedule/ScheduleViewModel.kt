@@ -1,4 +1,4 @@
-package com.github.terrakok.mobicon.ui.event
+package com.github.terrakok.mobicon.ui.schedule
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +14,7 @@ import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
 import kotlinx.coroutines.launch
 
 @AssistedInject
-internal class EventViewModel(
+internal class ScheduleViewModel(
     @Assisted val eventId: String,
     private val dataService: DataService
 ) : ViewModel() {
@@ -22,7 +22,7 @@ internal class EventViewModel(
     @ManualViewModelAssistedFactoryKey(Factory::class)
     @ContributesIntoMap(AppScope::class)
     interface Factory : ManualViewModelAssistedFactory {
-        fun create(eventId: String): EventViewModel
+        fun create(eventId: String): ScheduleViewModel
     }
 
     var eventFullData by mutableStateOf<EventFullData?>(null)

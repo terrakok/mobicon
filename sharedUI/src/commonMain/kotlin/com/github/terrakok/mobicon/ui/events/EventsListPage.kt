@@ -17,6 +17,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.github.terrakok.mobicon.EventInfo
+import com.github.terrakok.mobicon.dateFormat
+import com.github.terrakok.mobicon.timeFormat
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
@@ -85,18 +87,6 @@ internal fun EventsListPage(
             }
         }
     }
-}
-
-private val dateFormat = LocalDate.Format {
-    monthName(MonthNames.ENGLISH_ABBREVIATED)
-    char(' ')
-    day(padding = Padding.NONE)
-}
-
-private val timeFormat = LocalTime.Format {
-    hour(padding = Padding.NONE)
-    char(':')
-    minute(padding = Padding.ZERO)
 }
 
 @Composable

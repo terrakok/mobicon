@@ -3,22 +3,14 @@ package com.github.terrakok.mobicon.ui.root
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.*
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.github.terrakok.mobicon.ui.DesktopDialogSceneStrategy
-import com.github.terrakok.mobicon.ui.event.EventPage
+import com.github.terrakok.mobicon.ui.event.EventInfoPage
+import com.github.terrakok.mobicon.ui.schedule.SchedulePage
 import com.github.terrakok.mobicon.ui.events.EventsListPage
 import com.github.terrakok.mobicon.ui.rememberDesktopDialogSceneStrategy
 import com.github.terrakok.mobicon.ui.session.SessionPage
@@ -37,6 +29,9 @@ internal object EventsListScreen : AppScreen
 internal data class EventScreen(val id: String) : AppScreen
 
 @Serializable
+internal data class EventInfoScreen(val id: String) : AppScreen
+
+@Serializable
 internal data class SessionScreen(val eventId: String, val id: String) : AppScreen
 
 @Serializable
@@ -47,6 +42,7 @@ private val config = SavedStateConfiguration {
         polymorphic(NavKey::class) {
             subclass(EventsListScreen::class, EventsListScreen.serializer())
             subclass(EventScreen::class, EventScreen.serializer())
+            subclass(EventInfoScreen::class, EventInfoScreen.serializer())
             subclass(SessionScreen::class, SessionScreen.serializer())
             subclass(SpeakerScreen::class, SpeakerScreen.serializer())
         }
@@ -90,17 +86,26 @@ internal fun RootContent() {
             ) {
                 EventsListPage(
                     onEventClick = {
-                        vm.selectEvent(it)
+                        vm.saveSelectedEvent(it)
                         backStack.clear()
                         backStack.add(EventScreen(it))
                     }
                 )
             }
             entry<EventScreen> { key ->
-                EventPage(
+                SchedulePage(
                     eventId = key.id,
                     onSelectConferenceClick = { backStack.add(EventsListScreen) },
-                    onSessionClick = { backStack.add(SessionScreen(key.id, it)) }
+                    onSessionClick = { backStack.add(SessionScreen(key.id, it)) },
+                    onEventInfoClick = { backStack.add(EventInfoScreen(key.id)) }
+                )
+            }
+            entry<EventInfoScreen>(
+                metadata = DesktopDialogSceneStrategy.dialog()
+            ) { key ->
+                EventInfoPage(
+                    eventId = key.id,
+                    onBack = { backStack.removeLast() }
                 )
             }
             entry<SessionScreen>(

@@ -34,36 +34,21 @@ internal class RootViewModel(
         }
     }
 
-    fun selectEvent(eventId: String) {
+    fun saveSelectedEvent(eventId: String) {
         settings.putString(LAST_EVENT_ID_KEY, eventId)
     }
 
     private fun urlToStack(url: String): List<AppScreen> {
-        val initLocation = url.substringAfter("#/event/", "")
-        when {
-            initLocation.isBlank() -> {
-                val lastEventId = settings.getStringOrNull(LAST_EVENT_ID_KEY)
-                return if (lastEventId != null) {
-                    listOf(EventScreen(lastEventId))
-                } else {
-                    listOf(EventsListScreen)
-                }
+        val stack = DeeplinkService.urlToStack(url)
+        if (stack.size == 1 && stack.single() is EventsListScreen) {
+            val lastEventId = settings.getStringOrNull(LAST_EVENT_ID_KEY)
+            return if (lastEventId != null) listOf(EventScreen(lastEventId)) else stack
+        } else {
+            val eventScreen = stack.firstOrNull { it is EventScreen } as EventScreen?
+            if (eventScreen != null) {
+                saveSelectedEvent(eventScreen.id)
             }
-            initLocation.contains("?session=") -> {
-                val (eventId, sessionId) = initLocation.split("?session=")
-                selectEvent(eventId)
-                return listOf(EventScreen(eventId), SessionScreen(eventId, sessionId))
-            }
-            initLocation.contains("?speaker=") -> {
-                val (eventId, speakerId) = initLocation.split("?speaker=")
-                selectEvent(eventId)
-                return listOf(EventScreen(eventId), SpeakerScreen(eventId, speakerId))
-            }
-            else -> {
-                val eventId = initLocation
-                selectEvent(eventId)
-                return listOf(EventScreen(eventId))
-            }
+            return stack
         }
     }
 }
