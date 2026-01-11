@@ -19,10 +19,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.composables.core.ScrollArea
+import com.composables.core.rememberScrollAreaState
 import com.github.terrakok.mobicon.Session
 import com.github.terrakok.mobicon.Speaker
 import com.github.terrakok.mobicon.dayShortString
 import com.github.terrakok.mobicon.ui.LoadingWidget
+import com.github.terrakok.mobicon.ui.VerticalScrollbar
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_business_center
@@ -87,136 +90,139 @@ internal fun SpeakerPage(
             }
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(scrollState)
-                .padding(padding)
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Surface(
-                shape = CircleShape,
-                shadowElevation = 8.dp,
-                modifier = Modifier.size(160.dp),
-                color = MaterialTheme.colorScheme.surfaceVariant
+        ScrollArea(state = rememberScrollAreaState(scrollState)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(padding)
+                    .padding(horizontal = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                AsyncImage(
-                    model = speaker.profilePicture,
-                    contentDescription = speaker.fullName,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop,
-                    placeholder = painterResource(Res.drawable.ic_sentiment),
-                    error = painterResource(Res.drawable.ic_sentiment)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Text(
-                text = speaker.fullName,
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-
-            speaker.tagLine?.let { tagLine ->
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = tagLine,
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.outline,
-                    textAlign = TextAlign.Center
-                )
-            }
-
-            if (speaker.isTopSpeaker) {
                 Spacer(modifier = Modifier.height(16.dp))
+
                 Surface(
-                    color = MaterialTheme.colorScheme.primaryContainer,
-                    shape = RoundedCornerShape(16.dp)
+                    shape = CircleShape,
+                    shadowElevation = 8.dp,
+                    modifier = Modifier.size(160.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant
                 ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            painter = painterResource(Res.drawable.ic_verified),
-                            contentDescription = null,
-                            modifier = Modifier.size(16.dp),
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "Top Speaker",
-                            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
-                        )
-                    }
-                }
-            }
-
-            if (speaker.links.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(32.dp))
-
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    val uriHandler = LocalUriHandler.current
-                    speaker.links.forEach { link ->
-                        SocialLinkItem(
-                            label = link.title,
-                            onClick = { uriHandler.openUri(link.url) }
-                        )
-                    }
-                }
-            }
-
-            if (speaker.bio != null) {
-                Spacer(modifier = Modifier.height(48.dp))
-
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text = "About",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
+                    AsyncImage(
+                        model = speaker.profilePicture,
+                        contentDescription = speaker.fullName,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop,
+                        placeholder = painterResource(Res.drawable.ic_sentiment),
+                        error = painterResource(Res.drawable.ic_sentiment)
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
+                }
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Text(
+                    text = speaker.fullName,
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+
+                speaker.tagLine?.let { tagLine ->
+                    Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = speaker.bio,
+                        text = tagLine,
                         style = MaterialTheme.typography.bodyLarge,
-                        lineHeight = 24.sp,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.outline,
+                        textAlign = TextAlign.Center
                     )
                 }
-            }
 
-            if (vm.sessions.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(32.dp))
+                if (speaker.isTopSpeaker) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Surface(
+                        color = MaterialTheme.colorScheme.primaryContainer,
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                painter = painterResource(Res.drawable.ic_verified),
+                                contentDescription = null,
+                                modifier = Modifier.size(16.dp),
+                                tint = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                            Text(
+                                text = "Top Speaker",
+                                style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.onPrimaryContainer
+                            )
+                        }
+                    }
+                }
 
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        text = "Sessions",
-                        style = MaterialTheme.typography.titleLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    vm.sessions.forEach { session ->
-                        SpeakerSession(
-                            session = session,
-                            onSessionClick = onSessionClick,
-                            modifier = Modifier.padding(top = 16.dp)
+                if (speaker.links.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+                        val uriHandler = LocalUriHandler.current
+                        speaker.links.forEach { link ->
+                            SocialLinkItem(
+                                label = link.title,
+                                onClick = { uriHandler.openUri(link.url) }
+                            )
+                        }
+                    }
+                }
+
+                if (speaker.bio != null) {
+                    Spacer(modifier = Modifier.height(48.dp))
+
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = "About",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = speaker.bio,
+                            style = MaterialTheme.typography.bodyLarge,
+                            lineHeight = 24.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(32.dp))
+                if (vm.sessions.isNotEmpty()) {
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            text = "Sessions",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                        vm.sessions.forEach { session ->
+                            SpeakerSession(
+                                session = session,
+                                onSessionClick = onSessionClick,
+                                modifier = Modifier.padding(top = 16.dp)
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+            }
+            VerticalScrollbar(padding)
         }
     }
 }

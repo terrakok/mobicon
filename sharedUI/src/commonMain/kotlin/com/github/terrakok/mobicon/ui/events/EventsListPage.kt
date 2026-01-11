@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,10 +17,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.composables.core.ScrollArea
+import com.composables.core.Thumb
+import com.composables.core.VerticalScrollbar
+import com.composables.core.rememberScrollAreaState
 import com.github.terrakok.mobicon.EventInfo
 import com.github.terrakok.mobicon.dateFormat
 import com.github.terrakok.mobicon.timeFormat
 import com.github.terrakok.mobicon.ui.LoadingWidget
+import com.github.terrakok.mobicon.ui.VerticalScrollbar
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
@@ -76,27 +82,30 @@ internal fun EventsListPage(
             }
         }
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surfaceContainer),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            contentPadding = padding.plus(PaddingValues(16.dp)),
-            state = scrollState
-        ) {
-            itemsIndexed(vm.items, key = { _, e -> e.id }) { index, event ->
-                val y = event.startDate.year
-                if (index == 0 || y != vm.items[index - 1].startDate.year) {
-                    Text(
-                        text = y.toString(),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)
-                    )
+        ScrollArea(state = rememberScrollAreaState(scrollState)) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(MaterialTheme.colorScheme.surfaceContainer),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                contentPadding = padding.plus(PaddingValues(16.dp)),
+                state = scrollState
+            ) {
+                itemsIndexed(vm.items, key = { _, e -> e.id }) { index, event ->
+                    val y = event.startDate.year
+                    if (index == 0 || y != vm.items[index - 1].startDate.year) {
+                        Text(
+                            text = y.toString(),
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f),
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 12.dp)
+                        )
+                    }
+                    EventInfoCard(event, onEventClick)
                 }
-                EventInfoCard(event, onEventClick)
             }
+            VerticalScrollbar(padding)
         }
     }
 }

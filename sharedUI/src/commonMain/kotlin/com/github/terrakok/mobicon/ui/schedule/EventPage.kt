@@ -31,8 +31,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import com.composables.core.ScrollArea
+import com.composables.core.Thumb
+import com.composables.core.VerticalScrollbar
+import com.composables.core.rememberScrollAreaState
 import com.github.terrakok.mobicon.*
 import com.github.terrakok.mobicon.ui.LoadingWidget
+import com.github.terrakok.mobicon.ui.VerticalScrollbar
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -506,38 +511,41 @@ private fun WideScreenSchedule(
             scrollState.scrollTo(0)
         }
     }
-    Row(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .padding(16.dp)
-            .padding(paddingValues),
-    ) {
-        val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
-        val begin = daySessions.minOf { it.startsAt.time }
-        val end = daySessions.maxOf { it.endsAt.time }
-        val shortest = daySessions
-            .filter { !it.isServiceSession }
-            .minOf { it.endsAt.time - it.startsAt.time }
-        val height = ((160 * (end - begin)) / shortest).toInt()
+    ScrollArea(state = rememberScrollAreaState(scrollState)) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+                .padding(16.dp)
+                .padding(paddingValues),
+        ) {
+            val daySessions = selectedDay.roomAgendas.flatMap { it.sessions }
+            val begin = daySessions.minOf { it.startsAt.time }
+            val end = daySessions.maxOf { it.endsAt.time }
+            val shortest = daySessions
+                .filter { !it.isServiceSession }
+                .minOf { it.endsAt.time - it.startsAt.time }
+            val height = ((160 * (end - begin)) / shortest).toInt()
 
-        val times = daySessions
-            .map { it.startsAt.time }
-            .distinct()
-            .sorted()
+            val times = daySessions
+                .map { it.startsAt.time }
+                .distinct()
+                .sorted()
 
-        Timeline(TimelineData(begin, end, times), Modifier.width(60.dp).height(height.dp))
-        selectedDay.roomAgendas.forEachIndexed { index, it ->
-            if (index > 0) Spacer(modifier = Modifier.width(8.dp))
-            Agenda(
-                modifier = Modifier.height(height.dp).weight(1f),
-                agenda = it,
-                speakers = selectedDay.speakers,
-                rooms = selectedDay.rooms,
-                categories = selectedDay.categories,
-                onSessionClick = onSessionClick
-            )
+            Timeline(TimelineData(begin, end, times), Modifier.width(60.dp).height(height.dp))
+            selectedDay.roomAgendas.forEachIndexed { index, it ->
+                if (index > 0) Spacer(modifier = Modifier.width(8.dp))
+                Agenda(
+                    modifier = Modifier.height(height.dp).weight(1f),
+                    agenda = it,
+                    speakers = selectedDay.speakers,
+                    rooms = selectedDay.rooms,
+                    categories = selectedDay.categories,
+                    onSessionClick = onSessionClick
+                )
+            }
         }
+        VerticalScrollbar(paddingValues)
     }
 }
 
@@ -559,39 +567,42 @@ private fun NarrowScreenSchedule(
         .sortedBy { it.startsAt }
         .groupBy { it.startsAt }
         .flatMap { (time, sessions) -> listOf(time) + sessions }
-    LazyColumn(
-        contentPadding = paddingValues.plus(PaddingValues(16.dp)),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        state = scrollState
-    ) {
-        items(daySessions) { item ->
-            if (item is LocalDateTime) {
-                Text(
-                    text = item.time.toString(),
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    fontSize = 14.sp
-                )
-            } else if (item is Session) {
-                if (item.isServiceSession) {
-                    ServiceSessionCard(
-                        session = item,
-                        room = selectedDay.rooms[item.roomId],
-                        modifier = Modifier.fillMaxWidth().height(200.dp)
+    ScrollArea(state = rememberScrollAreaState(scrollState)) {
+        LazyColumn(
+            contentPadding = paddingValues.plus(PaddingValues(16.dp)),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            state = scrollState
+        ) {
+            items(daySessions) { item ->
+                if (item is LocalDateTime) {
+                    Text(
+                        text = item.time.toString(),
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        fontSize = 14.sp
                     )
-                } else {
-                    SessionCard(
-                        session = item,
-                        category = selectedDay.categories[item.categoryItems.firstOrNull()],
-                        room = selectedDay.rooms[item.roomId],
-                        speaker = selectedDay.speakers[item.speakers.firstOrNull()],
-                        onSessionClick = onSessionClick,
-                        modifier = Modifier.fillMaxWidth().height(200.dp)
-                    )
+                } else if (item is Session) {
+                    if (item.isServiceSession) {
+                        ServiceSessionCard(
+                            session = item,
+                            room = selectedDay.rooms[item.roomId],
+                            modifier = Modifier.fillMaxWidth().height(200.dp)
+                        )
+                    } else {
+                        SessionCard(
+                            session = item,
+                            category = selectedDay.categories[item.categoryItems.firstOrNull()],
+                            room = selectedDay.rooms[item.roomId],
+                            speaker = selectedDay.speakers[item.speakers.firstOrNull()],
+                            onSessionClick = onSessionClick,
+                            modifier = Modifier.fillMaxWidth().height(200.dp)
+                        )
+                    }
                 }
             }
         }
+        VerticalScrollbar(paddingValues)
     }
 }
 
