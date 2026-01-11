@@ -1,29 +1,13 @@
 # MobiCon
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration  
+DroidCon, FlutterCon and T3 conferences app.
 
-To build the application bundle:  
- - run `./gradlew :androidApp:assembleDebug`  
- - find `.apk` file in `androidApp/build/outputs/apk/debug/androidApp-debug.apk`  
+![](./media/app_screenshot_1.png)
 
-### Desktop
-Run the desktop application: `./gradlew :desktopApp:run`  
-Run the desktop **hot reload** application: `./gradlew :desktopApp:hotRun --auto`  
+https://terrakok.github.io/mobicon
 
-### iOS
-To run the application on iPhone device/simulator:  
- - Open `iosApp/iosApp.xcproject` in Xcode and run standard configuration  
- - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio  
-
-### Web Distribution
-Build web distribution: `./gradlew :webApp:composeCompatibilityBrowserDistribution`  
-Deploy a dir `webApp/build/dist/composeWebCompatibility/productionExecutable` to a web server  
-
-### JS Browser
-Run the browser application: `./gradlew :webApp:jsBrowserDevelopmentRun`  
-
-### Wasm Browser
-Run the browser application: `./gradlew :webApp:wasmJsBrowserDevelopmentRun`  
-
+Compose Multiplatform Application.
+- adaptive design (desktop/mobile)
+- deeplink support
+- modern stack (Metro DI, Navigation3, etc)
+- saving a selected conference between launches
