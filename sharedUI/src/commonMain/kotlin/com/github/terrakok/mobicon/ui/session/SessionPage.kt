@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.Speaker
 import com.github.terrakok.mobicon.dayShortString
+import com.github.terrakok.mobicon.ui.LoadingWidget
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.*
 import org.jetbrains.compose.resources.painterResource
@@ -33,6 +34,15 @@ internal fun SessionPage(
     onBack: () -> Unit
 ) {
     val vm = assistedMetroViewModel<SessionViewModel, SessionViewModel.Factory> { create(eventId, sessionId) }
+
+    LoadingWidget(
+        modifier = Modifier.fillMaxSize(),
+        error = vm.error,
+        loading = vm.loading,
+        onReload = { vm.loadSession() }
+    )
+    if (vm.loading || vm.error != null) return
+
     val event = vm.event ?: return
     val session = vm.session ?: return
     val room = vm.room ?: return

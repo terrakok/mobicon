@@ -36,13 +36,20 @@ internal class SpeakerViewModel(
     private val sessiosState = mutableStateListOf<Session>()
     val sessions: List<Session> = sessiosState
 
+    var loading by mutableStateOf(false)
+        private set
+    var error by mutableStateOf<String?>(null)
+        private set
+
     init {
         loadSpeaker()
     }
 
-    private fun loadSpeaker() {
+    fun loadSpeaker() {
         viewModelScope.launch {
             try {
+                loading = true
+                error = null
                 val s = dataService.getSpeaker(eventId, speakerId)
                 speaker = s
                 sessiosState.addAll(
@@ -51,6 +58,9 @@ internal class SpeakerViewModel(
                         .sortedBy { it.startsAt }
                 )
             } catch (e: Throwable) {
+                error = e.message
+            } finally {
+                loading = false
             }
         }
     }

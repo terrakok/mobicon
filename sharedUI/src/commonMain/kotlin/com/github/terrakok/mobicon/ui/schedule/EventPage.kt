@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.*
+import com.github.terrakok.mobicon.ui.LoadingWidget
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -56,6 +57,14 @@ internal fun SchedulePage(
     val vm = assistedMetroViewModel<ScheduleViewModel, ScheduleViewModel.Factory> {
         create(eventId)
     }
+
+    LoadingWidget(
+        modifier = Modifier.fillMaxSize(),
+        error = vm.error,
+        loading = vm.loading,
+        onReload = { vm.loadData() }
+    )
+    if (vm.loading || vm.error != null) return
 
     val data = vm.eventFullData ?: return
     val eventInfo = vm.eventInfo ?: return

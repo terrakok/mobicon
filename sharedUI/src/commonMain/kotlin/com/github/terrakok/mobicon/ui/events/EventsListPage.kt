@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.github.terrakok.mobicon.EventInfo
 import com.github.terrakok.mobicon.dateFormat
 import com.github.terrakok.mobicon.timeFormat
+import com.github.terrakok.mobicon.ui.LoadingWidget
 import dev.zacsweers.metrox.viewmodel.metroViewModel
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.LocalTime
@@ -35,6 +36,15 @@ internal fun EventsListPage(
     onEventClick: (String) -> Unit
 ) {
     val vm = metroViewModel<EventsListViewModel>()
+
+    LoadingWidget(
+        modifier = Modifier.fillMaxSize(),
+        error = vm.error,
+        loading = vm.loading,
+        onReload = { vm.loadItems() }
+    )
+    if (vm.loading || vm.error != null) return
+
     val scrollState = rememberLazyListState()
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surfaceContainerLowest,

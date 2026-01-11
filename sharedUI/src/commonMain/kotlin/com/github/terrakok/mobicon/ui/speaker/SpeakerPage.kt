@@ -22,6 +22,7 @@ import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.Session
 import com.github.terrakok.mobicon.Speaker
 import com.github.terrakok.mobicon.dayShortString
+import com.github.terrakok.mobicon.ui.LoadingWidget
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_business_center
@@ -43,6 +44,15 @@ internal fun SpeakerPage(
     onBack: () -> Unit
 ) {
     val vm = assistedMetroViewModel<SpeakerViewModel, SpeakerViewModel.Factory> { create(eventId, speakerId) }
+
+    LoadingWidget(
+        modifier = Modifier.fillMaxSize(),
+        error = vm.error,
+        loading = vm.loading,
+        onReload = { vm.loadSpeaker() }
+    )
+    if (vm.loading || vm.error != null) return
+
     val speaker = vm.speaker ?: return
     val scrollState = rememberScrollState()
     Scaffold(

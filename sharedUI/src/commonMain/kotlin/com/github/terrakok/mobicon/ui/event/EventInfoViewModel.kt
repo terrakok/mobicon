@@ -10,6 +10,7 @@ import com.github.terrakok.mobicon.EventInfo
 import dev.zacsweers.metro.*
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactory
 import dev.zacsweers.metrox.viewmodel.ManualViewModelAssistedFactoryKey
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AssistedInject
@@ -29,13 +30,26 @@ internal class EventInfoViewModel(
     var eventInfo by mutableStateOf<EventInfo?>(null)
         private set
 
+    var loading by mutableStateOf(false)
+        private set
+    var error by mutableStateOf<String?>(null)
+        private set
+
     init {
         loadData()
     }
 
-    private fun loadData() {
+    fun loadData() {
         viewModelScope.launch {
-            eventInfo = dataService.getEventInfo(eventId)
+            try {
+                loading = true
+                error = null
+                eventInfo = dataService.getEventInfo(eventId)
+            } catch (e: Throwable) {
+                error = e.message
+            } finally {
+                loading = false
+            }
         }
     }
 }

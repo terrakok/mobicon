@@ -45,13 +45,20 @@ internal class SessionViewModel(
     private val categoryItemsState = mutableStateListOf<CategoryItem>()
     val categoryItems: List<CategoryItem> = categoryItemsState
 
+    var loading by mutableStateOf(false)
+        private set
+    var error by mutableStateOf<String?>(null)
+        private set
+
     init {
         loadSession()
     }
 
-    private fun loadSession() {
+    fun loadSession() {
         viewModelScope.launch {
             try {
+                loading = true
+                error = null
                 event = dataService.getEventInfo(eventId)
                 val s = dataService.getSession(eventId, sessionId)
                 session = s
@@ -63,6 +70,9 @@ internal class SessionViewModel(
                 categoryItemsState.clear()
                 categoryItemsState.addAll(s.categoryItems.map { dataService.getCategoryItem(eventId, it) })
             } catch (e: Throwable) {
+                error = e.message
+            } finally {
+                loading = false
             }
         }
     }

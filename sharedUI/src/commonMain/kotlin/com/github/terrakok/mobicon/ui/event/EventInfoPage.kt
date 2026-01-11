@@ -45,6 +45,7 @@ import coil3.compose.AsyncImage
 import com.github.terrakok.mobicon.dateFormat
 import com.github.terrakok.mobicon.dayShortString
 import com.github.terrakok.mobicon.timeFormat
+import com.github.terrakok.mobicon.ui.LoadingWidget
 import dev.zacsweers.metrox.viewmodel.assistedMetroViewModel
 import mobicon.sharedui.generated.resources.Res
 import mobicon.sharedui.generated.resources.ic_clock
@@ -58,6 +59,15 @@ internal fun EventInfoPage(
     onBack: () -> Unit
 ) {
     val vm = assistedMetroViewModel<EventInfoViewModel, EventInfoViewModel.Factory> { create(eventId) }
+
+    LoadingWidget(
+        modifier = Modifier.fillMaxSize(),
+        error = vm.error,
+        loading = vm.loading,
+        onReload = { vm.loadData() }
+    )
+    if (vm.loading || vm.error != null) return
+
     val event = vm.eventInfo ?: return
     val scrollState = rememberScrollState()
 
