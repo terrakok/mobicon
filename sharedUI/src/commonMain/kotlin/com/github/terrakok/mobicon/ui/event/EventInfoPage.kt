@@ -60,13 +60,15 @@ internal fun EventInfoPage(
 ) {
     val vm = assistedMetroViewModel<EventInfoViewModel, EventInfoViewModel.Factory> { create(eventId) }
 
-    LoadingWidget(
-        modifier = Modifier.fillMaxSize(),
-        error = vm.error,
-        loading = vm.loading,
-        onReload = { vm.loadData() }
-    )
-    if (vm.loading || vm.error != null) return
+    if (vm.loading || vm.error != null) {
+        LoadingWidget(
+            modifier = Modifier.fillMaxSize(),
+            error = vm.error,
+            loading = vm.loading,
+            onReload = { vm.loadData() }
+        )
+        return
+    }
 
     val event = vm.eventInfo ?: return
     val scrollState = rememberScrollState()

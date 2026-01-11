@@ -45,13 +45,15 @@ internal fun SpeakerPage(
 ) {
     val vm = assistedMetroViewModel<SpeakerViewModel, SpeakerViewModel.Factory> { create(eventId, speakerId) }
 
-    LoadingWidget(
-        modifier = Modifier.fillMaxSize(),
-        error = vm.error,
-        loading = vm.loading,
-        onReload = { vm.loadSpeaker() }
-    )
-    if (vm.loading || vm.error != null) return
+    if (vm.loading || vm.error != null) {
+        LoadingWidget(
+            modifier = Modifier.fillMaxSize(),
+            error = vm.error,
+            loading = vm.loading,
+            onReload = { vm.loadSpeaker() }
+        )
+        return
+    }
 
     val speaker = vm.speaker ?: return
     val scrollState = rememberScrollState()

@@ -37,13 +37,15 @@ internal fun EventsListPage(
 ) {
     val vm = metroViewModel<EventsListViewModel>()
 
-    LoadingWidget(
-        modifier = Modifier.fillMaxSize(),
-        error = vm.error,
-        loading = vm.loading,
-        onReload = { vm.loadItems() }
-    )
-    if (vm.loading || vm.error != null) return
+    if (vm.loading || vm.error != null) {
+        LoadingWidget(
+            modifier = Modifier.fillMaxSize(),
+            error = vm.error,
+            loading = vm.loading,
+            onReload = { vm.loadItems() }
+        )
+        return
+    }
 
     val scrollState = rememberLazyListState()
     Scaffold(

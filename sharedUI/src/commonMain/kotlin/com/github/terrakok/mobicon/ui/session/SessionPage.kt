@@ -35,13 +35,15 @@ internal fun SessionPage(
 ) {
     val vm = assistedMetroViewModel<SessionViewModel, SessionViewModel.Factory> { create(eventId, sessionId) }
 
-    LoadingWidget(
-        modifier = Modifier.fillMaxSize(),
-        error = vm.error,
-        loading = vm.loading,
-        onReload = { vm.loadSession() }
-    )
-    if (vm.loading || vm.error != null) return
+    if (vm.loading || vm.error != null) {
+        LoadingWidget(
+            modifier = Modifier.fillMaxSize(),
+            error = vm.error,
+            loading = vm.loading,
+            onReload = { vm.loadSession() }
+        )
+        return
+    }
 
     val event = vm.event ?: return
     val session = vm.session ?: return

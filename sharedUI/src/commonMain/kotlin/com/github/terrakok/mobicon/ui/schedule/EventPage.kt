@@ -58,13 +58,15 @@ internal fun SchedulePage(
         create(eventId)
     }
 
-    LoadingWidget(
-        modifier = Modifier.fillMaxSize(),
-        error = vm.error,
-        loading = vm.loading,
-        onReload = { vm.loadData() }
-    )
-    if (vm.loading || vm.error != null) return
+    if (vm.loading || vm.error != null) {
+        LoadingWidget(
+            modifier = Modifier.fillMaxSize(),
+            error = vm.error,
+            loading = vm.loading,
+            onReload = { vm.loadData() }
+        )
+        return
+    }
 
     val data = vm.eventFullData ?: return
     val eventInfo = vm.eventInfo ?: return
