@@ -438,31 +438,34 @@ private fun Header(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .clip(RoundedCornerShape(50))
-                        .clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            onClick = { onSelectConferenceClick() }
-                        )
-                        .padding(12.dp)
-                        .weight(1f),
-                    verticalAlignment = Alignment.CenterVertically
+                    modifier = Modifier.weight(1f),
                 ) {
-                    Text(
-                        text = eventInfo.title,
-                        style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        modifier = Modifier.weight(1f, fill = false)
-                    )
-                    Icon(
-                        painter = painterResource(Res.drawable.ic_arrow_drop_down),
-                        contentDescription = null,
-                        modifier = Modifier.padding(start = 8.dp),
-                    )
+                    Row(
+                        modifier = Modifier
+                            .padding(12.dp)
+                            .clip(RoundedCornerShape(50))
+                            .clickable(
+                                interactionSource = remember { MutableInteractionSource() },
+                                onClick = { onSelectConferenceClick() }
+                            )
+                            .padding(12.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = eventInfo.title,
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f, fill = false)
+                        )
+                        Icon(
+                            painter = painterResource(Res.drawable.ic_arrow_drop_down),
+                            contentDescription = null,
+                            modifier = Modifier.padding(start = 8.dp),
+                        )
+                    }
                 }
                 IconButton(
                     onClick = { onEventInfoClick(eventInfo.id) },
