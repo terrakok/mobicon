@@ -5,7 +5,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
-import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.github.terrakok.mobicon.DeeplinkService
 import com.github.terrakok.navigation3.browser.HierarchicalBrowserNavigation
 
 @Composable

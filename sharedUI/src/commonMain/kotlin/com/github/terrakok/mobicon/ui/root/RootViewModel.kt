@@ -3,7 +3,7 @@ package com.github.terrakok.mobicon.ui.root
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.github.terrakok.mobicon.DeeplinkService
 import com.russhwolf.settings.Settings
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesIntoMap

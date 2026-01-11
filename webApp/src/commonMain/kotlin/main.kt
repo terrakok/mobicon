@@ -1,7 +1,7 @@
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import com.github.terrakok.mobicon.App
-import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.github.terrakok.mobicon.DeeplinkService
 import kotlinx.browser.window
 
 private val deeplink = DeeplinkService()

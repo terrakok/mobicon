@@ -11,7 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowInsetsControllerCompat
 import com.github.terrakok.mobicon.App
-import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.github.terrakok.mobicon.DeeplinkService
 
 class AppActivity : ComponentActivity() {
     private val deepLinkService = DeeplinkService()

@@ -1,7 +1,12 @@
-package com.github.terrakok.mobicon.ui
+package com.github.terrakok.mobicon
 
 import androidx.compose.runtime.Immutable
-import com.github.terrakok.mobicon.ui.root.*
+import com.github.terrakok.mobicon.ui.root.AppScreen
+import com.github.terrakok.mobicon.ui.root.EventInfoScreen
+import com.github.terrakok.mobicon.ui.root.EventScreen
+import com.github.terrakok.mobicon.ui.root.EventsListScreen
+import com.github.terrakok.mobicon.ui.root.SessionScreen
+import com.github.terrakok.mobicon.ui.root.SpeakerScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

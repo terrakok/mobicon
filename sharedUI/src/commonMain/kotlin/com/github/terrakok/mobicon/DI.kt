@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
-import com.github.terrakok.mobicon.ui.DeeplinkService
+import com.github.terrakok.mobicon.DeeplinkService
 import com.russhwolf.settings.Settings
 import dev.zacsweers.metro.*
 import dev.zacsweers.metrox.viewmodel.*
