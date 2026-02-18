@@ -2,7 +2,7 @@
 
 kotlin = "2.3.10"
 compose-multiplatform = "1.11.0-alpha03+dev3672"
-androidx-lifecycle = "2.10.0-alpha09+dev3672"
+androidx-lifecycle = "2.10.0-alpha09+dev3670"
 androidx-nav3 = "1.1.0-alpha03+dev3672"
 androidx-adaptive = "1.3.0-alpha04"
 material3 = "1.11.0-alpha03+dev3672"
