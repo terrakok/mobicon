@@ -1,0 +1,186 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-ktor3/3.4.0-SNAPSHOT/coil-network-ktor3-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-ktor3",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor3-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-ktor3-js-3.4.0-SNAPSHOT.klib",
+          "size": 3403208,
+          "sha512": "43403aa8410330e4871fe613028e233bab3c9d70ebfd70d2a75dac0201b4bc49e271b3e85e9dc71c434fc7c55cded2fcab8bb9e3c66e78fd80dab6c8ccd50cfc",
+          "sha256": "13b15cd435126d164d7fa957ac55fa405fa1263c7ae4ecff1d54ea6f2889b957",
+          "sha1": "728ad5e093e4a89db0f552f78391ac388da72866",
+          "md5": "a48e1ad1480b68976348df7fb21336b8"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlinx-atomicfu-runtime",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-io-okio",
+          "version": {
+            "requires": "0.8.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor3-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-ktor3-js-3.4.0-SNAPSHOT.klib",
+          "size": 3403208,
+          "sha512": "43403aa8410330e4871fe613028e233bab3c9d70ebfd70d2a75dac0201b4bc49e271b3e85e9dc71c434fc7c55cded2fcab8bb9e3c66e78fd80dab6c8ccd50cfc",
+          "sha256": "13b15cd435126d164d7fa957ac55fa405fa1263c7ae4ecff1d54ea6f2889b957",
+          "sha1": "728ad5e093e4a89db0f552f78391ac388da72866",
+          "md5": "a48e1ad1480b68976348df7fb21336b8"
+        }
+      ]
+    },
+    {
+      "name": "jsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "files": [
+        {
+          "name": "coil-network-ktor3-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-ktor3-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5123,
+          "sha512": "aa5a456b22ec35e2007625bc8a74dfa022082a4179bfc78b558136e4bcff074e82f3c67d9fbff2bbcf22f75e498956712109d495234e9b9625ef8d7b3df23510",
+          "sha256": "1d6d7b346a988cb0b676a6112c54e224f4a3925728adcfa915011f981676f0f6",
+          "sha1": "cfd7b7e054f19d19cf65f8eebd25d3ab32c1829d",
+          "md5": "7bfa8dc05328adfdb041d080abe71f42"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-cache-control/3.4.0-SNAPSHOT/coil-network-cache-control-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-cache-control",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-iosArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-cache-control-iosarm64-3.4.0-SNAPSHOT.klib",
+          "size": 32752,
+          "sha512": "2f1be982987003b64ddeafcbc38ba8680ba84642c5c884b57ae938990d19c4acb814360dd48f810629c79d17664c4650c9efff93d55588a49de5736481ff77ef",
+          "sha256": "3ed62af70cd11d533587276d47889037e60871696cf53d7059af00b6bb514c28",
+          "sha1": "f204db42c0c417073e11cd2d48e3768acb655ef8",
+          "md5": "25b557132050cb5abfe4d80f802c8125"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-network-cache-control-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-cache-control-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 8030,
+          "sha512": "3163473ed56992cb1bcf3b57ccdb952243e8bcb4e005abddb4a2b861ac69d11965feb2803ea70b1b4a28447c173440be3b5c0226d29b2dcc6a32810bce81880f",
+          "sha256": "bc0d4c05573187c53a32f0b31a05a73f5af734a576814d52b3e227e0b71ea9db",
+          "sha1": "04fd04e781304ecc96559b93e6491444610fff61",
+          "md5": "14aea17f3769973aa16124f84624a0fa"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "url": "coil-network-cache-control-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

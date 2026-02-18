@@ -1,0 +1,130 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-compose-core/3.4.0-SNAPSHOT/coil-compose-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-compose-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.9.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-core-jvm-3.4.0-SNAPSHOT.jar",
+          "url": "coil-compose-core-jvm-3.4.0-SNAPSHOT.jar",
+          "size": 139903,
+          "sha512": "b08406c2a51e4f1dc13785b5136182e9415e36cdcdc1b4faaeebf19434fbbec1dc4c30dad01de1ba895c1adc883831e72b97acb5d23e2fa92aaaf50fba11bb0f",
+          "sha256": "4553dcbfe068b29e997b5aa8d43ee5f89e8d1124daab9501120b2323b0267093",
+          "sha1": "d5c244ebbf5e657f5f5fc7ab47efd5a60c14ef86",
+          "md5": "47d24f0c73f81b9d65c367ed3264e982"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.9.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-core-jvm-3.4.0-SNAPSHOT.jar",
+          "url": "coil-compose-core-jvm-3.4.0-SNAPSHOT.jar",
+          "size": 139903,
+          "sha512": "b08406c2a51e4f1dc13785b5136182e9415e36cdcdc1b4faaeebf19434fbbec1dc4c30dad01de1ba895c1adc883831e72b97acb5d23e2fa92aaaf50fba11bb0f",
+          "sha256": "4553dcbfe068b29e997b5aa8d43ee5f89e8d1124daab9501120b2323b0267093",
+          "sha1": "d5c244ebbf5e657f5f5fc7ab47efd5a60c14ef86",
+          "md5": "47d24f0c73f81b9d65c367ed3264e982"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "coil-compose-core-jvm-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-compose-core-jvm-3.4.0-SNAPSHOT-sources.jar",
+          "size": 26307,
+          "sha512": "16318c4080d8e72489d108f8451b01a802547e1b3bf2a6ce8e167004a441d7100b90f8d85bbee0c96346f8c94eeb4f292c7ff41186a242ef4741e63058a3472e",
+          "sha256": "1197a1d8da6444937acdc166825bc8fecd4f1834238706469019b6ad023c0a64",
+          "sha1": "3c767bc9c24ad6da7c7cbd61cb21a4eabc5e8169",
+          "md5": "d711e9e948bae7fc8078feb809a0b611"
+        }
+      ]
+    }
+  ]
+}

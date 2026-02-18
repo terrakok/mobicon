@@ -1,0 +1,188 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-okhttp",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-okhttp-metadata-3.4.0-SNAPSHOT.jar",
+          "url": "coil-network-okhttp-3.4.0-SNAPSHOT.jar",
+          "size": 831,
+          "sha512": "e1632708b224533eff96551f9d9b6c86a587b99a275e13e9a1914e7cf96eb62c30d76badc572077c7d2084a8ce73e35ccfc2a3abe29ea5a74cee4fdcfd9e968c",
+          "sha256": "08c8cf10bc779c9395e6e92a320c0194f6789bfe4306d6aacc6d15ad8cf665bf",
+          "sha1": "bb691bccadf434bd1e55ac4b612e5fafb0299fa1",
+          "md5": "cd1018ff66cf8d95b82ac8d244780e54"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "coil-network-okhttp-kotlin-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-okhttp-3.4.0-SNAPSHOT-sources.jar",
+          "size": 3979,
+          "sha512": "0efe6523fce7d7da05b3e4a1e51e8d6935040ed281256edf1ce5e7dc79760e5f96affcf755e19e0059630ef41529a3c3b5963b2e17245b820346c7c23c8a57d0",
+          "sha256": "b830dce53f1a459eb3ccc44b302595342cb8d3cc1f09a255fcd04242193dc973",
+          "sha1": "fa75d1809990dfe728ec59f958c72a8960efff5a",
+          "md5": "5e9ddbb4d6b45783451df2ab9480441e"
+        }
+      ]
+    },
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-android/3.4.0-SNAPSHOT/coil-network-okhttp-android-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-android",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-android/3.4.0-SNAPSHOT/coil-network-okhttp-android-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-android",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-android/3.4.0-SNAPSHOT/coil-network-okhttp-android-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-android",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-jvm/3.4.0-SNAPSHOT/coil-network-okhttp-jvm-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-jvm",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-jvm/3.4.0-SNAPSHOT/coil-network-okhttp-jvm-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-jvm",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "available-at": {
+        "url": "../../coil-network-okhttp-jvm/3.4.0-SNAPSHOT/coil-network-okhttp-jvm-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-network-okhttp-jvm",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    }
+  ]
+}

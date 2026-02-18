@@ -1,0 +1,165 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-ktor3/3.4.0-SNAPSHOT/coil-network-ktor3-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-ktor3",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "wasmJsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3403129,
+          "sha512": "438e31514fe30d94481390d3b35c648ffec4246550b7fcc1a10dd466b105f349b7e15af6d21a8154a693652b88a4c763b91b6860d692f8a2a7c631a7a9a1f6fb",
+          "sha256": "6b5fb304720d67903892978c2559ea9742065df041bb0569b6dcf9d850715b5f",
+          "sha1": "c6ee389fb127cc727701276317ed318146d125db",
+          "md5": "0adc8ac04cde3f5113a4f887019bd1be"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "3.1.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-io-okio",
+          "version": {
+            "requires": "0.8.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3403129,
+          "sha512": "438e31514fe30d94481390d3b35c648ffec4246550b7fcc1a10dd466b105f349b7e15af6d21a8154a693652b88a4c763b91b6860d692f8a2a7c631a7a9a1f6fb",
+          "sha256": "6b5fb304720d67903892978c2559ea9742065df041bb0569b6dcf9d850715b5f",
+          "sha1": "c6ee389fb127cc727701276317ed318146d125db",
+          "md5": "0adc8ac04cde3f5113a4f887019bd1be"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "files": [
+        {
+          "name": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-ktor3-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5165,
+          "sha512": "030a77054f05f2f187bd9823f88be62a7d5230b85e3fe19269f83fc6cd50eaa055cbfcc86451496ec554de46e93b42ecec6221986e285a32ae84cd8d973ce08e",
+          "sha256": "4639467273d4488af274004e3d3fa457026ad184b05ff940534b2c748fb602e8",
+          "sha1": "b79512f34e5c783f49edf6b3edf121095ea7fc52",
+          "md5": "f1fa0289aabefac71edc81e231f7bb7b"
+        }
+      ]
+    }
+  ]
+}

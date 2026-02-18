@@ -1,0 +1,93 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-svg/3.4.0-SNAPSHOT/coil-svg-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-svg",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-linuxArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-svg-linuxarm64-3.4.0-SNAPSHOT.klib",
+          "size": 32539,
+          "sha512": "ba4beb3ce4996b00d9d80ad477be3389770a03c887ab432f8e4cd39f21f52cbd3bc2068595438883435cca7cb9915939e234b5316c2b71367fda97f632e0ac72",
+          "sha256": "3655dbefd2a4bf3a73cc8b188de9151c2d1f56e444ddfad2ef3efc84bc373f1a",
+          "sha1": "f1f5a12dae6ad411ba0da76fb7612cf9168a1cc1",
+          "md5": "c50e371dc497a2f413968018ff93a883"
+        }
+      ]
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-svg-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-svg-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 9084,
+          "sha512": "a100857002ea70d0858ad03a781a1ddae81986912320597c9cf39a4914dcc266678a6bef1ad185ff12750ceb3ba28874976757b4d68addfcc0c3c5b2a3dd3843",
+          "sha256": "6fa9a8932aad56b11bf7c8f9ed40fed9ea6b2b6a2a4a45eedfb399122e7a77dc",
+          "sha1": "75ee194f5f8834db20b9305cd0630c951c524e0d",
+          "md5": "62326fd9f6b1f3db435c56c9fc9ef0f1"
+        }
+      ]
+    }
+  ]
+}

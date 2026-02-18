@@ -1,0 +1,205 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.coil-kt.coil3",
+    "module": "coil-web-decoder",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "metadataApiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-web-decoder-metadata-3.4.0-SNAPSHOT.jar",
+          "url": "coil-web-decoder-3.4.0-SNAPSHOT.jar",
+          "size": 5123,
+          "sha512": "bac772be0962d08a04770e358ae9febabb3c1ee01c5d751e01f21ded1314f6f37193629452206e556293b5173b66bfe9880506dcf0821f3be725ef07e288d475",
+          "sha256": "7bd7591a9788fd4f02165940b048f7dfb00f44541b1ba352377af69180088bd4",
+          "sha1": "2075d3bbe153d5510534c7adf0e2d8cc93b7319a",
+          "md5": "e1fa44fb2df26c5ab8ca5d59dc181cda"
+        }
+      ]
+    },
+    {
+      "name": "metadataSourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "common"
+      },
+      "files": [
+        {
+          "name": "coil-web-decoder-kotlin-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-web-decoder-3.4.0-SNAPSHOT-sources.jar",
+          "size": 4199,
+          "sha512": "f8df7ecf5de40fe181de53e76e2222e7ef138899e010f8d3e4116598d3f0173fa0eb5d975284190a7073f6d4cfb4540795db6274d03103a64deba73770149e4b",
+          "sha256": "55f7f5026118a979f97196ceb651780e097dbb4610f07021cb495dd84f332b7e",
+          "sha1": "0323e350c5d4a2754a6e69897316023edafc5c46",
+          "md5": "219a0c6c337b46c14fd1224a6bd227fe"
+        }
+      ]
+    },
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-js/3.4.0-SNAPSHOT/coil-web-decoder-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-js/3.4.0-SNAPSHOT/coil-web-decoder-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-js/3.4.0-SNAPSHOT/coil-web-decoder-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "jsResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresourcesjs",
+        "org.gradle.usage": "kotlin-multiplatformresourcesjs",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-js/3.4.0-SNAPSHOT/coil-web-decoder-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "wasmJsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-wasm-js/3.4.0-SNAPSHOT/coil-web-decoder-wasm-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-wasm-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "wasmJsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-wasm-js/3.4.0-SNAPSHOT/coil-web-decoder-wasm-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-wasm-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "wasmJsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-wasm-js/3.4.0-SNAPSHOT/coil-web-decoder-wasm-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-wasm-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    },
+    {
+      "name": "wasmJsResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresourcesjs",
+        "org.gradle.usage": "kotlin-multiplatformresourcesjs",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "available-at": {
+        "url": "../../coil-web-decoder-wasm-js/3.4.0-SNAPSHOT/coil-web-decoder-wasm-js-3.4.0-SNAPSHOT.module",
+        "group": "io.coil-kt.coil3",
+        "module": "coil-web-decoder-wasm-js",
+        "version": "3.4.0-SNAPSHOT"
+      }
+    }
+  ]
+}

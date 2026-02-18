@@ -1,0 +1,197 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-compose/3.4.0-SNAPSHOT/coil-compose-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-compose",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-compose-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-iosArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-compose-iosarm64-3.4.0-SNAPSHOT.klib",
+          "size": 24315,
+          "sha512": "2f00a44c7bf497800fb485347c2cf0478a0873847264620c5fc63e9d116a4c34869f209d47e57d1cfb3740658e953e0b04d555b56e301092c353ca63b253d8e3",
+          "sha256": "fcacbb502331d1c16769725abfc6190966dc61c50ae47a47f0ca121078df57bf",
+          "sha1": "2eb4f1fb4f0808aa9c61d0d4b23c7c02210e0453",
+          "md5": "aa92241e3fc438f6e84d3364132fe422"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-compose-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-compose-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5476,
+          "sha512": "76f78fc8e21ba26fdfba4d78d66dfc3aa89d029798d19807718b8f4d0c62b7264e903bfc67e45d2cad11dab5ccefffec2fe01e9177edd4c21421fd29b9e20f2d",
+          "sha256": "31174b39d8ac98c986533e3f82cc62a5be244fee3d44dcf00f249e7d1849650a",
+          "sha1": "c0579e5ea19c4eedf6aa44379d0add2f7436ec73",
+          "md5": "a43398b8e04292f126e5158abd6b3267"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64ResourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.libraryelements": "kotlin-multiplatformresources",
+        "org.gradle.usage": "kotlin-multiplatformresources",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-compose-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-3.4.0-SNAPSHOT.kotlin_resources.zip",
+          "url": "coil-compose-iosarm64-3.4.0-SNAPSHOT-kotlin_resources.kotlin_resources.zip",
+          "size": 346,
+          "sha512": "4d5532c17b1d0b466e4c38167a35ce4db1653ace34dfe8af82d131b0bb227400d5063859e9cea7ee30fc71b47c7f67c9b9203b7a2dac241ab0589c7b8ae4a256",
+          "sha256": "80c359f106560e250b68108a8ced4fe0f671464afad996d672a9d99a8d785d62",
+          "sha1": "970241470787400573f274d40bd0ff3e8445fe37",
+          "md5": "9d2bc257a7e0574f9de4d612d6303937"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-compose-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "url": "coil-compose-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

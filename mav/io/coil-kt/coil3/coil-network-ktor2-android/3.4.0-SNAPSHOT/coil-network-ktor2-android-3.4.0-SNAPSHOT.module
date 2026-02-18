@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-ktor2/3.4.0-SNAPSHOT/coil-network-ktor2-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-ktor2",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "2.3.13"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor2-release.aar",
+          "url": "coil-network-ktor2-android-3.4.0-SNAPSHOT.aar",
+          "size": 23231,
+          "sha512": "4451616f17852a965686e387514278ac9aa3b66433f7c4109e408a9c40c0f53e75a198a8ee3dda3e8e3050a01c6fa1f0e0c3047c2873e363583436cc88248a58",
+          "sha256": "ac7d9f86c4233b2cf894d172995bc76f86a9d431c964111788dbd21fdef52631",
+          "sha1": "eb73c3bc2ae060d7fe7a392892c848005a1c29b1",
+          "md5": "a6dc19add6eceb4397bbd6199ba1f228"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-core",
+          "version": {
+            "requires": "2.3.13"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-ktor2-release.aar",
+          "url": "coil-network-ktor2-android-3.4.0-SNAPSHOT.aar",
+          "size": 23231,
+          "sha512": "4451616f17852a965686e387514278ac9aa3b66433f7c4109e408a9c40c0f53e75a198a8ee3dda3e8e3050a01c6fa1f0e0c3047c2873e363583436cc88248a58",
+          "sha256": "ac7d9f86c4233b2cf894d172995bc76f86a9d431c964111788dbd21fdef52631",
+          "sha1": "eb73c3bc2ae060d7fe7a392892c848005a1c29b1",
+          "md5": "a6dc19add6eceb4397bbd6199ba1f228"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-network-ktor2-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-ktor2-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 4067,
+          "sha512": "f13da26d0823192c26951375c7baa5345a066705f596a944781dffbe33349c446bc786f415b44d3c07d79e9d70d40a2c56525b45793b799c3aec9d5b70349063",
+          "sha256": "981abbaa0a920284014aa8149968f8004840226d92f304863348d77a8159020e",
+          "sha1": "cbba6dd05d55798450fc057509ee87c9d351eaf4",
+          "md5": "f2d150bf456ed1f02a450905d28edd3e"
+        }
+      ]
+    }
+  ]
+}

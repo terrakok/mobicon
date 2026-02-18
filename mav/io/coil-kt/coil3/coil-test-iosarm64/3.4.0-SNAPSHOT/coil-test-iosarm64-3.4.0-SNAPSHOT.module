@@ -1,0 +1,130 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-test/3.4.0-SNAPSHOT/coil-test-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-test",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-test-iosArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-test-iosarm64-3.4.0-SNAPSHOT.klib",
+          "size": 21713,
+          "sha512": "b96edfa82254a6413cc9bfe2a77aca26c1cc7cd2882b742714b1bab8cbfadeec45778a46148f9e3c48754a9b982ae95607aeedfceb479c821d4a5009a851f94b",
+          "sha256": "cfa40863a64207c5c712d94e54eb3740675b3940630b5483101c8e4816231ea6",
+          "sha1": "df4eb5e5f8a1376682a4ce9c5e9cf66735a0978b",
+          "md5": "fb4886be6abfc7bb06f5a771b01178c6"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-test-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-test-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5108,
+          "sha512": "19f94c92c971c5f5f90699de2ad55f23817da5d9abe7d027f3b4fad8872cfd724cab04c365365a91d350a47ee8ddd90dbbb677ac0ebf8977d41a544d19e2d41f",
+          "sha256": "dabc717837fe8b897f0ad526f47c097483983794c6b0b46eeec868ccfe2a7273",
+          "sha1": "57c7336e8f2bdc8755a3e268d8ef8f583c6fc2ba",
+          "md5": "d6f96fa2e4b4f245a158978c221434f1"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-test-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "url": "coil-test-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

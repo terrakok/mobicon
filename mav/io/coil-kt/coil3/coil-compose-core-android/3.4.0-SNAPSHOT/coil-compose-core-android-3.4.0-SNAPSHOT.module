@@ -1,0 +1,191 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-compose-core/3.4.0-SNAPSHOT/coil-compose-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-compose-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.9.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-core-release.aar",
+          "url": "coil-compose-core-android-3.4.0-SNAPSHOT.aar",
+          "size": 136945,
+          "sha512": "d57d01fa66a1f9697c5ad2569899456686d616f3d793e5eff00d39e8bbdbd3f4afa419eb41092f708b9471f7a51f3a63173e2effd48ea431d0f5ef7e83c0e63b",
+          "sha256": "2bb95f7e7d48ccc43623179a3163c8407fc5587d146fca712f87e0df920e2ec5",
+          "sha1": "4e065ec4e174a09452c79de078db08d0df32ded2",
+          "md5": "d8b64e9377b6ed9a30bb2b554cb44a5d"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "com.google.accompanist",
+          "module": "accompanist-drawablepainter",
+          "version": {
+            "requires": "0.37.3"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.compose.foundation",
+          "module": "foundation",
+          "version": {
+            "requires": "1.9.3"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-core-release.aar",
+          "url": "coil-compose-core-android-3.4.0-SNAPSHOT.aar",
+          "size": 136945,
+          "sha512": "d57d01fa66a1f9697c5ad2569899456686d616f3d793e5eff00d39e8bbdbd3f4afa419eb41092f708b9471f7a51f3a63173e2effd48ea431d0f5ef7e83c0e63b",
+          "sha256": "2bb95f7e7d48ccc43623179a3163c8407fc5587d146fca712f87e0df920e2ec5",
+          "sha1": "4e065ec4e174a09452c79de078db08d0df32ded2",
+          "md5": "d8b64e9377b6ed9a30bb2b554cb44a5d"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-compose-core-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-compose-core-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 26359,
+          "sha512": "f7d18254088e4b6db0bb6f9b90ada44c34f40fabf1ea6b65a78abc6d15e7dfe947195970132b485d5f99c082d5e97a327076cff8cedcbaa3643e3067f24d3b9a",
+          "sha256": "2629e75a25d4879ced35cae8461f103ae59305547ac6fd1734a182c7a8714c9b",
+          "sha1": "57e096f0b6bd89c4beecc633d98c496208f9bed1",
+          "md5": "d245e7947a91c8605c1bddfa745a0d4b"
+        }
+      ]
+    }
+  ]
+}

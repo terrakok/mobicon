@@ -1,0 +1,116 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-test/3.4.0-SNAPSHOT/coil-test-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-test",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jvmApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-test-jvm-3.4.0-SNAPSHOT.jar",
+          "url": "coil-test-jvm-3.4.0-SNAPSHOT.jar",
+          "size": 21750,
+          "sha512": "87be00a665f730a9e2b401986f84d73383822c188971928dfe6b5633181e24f7219a86889ea0a80761399e48ccb0cad2df7e2acf87928cb90a2e52ee391a8130",
+          "sha256": "b9b4fd141c618b9aaef0909351c97096149943eab39eafb85c3ea1f00fc93e19",
+          "sha1": "08fcd372639540cffcd383d7d854a61ed7f65cd1",
+          "md5": "7db5e0499ac58cf4731d1b5fa9c4c240"
+        }
+      ]
+    },
+    {
+      "name": "jvmRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-test-jvm-3.4.0-SNAPSHOT.jar",
+          "url": "coil-test-jvm-3.4.0-SNAPSHOT.jar",
+          "size": 21750,
+          "sha512": "87be00a665f730a9e2b401986f84d73383822c188971928dfe6b5633181e24f7219a86889ea0a80761399e48ccb0cad2df7e2acf87928cb90a2e52ee391a8130",
+          "sha256": "b9b4fd141c618b9aaef0909351c97096149943eab39eafb85c3ea1f00fc93e19",
+          "sha1": "08fcd372639540cffcd383d7d854a61ed7f65cd1",
+          "md5": "7db5e0499ac58cf4731d1b5fa9c4c240"
+        }
+      ]
+    },
+    {
+      "name": "jvmSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "coil-test-jvm-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-test-jvm-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5108,
+          "sha512": "19f94c92c971c5f5f90699de2ad55f23817da5d9abe7d027f3b4fad8872cfd724cab04c365365a91d350a47ee8ddd90dbbb677ac0ebf8977d41a544d19e2d41f",
+          "sha256": "dabc717837fe8b897f0ad526f47c097483983794c6b0b46eeec868ccfe2a7273",
+          "sha1": "57c7336e8f2bdc8755a3e268d8ef8f583c6fc2ba",
+          "md5": "d6f96fa2e4b4f245a158978c221434f1"
+        }
+      ]
+    }
+  ]
+}

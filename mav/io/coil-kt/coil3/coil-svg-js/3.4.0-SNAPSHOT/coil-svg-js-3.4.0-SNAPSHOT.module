@@ -1,0 +1,158 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-svg/3.4.0-SNAPSHOT/coil-svg-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-svg",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-svg-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416703,
+          "sha512": "b4522648bc387452f8bdc210744900640fb3cc8e7c8dae54673608359c091c05fbad0cd80206ddc4382ae607f9ba9e7c4dcf6c79222dd0033e2521d643667cdc",
+          "sha256": "03fd7f373ba9690653f2e32087b74c15777c13173d2b1486457cf68e320dd781",
+          "sha1": "d7bcf5ef9c55fe0181230b86583c3145db387b54",
+          "md5": "68b487a74139c3e78cbc52bf742ff1b7"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlinx-atomicfu-runtime",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-svg-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416703,
+          "sha512": "b4522648bc387452f8bdc210744900640fb3cc8e7c8dae54673608359c091c05fbad0cd80206ddc4382ae607f9ba9e7c4dcf6c79222dd0033e2521d643667cdc",
+          "sha256": "03fd7f373ba9690653f2e32087b74c15777c13173d2b1486457cf68e320dd781",
+          "sha1": "d7bcf5ef9c55fe0181230b86583c3145db387b54",
+          "md5": "68b487a74139c3e78cbc52bf742ff1b7"
+        }
+      ]
+    },
+    {
+      "name": "jsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "files": [
+        {
+          "name": "coil-svg-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-svg-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 9050,
+          "sha512": "aa549d892f70d6fd83c9a8bb1c7fefae1e50a4f7476ee6f7bb66860a0ae6fe2d8c7db8f6b058fe362ce6f3c12dca7f06b79f10e3012e16d1d49fc16cb3e6a795",
+          "sha256": "1b7bf29fb56fc5ec7b7b6172328e815d4f1392c6ee03f2fbf28fd31db04e6929",
+          "sha1": "12e7bb42e62ff352bb1963eab1855a0ca8a4233e",
+          "md5": "4a8a236d446d6257bb258f81f5d52ab4"
+        }
+      ]
+    }
+  ]
+}

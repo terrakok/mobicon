@@ -1,0 +1,106 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-core/3.4.0-SNAPSHOT/coil-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-linuxArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-linuxarm64-3.4.0-SNAPSHOT.klib",
+          "size": 376240,
+          "sha512": "8979413f9410ef7be8da4793a77cc68cac970f0d4c057d629b749ad54cacfe29e7d3b89177822accbe195fd92f2c029d26f5f3d9c1b9530a9162c58b842d2aaa",
+          "sha256": "27240b2ebe86a83fae5ab1870a03ce48974bba8d8781b5edf70fe64f0d924972",
+          "sha1": "ab987765856c1fa6ce7264d48d76d638f1134362",
+          "md5": "bbf027812e3b013622f2078d7b7b1c0a"
+        }
+      ]
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-core-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-core-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 89151,
+          "sha512": "78da4ece03fa35b5bb6a8b1d978cd80de9e2debd6f0791fac3f783c83ae5fff7ffe1cbf9ff7d0872893d64883338660dec016a466d0b8a7e3126dd83b931358b",
+          "sha256": "edfc8927bcf3b481d205ace4b334cb62374f539a00f97abbb009ced1a72236c1",
+          "sha1": "15564c3d45d49f3080ef3b593b75f254f323487f",
+          "md5": "8b0af9ee04e69e7e6daafeef3e034148"
+        }
+      ]
+    }
+  ]
+}

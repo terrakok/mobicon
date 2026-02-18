@@ -1,0 +1,144 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-svg/3.4.0-SNAPSHOT/coil-svg-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-svg",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosSimulatorArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-iosSimulatorArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-svg-iossimulatorarm64-3.4.0-SNAPSHOT.klib",
+          "size": 32600,
+          "sha512": "26659175b891805877ccf99e2a1b8517c66892a34c841c625a4f1844b9442472b374ae6112c5e26307e473944dfc19ab9e7bd6caa06ff83263cd4fdb74916472",
+          "sha256": "6ebe9e69358e05781e77826bc8d406bb096acabce1840d047aade44277c2c49e",
+          "sha1": "ce9c01c9f7eb38a28401dd31607f3c7d1fe2fe6a",
+          "md5": "c121f828260117dea7f03069c8fde1bc"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-svg-iossimulatorarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-svg-iossimulatorarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 9084,
+          "sha512": "a100857002ea70d0858ad03a781a1ddae81986912320597c9cf39a4914dcc266678a6bef1ad185ff12750ceb3ba28874976757b4d68addfcc0c3c5b2a3dd3843",
+          "sha256": "6fa9a8932aad56b11bf7c8f9ed40fed9ea6b2b6a2a4a45eedfb399122e7a77dc",
+          "sha1": "75ee194f5f8834db20b9305cd0630c951c524e0d",
+          "md5": "62326fd9f6b1f3db435c56c9fc9ef0f1"
+        }
+      ]
+    },
+    {
+      "name": "iosSimulatorArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_simulator_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-iossimulatorarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "url": "coil-svg-iossimulatorarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "size": 261,
+          "sha512": "1487e5a20c9e4d74f298e07c42e96a61be11b7a768c3fbc199ee138cd68e1fc2267d1cfe3f11f288acc05df755315344d052cc5f6f751f126ab4fe1caa5125ea",
+          "sha256": "c6deada2fac53b8ea6523dbda77597b128006674616f140f04df23264c6d1aa3",
+          "sha1": "2ad14aed781c4a73ed4dbb421966d408a0a06686",
+          "md5": "f43436d6bec321290f6af228ad602604"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-svg/3.4.0-SNAPSHOT/coil-svg-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-svg",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-release.aar",
+          "url": "coil-svg-android-3.4.0-SNAPSHOT.aar",
+          "size": 23372,
+          "sha512": "982eaee5d978c10a9ab4fe84aae240c36a59dc0af07f05f778a03387cb3d3db98be318995a470a220801a40c0f440bd22bfc2657e087f16e6e01ada43a8d54f0",
+          "sha256": "74db015986657cb49fcde80fbea62d90408f08af6ae2a17b77bcc2642da954df",
+          "sha1": "6b2db111cec31e63cffa89104c588cf0f10c58c5",
+          "md5": "0ad657f88653a8e1f4da27e48784caf4"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.16.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "com.caverock",
+          "module": "androidsvg-aar",
+          "version": {
+            "requires": "1.4"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-svg-release.aar",
+          "url": "coil-svg-android-3.4.0-SNAPSHOT.aar",
+          "size": 23372,
+          "sha512": "982eaee5d978c10a9ab4fe84aae240c36a59dc0af07f05f778a03387cb3d3db98be318995a470a220801a40c0f440bd22bfc2657e087f16e6e01ada43a8d54f0",
+          "sha256": "74db015986657cb49fcde80fbea62d90408f08af6ae2a17b77bcc2642da954df",
+          "sha1": "6b2db111cec31e63cffa89104c588cf0f10c58c5",
+          "md5": "0ad657f88653a8e1f4da27e48784caf4"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-svg-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-svg-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 8428,
+          "sha512": "671fc0659d252dc6ae4d174246b7ef4c575c308c82a4171fa87cbc22cf21b3204496a509801c736c2b3868f35f9eae9ae857ef5e95d6299fd33f2b2b45ef4ffa",
+          "sha256": "2793b79f40b7743ceabfbc57b57bc5674c9857ddd9538e4689bf4e1be28b723d",
+          "sha1": "671696f21ba56406a9441b3e581fdd3e74f6554e",
+          "md5": "6ceb306b02e388ec05010159606ad312"
+        }
+      ]
+    }
+  ]
+}

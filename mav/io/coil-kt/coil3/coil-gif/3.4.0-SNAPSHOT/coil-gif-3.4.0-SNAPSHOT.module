@@ -1,0 +1,124 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.coil-kt.coil3",
+    "module": "coil-gif",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-gif-3.4.0-SNAPSHOT.aar",
+          "url": "coil-gif-3.4.0-SNAPSHOT.aar",
+          "size": 39608,
+          "sha512": "35c581c8cc55cb445988585edcde6e69c61137fc1682c9ba3dc7c66135e23d572840197b2eaa200af83b872005631a5f0c18964580b8ef65ec2071222a8fdaf5",
+          "sha256": "2c512b773f1c93e8b7e9c6f13aeb80048092a5cb6910abf17f79a9ebd885bd53",
+          "sha1": "5f10b1bc457a17dd3c877ab94f80e720d3025422",
+          "md5": "55d73336d931c31d35251346e9939f79"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.16.0"
+          }
+        },
+        {
+          "group": "androidx.vectordrawable",
+          "module": "vectordrawable-animated",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-gif-3.4.0-SNAPSHOT.aar",
+          "url": "coil-gif-3.4.0-SNAPSHOT.aar",
+          "size": 39608,
+          "sha512": "35c581c8cc55cb445988585edcde6e69c61137fc1682c9ba3dc7c66135e23d572840197b2eaa200af83b872005631a5f0c18964580b8ef65ec2071222a8fdaf5",
+          "sha256": "2c512b773f1c93e8b7e9c6f13aeb80048092a5cb6910abf17f79a9ebd885bd53",
+          "sha1": "5f10b1bc457a17dd3c877ab94f80e720d3025422",
+          "md5": "55d73336d931c31d35251346e9939f79"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseSourcePublication",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "coil-gif-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-gif-3.4.0-SNAPSHOT-sources.jar",
+          "size": 12103,
+          "sha512": "201565c17b33055bebba8e240eb5c180944bbd729d8845efd3135c81a90b4b64cb8f3b4637b626a193019d2242bd1e29da7ef5f209ab8b1fc9012df7b43537a5",
+          "sha256": "8fbd729091c4278928c2a76def7555d047ba3fdbd93d0cc2a6a2c2c821b58393",
+          "sha1": "99246a22f64318d1f7c7acaea9c6c71389d66969",
+          "md5": "0e10e638b8ba0c72b713289fe8d35f33"
+        }
+      ]
+    }
+  ]
+}

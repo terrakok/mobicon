@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- This module was also published with a richer model, Gradle metadata,  -->
+  <!-- which should be used instead. Do not delete the following line which  -->
+  <!-- is to indicate to Gradle or any Gradle module metadata file consumer  -->
+  <!-- that they should prefer consuming it instead. -->
+  <!-- do_not_remove: published-with-gradle-metadata -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.coil-kt.coil3</groupId>
+  <artifactId>coil-bom</artifactId>
+  <version>3.4.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>coil-bom</name>
+  <description>An image loading library for Android and Compose Multiplatform.</description>
+  <url>https://github.com/coil-kt/coil</url>
+  <inceptionYear>2019</inceptionYear>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>coil-kt</id>
+      <name>Coil Contributors</name>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/coil-kt/coil.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/coil-kt/coil.git</developerConnection>
+    <url>https://github.com/coil-kt/coil</url>
+  </scm>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-compose</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-compose-core</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-core</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-gif</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-network-cache-control</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-network-core</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-network-ktor2</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-network-ktor3</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-network-okhttp</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-svg</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-test</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>io.coil-kt.coil3</groupId>
+        <artifactId>coil-video</artifactId>
+        <version>3.4.0-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+</project>

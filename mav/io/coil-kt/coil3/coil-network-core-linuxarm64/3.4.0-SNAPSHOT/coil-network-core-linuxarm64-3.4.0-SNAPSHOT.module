@@ -1,0 +1,86 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-core/3.4.0-SNAPSHOT/coil-network-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "linuxArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-core-linuxArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-core-linuxarm64-3.4.0-SNAPSHOT.klib",
+          "size": 57666,
+          "sha512": "a34a1a8797c29692cd4d12af9e38483c0475b83011327f352184454506f10dbfc9ca1cf4c8dca4487e6d5033fb0b22f77b89d762e1d6457bdfeceeee9d91b5c6",
+          "sha256": "8ec4555039d134e61ac725f77895a3cfcd881cc29f67e9b49236ba8f7e03f76f",
+          "sha1": "111f57ccd6c265ac7654d6d1f62c28ac34414cdb",
+          "md5": "b4b3b855c5c840c8a9d19fb256b71c7b"
+        }
+      ]
+    },
+    {
+      "name": "linuxArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "linux_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-network-core-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-core-linuxarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 12216,
+          "sha512": "8dd5765f642666e938ada828ff88f9647e3bb3cdc75406547c0a778313500274fe2dc572d8b636ef62b5e9e90242eb771ab50989a32b1936c2a96694555a7ea6",
+          "sha256": "9b39dc835f2f8d7c6fd08619b1cd3328e130e01aedf583ad19c2b97888eb7935",
+          "sha1": "4a2ddfc3e84a716218e63ef75b2b994e12fc3350",
+          "md5": "b28124cf8eade53422542a4dbeeba485"
+        }
+      ]
+    }
+  ]
+}

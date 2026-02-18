@@ -1,0 +1,117 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.coil-kt.coil3",
+    "module": "coil-video",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseVariantReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-video-3.4.0-SNAPSHOT.aar",
+          "url": "coil-video-3.4.0-SNAPSHOT.aar",
+          "size": 21651,
+          "sha512": "47e59e6b12d3953fe1310ef1a9c07db2f282a1787771e83de6681b46155f137884b12ccaa591f0b1fcf8d100d85578a06a92488b1dff895d8b03cc69ea27af76",
+          "sha256": "ce297e23372c1c4f5b4fa25e4fb1d5c3056a2c83faf725838266cc3bde41ae73",
+          "sha1": "422e8bf6ec1a7492c8f0522b04a226eb375bd809",
+          "md5": "ede28f1843379837af0b1092688b4051"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.16.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-video-3.4.0-SNAPSHOT.aar",
+          "url": "coil-video-3.4.0-SNAPSHOT.aar",
+          "size": 21651,
+          "sha512": "47e59e6b12d3953fe1310ef1a9c07db2f282a1787771e83de6681b46155f137884b12ccaa591f0b1fcf8d100d85578a06a92488b1dff895d8b03cc69ea27af76",
+          "sha256": "ce297e23372c1c4f5b4fa25e4fb1d5c3056a2c83faf725838266cc3bde41ae73",
+          "sha1": "422e8bf6ec1a7492c8f0522b04a226eb375bd809",
+          "md5": "ede28f1843379837af0b1092688b4051"
+        }
+      ]
+    },
+    {
+      "name": "releaseVariantReleaseSourcePublication",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "coil-video-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-video-3.4.0-SNAPSHOT-sources.jar",
+          "size": 7457,
+          "sha512": "e84c99846f47dda2d4d6cf058b87e4afd64a0f405c9387f403e62397f17e227a26d00e0344d906915f0b825c5aca82615f1ce186c24f8785461ddfd0a06cdd23",
+          "sha256": "4e77cd860f5b5576a70d6826b428dc70ba4ba75b1733f4028fcd5eef5c5d7eff",
+          "sha1": "53b6582e998bd00ac35408d9c695ff0d8ebe8301",
+          "md5": "1e5094f2822be32be2aee215e54c89c4"
+        }
+      ]
+    }
+  ]
+}

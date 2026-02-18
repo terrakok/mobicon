@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-core/3.4.0-SNAPSHOT/coil-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-js-3.4.0-SNAPSHOT.klib",
+          "size": 3758147,
+          "sha512": "28928990825d09c135cde8097edbb7b94c698ce3c0043042062329b739d7cc8fb4fb469988942bd350c8d066878b052f956b0bee621d6057dd0d4755b4cbc74e",
+          "sha256": "badded1999f9748a5fb04aee61f1235d5ff5752d212e354f2aabaf96dd89c3dc",
+          "sha1": "e31f27c95a9ea851331446dceaa4937295e50702",
+          "md5": "a155515c2222e789441fc4e271a02223"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlinx-atomicfu-runtime",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-browser",
+          "version": {
+            "requires": "0.5.0"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-js-3.4.0-SNAPSHOT.klib",
+          "size": 3758147,
+          "sha512": "28928990825d09c135cde8097edbb7b94c698ce3c0043042062329b739d7cc8fb4fb469988942bd350c8d066878b052f956b0bee621d6057dd0d4755b4cbc74e",
+          "sha256": "badded1999f9748a5fb04aee61f1235d5ff5752d212e354f2aabaf96dd89c3dc",
+          "sha1": "e31f27c95a9ea851331446dceaa4937295e50702",
+          "md5": "a155515c2222e789441fc4e271a02223"
+        }
+      ]
+    },
+    {
+      "name": "jsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "files": [
+        {
+          "name": "coil-core-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-core-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 92348,
+          "sha512": "209f2ace8b8f3963a7df37f46cfe6ef26ba7758dca5f06b27f4f2d6518acebdf1acb0ea51cff4b060aa9cc5ddeb80ddc0b270846f926fd1b9e269ffa7c22cbac",
+          "sha256": "aa140a408cb637e0eb2b513d094571ffd8223dbfbabe3b2b24a960b00944c9e0",
+          "sha1": "9bb880024ffc5457c4d38654e6d68a85ee813223",
+          "md5": "eb344ee1df6227105433faeb950e5906"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-okhttp/3.4.0-SNAPSHOT/coil-network-okhttp-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-okhttp",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-okhttp-release.aar",
+          "url": "coil-network-okhttp-android-3.4.0-SNAPSHOT.aar",
+          "size": 20278,
+          "sha512": "6adcc9393a6fac5e46144156616ac75ae9d1e9c6a61e934aee90b90f4b3fb85172ed443ca1fc9030b8dafafa3558836a9f11b32510c37bc692e8a1caa21c76b1",
+          "sha256": "a7474c7e5f07c3fe81d084432c61f21e2b0376c32874beffe915a7ac98445e62",
+          "sha1": "85a6b8605675928ae701fea42c3dd2be57bf96b2",
+          "md5": "a7ca6a975178a6e924fcdc7bc55a3ef7"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-okhttp-release.aar",
+          "url": "coil-network-okhttp-android-3.4.0-SNAPSHOT.aar",
+          "size": 20278,
+          "sha512": "6adcc9393a6fac5e46144156616ac75ae9d1e9c6a61e934aee90b90f4b3fb85172ed443ca1fc9030b8dafafa3558836a9f11b32510c37bc692e8a1caa21c76b1",
+          "sha256": "a7474c7e5f07c3fe81d084432c61f21e2b0376c32874beffe915a7ac98445e62",
+          "sha1": "85a6b8605675928ae701fea42c3dd2be57bf96b2",
+          "md5": "a7ca6a975178a6e924fcdc7bc55a3ef7"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-network-okhttp-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-okhttp-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 3979,
+          "sha512": "0efe6523fce7d7da05b3e4a1e51e8d6935040ed281256edf1ce5e7dc79760e5f96affcf755e19e0059630ef41529a3c3b5963b2e17245b820346c7c23c8a57d0",
+          "sha256": "b830dce53f1a459eb3ccc44b302595342cb8d3cc1f09a255fcd04242193dc973",
+          "sha1": "fa75d1809990dfe728ec59f958c72a8960efff5a",
+          "md5": "5e9ddbb4d6b45783451df2ab9480441e"
+        }
+      ]
+    }
+  ]
+}

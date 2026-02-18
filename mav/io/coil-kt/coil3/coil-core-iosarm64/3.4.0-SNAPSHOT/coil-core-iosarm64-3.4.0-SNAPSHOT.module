@@ -1,0 +1,170 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-core/3.4.0-SNAPSHOT/coil-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "iosArm64ApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-iosArm64Main-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-iosarm64-3.4.0-SNAPSHOT.klib",
+          "size": 377402,
+          "sha512": "ed642a4dc250bd1b20b81b465a5248fc18e7c2634a8637d1cc85b148a72e26ac448ef2bd65d8924d296883db10e36a4164be64c630d4e6f2f7e086c36505eadc",
+          "sha256": "07b4528f09567dea0abb21c7eff156d6ec189777dc4fdd5b622d97f817ec4120",
+          "sha1": "fa7c0a9331b308780d46d02d05a0a30502a1b052",
+          "md5": "a2312badc837f4e05ab146948b575047"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64SourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "files": [
+        {
+          "name": "coil-core-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-core-iosarm64-3.4.0-SNAPSHOT-sources.jar",
+          "size": 89671,
+          "sha512": "787b4dc8b1c43ca66809d4f454aeb97bc3ff26d900263524469c38dbb8fd7a445fc913a4bcbd542fdf2c0f00cfbf4684be43c3fd9b87576f7885c0758b6db183",
+          "sha256": "62e106512f7ce69b8e86adfe5c8be3c94c37901093eb6f5f0b64f9aad553e151",
+          "sha1": "d1f6fd1a95f8ada003c367396117a3b0cbafb004",
+          "md5": "d040ae001da7422ec9c8bba6ef3239b8"
+        }
+      ]
+    },
+    {
+      "name": "iosArm64MetadataElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-metadata",
+        "org.jetbrains.kotlin.native.target": "ios_arm64",
+        "org.jetbrains.kotlin.platform.type": "native"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "url": "coil-core-iosarm64-3.4.0-SNAPSHOT-metadata.jar",
+          "size": 3230,
+          "sha512": "a617fc43cdf90da099e9b61db486304a948a1bc911b6993fff7bf4b84cf4db9644faf619408c344ac10a7c3404759bae7636c9f73c3f9093deda89a79abc840e",
+          "sha256": "c4130b000c0cd03e6ceda4ac9b16ee893a13afbdc66157fee44cf6e60014784e",
+          "sha1": "cbd0fb3fd594e8df8b5e3da96a8c0d335bd96860",
+          "md5": "2583984769410e631219fc32cc85fe5c"
+        }
+      ]
+    }
+  ]
+}

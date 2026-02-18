@@ -1,0 +1,179 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-cache-control/3.4.0-SNAPSHOT/coil-network-cache-control-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-cache-control",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "jsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-cache-control-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416033,
+          "sha512": "e4542c189d78cfa3edb8c15c4547bb1c207cb89322628126eb4bfbb2b812aeeda2902a41de556a2881d765cc1add3355a4cd0282206869c6b2efce9b98686989",
+          "sha256": "3a567ca86b1abad2b71982159bd56576e434085c634a170aab5cf23f5706c150",
+          "sha1": "c104d22ff71684f6be22d4ab1f5e5869121df2ad",
+          "md5": "feb888461de7e38624d9aeb05ac075b3"
+        }
+      ]
+    },
+    {
+      "name": "jsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-dom-api-compat",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlinx-atomicfu-runtime",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-cache-control-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416033,
+          "sha512": "e4542c189d78cfa3edb8c15c4547bb1c207cb89322628126eb4bfbb2b812aeeda2902a41de556a2881d765cc1add3355a4cd0282206869c6b2efce9b98686989",
+          "sha256": "3a567ca86b1abad2b71982159bd56576e434085c634a170aab5cf23f5706c150",
+          "sha1": "c104d22ff71684f6be22d4ab1f5e5869121df2ad",
+          "md5": "feb888461de7e38624d9aeb05ac075b3"
+        }
+      ]
+    },
+    {
+      "name": "jsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.js.compiler": "ir",
+        "org.jetbrains.kotlin.platform.type": "js"
+      },
+      "files": [
+        {
+          "name": "coil-network-cache-control-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-cache-control-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 8030,
+          "sha512": "3163473ed56992cb1bcf3b57ccdb952243e8bcb4e005abddb4a2b861ac69d11965feb2803ea70b1b4a28447c173440be3b5c0226d29b2dcc6a32810bce81880f",
+          "sha256": "bc0d4c05573187c53a32f0b31a05a73f5af734a576814d52b3e227e0b71ea9db",
+          "sha1": "04fd04e781304ecc96559b93e6491444610fff61",
+          "md5": "14aea17f3769973aa16124f84624a0fa"
+        }
+      ]
+    }
+  ]
+}

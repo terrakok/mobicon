@@ -1,0 +1,158 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-cache-control/3.4.0-SNAPSHOT/coil-network-cache-control-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-cache-control",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "wasmJsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416031,
+          "sha512": "6352877d663082203c98893be1d3470c2d9b9d049e76c3d42f206bf844459be1e05b3eea2a17ed000186921378d29059bb8e59640bc306da556f99662cf117bd",
+          "sha256": "508d725f0e429ed963b66840fec74a9af913dc53fd4aae3b4a5d61392a46b09a",
+          "sha1": "1f3b7b82ed8d031189babfc1bcc2bf8b728b0d07",
+          "md5": "a750bde517efe9429bdef5b5ff8de68a"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3416031,
+          "sha512": "6352877d663082203c98893be1d3470c2d9b9d049e76c3d42f206bf844459be1e05b3eea2a17ed000186921378d29059bb8e59640bc306da556f99662cf117bd",
+          "sha256": "508d725f0e429ed963b66840fec74a9af913dc53fd4aae3b4a5d61392a46b09a",
+          "sha1": "1f3b7b82ed8d031189babfc1bcc2bf8b728b0d07",
+          "md5": "a750bde517efe9429bdef5b5ff8de68a"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "files": [
+        {
+          "name": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-cache-control-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 8030,
+          "sha512": "3163473ed56992cb1bcf3b57ccdb952243e8bcb4e005abddb4a2b861ac69d11965feb2803ea70b1b4a28447c173440be3b5c0226d29b2dcc6a32810bce81880f",
+          "sha256": "bc0d4c05573187c53a32f0b31a05a73f5af734a576814d52b3e227e0b71ea9db",
+          "sha1": "04fd04e781304ecc96559b93e6491444610fff61",
+          "md5": "14aea17f3769973aa16124f84624a0fa"
+        }
+      ]
+    }
+  ]
+}

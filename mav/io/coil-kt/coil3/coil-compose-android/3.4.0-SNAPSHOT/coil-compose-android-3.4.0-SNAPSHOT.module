@@ -1,0 +1,170 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-compose/3.4.0-SNAPSHOT/coil-compose-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-compose",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-compose-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-release.aar",
+          "url": "coil-compose-android-3.4.0-SNAPSHOT.aar",
+          "size": 13617,
+          "sha512": "6947e0f592f86f44c2b349b6d7adb4bf8a79d6d1e065590727b3ff3d6d48f15acdf3e841a77321ece71afd220c9c52bdb876567e121adbe381cc38a1243552e6",
+          "sha256": "cd3f46e5f52b7db58af51c9376304a0481b9e56c390741587941f5e37ac4d92d",
+          "sha1": "1988da68f1a1e70b806e8dc3934c25632a703a54",
+          "md5": "124b80a3a9b27838eebc8fcb4fe057c5"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-compose-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-compose-release.aar",
+          "url": "coil-compose-android-3.4.0-SNAPSHOT.aar",
+          "size": 13617,
+          "sha512": "6947e0f592f86f44c2b349b6d7adb4bf8a79d6d1e065590727b3ff3d6d48f15acdf3e841a77321ece71afd220c9c52bdb876567e121adbe381cc38a1243552e6",
+          "sha256": "cd3f46e5f52b7db58af51c9376304a0481b9e56c390741587941f5e37ac4d92d",
+          "sha1": "1988da68f1a1e70b806e8dc3934c25632a703a54",
+          "md5": "124b80a3a9b27838eebc8fcb4fe057c5"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-compose-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-compose-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 5476,
+          "sha512": "76f78fc8e21ba26fdfba4d78d66dfc3aa89d029798d19807718b8f4d0c62b7264e903bfc67e45d2cad11dab5ccefffec2fe01e9177edd4c21421fd29b9e20f2d",
+          "sha256": "31174b39d8ac98c986533e3f82cc62a5be244fee3d44dcf00f249e7d1849650a",
+          "sha1": "c0579e5ea19c4eedf6aa44379d0add2f7436ec73",
+          "md5": "a43398b8e04292f126e5158abd6b3267"
+        }
+      ]
+    }
+  ]
+}

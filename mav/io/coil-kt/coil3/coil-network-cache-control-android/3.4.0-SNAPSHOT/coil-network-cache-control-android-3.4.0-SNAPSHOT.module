@@ -1,0 +1,198 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-cache-control/3.4.0-SNAPSHOT/coil-network-cache-control-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-cache-control",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-release.aar",
+          "url": "coil-network-cache-control-android-3.4.0-SNAPSHOT.aar",
+          "size": 16897,
+          "sha512": "c11a9cc5b8745e12a52122eb1466a764b0e5a73fb39db29b6c58cd233a7cc9159cc20c67be1581858d78b91a35783b3e5e0730392199de8baf1dbffd5226aa58",
+          "sha256": "b8bd2c7ac3135cfeb8458d9f71813a435c99c2c011609e4cb61ceb4af6115b8e",
+          "sha1": "544ab572ba2a58df2f87d8afc4d1d129fbd28366",
+          "md5": "02e2f2d6e0e5eaab4eb601ab2801d807"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-network-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-datetime",
+          "version": {
+            "requires": "0.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-cache-control-release.aar",
+          "url": "coil-network-cache-control-android-3.4.0-SNAPSHOT.aar",
+          "size": 16897,
+          "sha512": "c11a9cc5b8745e12a52122eb1466a764b0e5a73fb39db29b6c58cd233a7cc9159cc20c67be1581858d78b91a35783b3e5e0730392199de8baf1dbffd5226aa58",
+          "sha256": "b8bd2c7ac3135cfeb8458d9f71813a435c99c2c011609e4cb61ceb4af6115b8e",
+          "sha1": "544ab572ba2a58df2f87d8afc4d1d129fbd28366",
+          "md5": "02e2f2d6e0e5eaab4eb601ab2801d807"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-network-cache-control-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-cache-control-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 8030,
+          "sha512": "3163473ed56992cb1bcf3b57ccdb952243e8bcb4e005abddb4a2b861ac69d11965feb2803ea70b1b4a28447c173440be3b5c0226d29b2dcc6a32810bce81880f",
+          "sha256": "bc0d4c05573187c53a32f0b31a05a73f5af734a576814d52b3e227e0b71ea9db",
+          "sha1": "04fd04e781304ecc96559b93e6491444610fff61",
+          "md5": "14aea17f3769973aa16124f84624a0fa"
+        }
+      ]
+    }
+  ]
+}

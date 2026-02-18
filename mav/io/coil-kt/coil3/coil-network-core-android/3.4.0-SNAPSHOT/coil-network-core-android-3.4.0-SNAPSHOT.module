@@ -1,0 +1,163 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-network-core/3.4.0-SNAPSHOT/coil-network-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-network-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-core-release.aar",
+          "url": "coil-network-core-android-3.4.0-SNAPSHOT.aar",
+          "size": 60875,
+          "sha512": "826f277fa06bf7730cee510857aaeca530189ba7397c9fde5cfe3d85f0186631f4c1b734d9113853395e987f0e43a711242078daa39995b3693f38c46848bd05",
+          "sha256": "2be6431a72bf11a3c3072139c13a561d9277c9c949083dfe2bc5e69e6759fa49",
+          "sha1": "cfe0af4af7722ba3896d7a36def11d6399de73ac",
+          "md5": "45fb0be9daa3c3b3b7ba15d715e60270"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.16.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "io.coil-kt.coil3",
+          "module": "coil-core",
+          "version": {
+            "requires": "3.4.0-SNAPSHOT"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          },
+          "excludes": [
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-stdlib-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-common"
+            },
+            {
+              "group": "org.jetbrains.kotlin",
+              "module": "kotlin-test-annotations-common"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-network-core-release.aar",
+          "url": "coil-network-core-android-3.4.0-SNAPSHOT.aar",
+          "size": 60875,
+          "sha512": "826f277fa06bf7730cee510857aaeca530189ba7397c9fde5cfe3d85f0186631f4c1b734d9113853395e987f0e43a711242078daa39995b3693f38c46848bd05",
+          "sha256": "2be6431a72bf11a3c3072139c13a561d9277c9c949083dfe2bc5e69e6759fa49",
+          "sha1": "cfe0af4af7722ba3896d7a36def11d6399de73ac",
+          "md5": "45fb0be9daa3c3b3b7ba15d715e60270"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "coil-network-core-android-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-network-core-android-3.4.0-SNAPSHOT-sources.jar",
+          "size": 12862,
+          "sha512": "1129c8fa2185e6ab82b2dfd5bb3b153e9aff13e2aa1e6152d420bfbc33de67f60321d23323da6e0d02898a3b99340b69cd645d712a729a8e217320dfa2691ecc",
+          "sha256": "c051897b337558aee087c9c9539987670ef662f16af81d98c6ea50e886ef398f",
+          "sha1": "441834afbee41b7fa4decc8e1d7a4b52edbdac9a",
+          "md5": "1107f14f62ad45f43864e89541e48127"
+        }
+      ]
+    }
+  ]
+}

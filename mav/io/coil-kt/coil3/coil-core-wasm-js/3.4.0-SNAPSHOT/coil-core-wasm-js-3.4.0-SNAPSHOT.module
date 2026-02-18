@@ -1,0 +1,177 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "url": "../../coil-core/3.4.0-SNAPSHOT/coil-core-3.4.0-SNAPSHOT.module",
+    "group": "io.coil-kt.coil3",
+    "module": "coil-core",
+    "version": "3.4.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.2.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "wasmJsApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-api",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3757614,
+          "sha512": "ba3068110963b3656ed906c4329db3687c4461e34da44d2cb9d0c1aa9fec3ab6275ebe97fa7c97a97bb86a9a4fa261c67be441077ddfd2fc0108ccaddac822cb",
+          "sha256": "380bc7267ed33d06f91fe2a753bdd605d71bfa684220fb39364cc0eabfa08869",
+          "sha1": "00f071c59074edcc6428a5a681ca3df9fe2a5d22",
+          "md5": "8927026185c329ef1dc440091ea3ab73"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "atomicfu",
+          "version": {
+            "requires": "0.31.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.skiko",
+          "module": "skiko",
+          "version": {
+            "requires": "0.9.22.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.10.2"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib"
+        },
+        {
+          "group": "com.squareup.okio",
+          "module": "okio",
+          "version": {
+            "requires": "3.16.4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-browser",
+          "version": {
+            "requires": "0.5.0"
+          }
+        }
+      ],
+      "dependencyConstraints": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.3.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "coil-core-wasm-js-3.4.0-SNAPSHOT.klib",
+          "url": "coil-core-wasm-js-3.4.0-SNAPSHOT.klib",
+          "size": 3757614,
+          "sha512": "ba3068110963b3656ed906c4329db3687c4461e34da44d2cb9d0c1aa9fec3ab6275ebe97fa7c97a97bb86a9a4fa261c67be441077ddfd2fc0108ccaddac822cb",
+          "sha256": "380bc7267ed33d06f91fe2a753bdd605d71bfa684220fb39364cc0eabfa08869",
+          "sha1": "00f071c59074edcc6428a5a681ca3df9fe2a5d22",
+          "md5": "8927026185c329ef1dc440091ea3ab73"
+        }
+      ]
+    },
+    {
+      "name": "wasmJsSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "non-jvm",
+        "org.gradle.usage": "kotlin-runtime",
+        "org.jetbrains.kotlin.platform.type": "wasm",
+        "org.jetbrains.kotlin.wasm.target": "js"
+      },
+      "files": [
+        {
+          "name": "coil-core-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "url": "coil-core-wasm-js-3.4.0-SNAPSHOT-sources.jar",
+          "size": 92496,
+          "sha512": "d178755c7933451502707bd419ce8c757ee583e64f36e4f5787b2a539a9036caced1c8c5ee042819075a6a985c0e569dc529f3448352132db9b07a0863e3df13",
+          "sha256": "1189750645dbc1f684931b08ad87c4dedffcca8c416dbb493d245e74c8a35166",
+          "sha1": "2375fa7ce0d73a937c271cd173753e7f543c5536",
+          "md5": "7c7f535a58c1f3052cf12b5a9a86b72a"
+        }
+      ]
+    }
+  ]
+}
