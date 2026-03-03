@@ -28,7 +28,6 @@ dependencyResolutionManagement {
         }
         mavenCentral()
         maven("https://packages.jetbrains.team/maven/p/cmp/dev")
-        maven(file("mav"))
     }
 }
 include(":sharedUI")
