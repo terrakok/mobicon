@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.scene.OverlayScene
 import androidx.navigation3.scene.Scene
 import androidx.navigation3.scene.SceneStrategy
@@ -70,7 +71,7 @@ internal class DesktopDialogScene<T : Any>(
 }
 
 @Composable
-internal fun <T : Any> rememberDesktopDialogSceneStrategy(): DesktopDialogSceneStrategy<T> {
+internal fun <T : NavKey> rememberDesktopDialogSceneStrategy(): DesktopDialogSceneStrategy<T> {
     val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 
     return remember(windowSizeClass) {

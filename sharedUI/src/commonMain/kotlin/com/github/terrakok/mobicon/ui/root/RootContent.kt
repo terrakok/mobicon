@@ -6,6 +6,7 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.*
+import androidx.navigation3.scene.SceneStrategy
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import com.github.terrakok.mobicon.ui.DesktopDialogSceneStrategy
@@ -16,10 +17,14 @@ import com.github.terrakok.mobicon.ui.rememberDesktopDialogSceneStrategy
 import com.github.terrakok.mobicon.ui.session.SessionPage
 import com.github.terrakok.mobicon.ui.speaker.SpeakerPage
 import dev.zacsweers.metrox.viewmodel.metroViewModel
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.modules.subclassesOfSealed
+import kotlin.collections.listOf
 
+@Serializable
 sealed interface AppScreen : NavKey
 
 @Serializable
@@ -37,14 +42,11 @@ internal data class SessionScreen(val eventId: String, val id: String) : AppScre
 @Serializable
 internal data class SpeakerScreen(val eventId: String, val id: String) : AppScreen
 
+@OptIn(ExperimentalSerializationApi::class)
 private val config = SavedStateConfiguration {
     serializersModule = SerializersModule {
         polymorphic(NavKey::class) {
-            subclass(EventsListScreen::class, EventsListScreen.serializer())
-            subclass(EventScreen::class, EventScreen.serializer())
-            subclass(EventInfoScreen::class, EventInfoScreen.serializer())
-            subclass(SessionScreen::class, SessionScreen.serializer())
-            subclass(SpeakerScreen::class, SpeakerScreen.serializer())
+            subclassesOfSealed<AppScreen>()
         }
     }
 }
@@ -67,7 +69,9 @@ internal fun RootContent() {
             val canGoBack = backStack.size > 1
             if (canGoBack) backStack.removeLast()
         },
-        sceneStrategy = rememberDesktopDialogSceneStrategy(),
+        sceneStrategies = listOf(
+            rememberDesktopDialogSceneStrategy()
+        ),
         transitionSpec = {
             ContentTransform(
                 targetContentEnter = EnterTransition.None,
