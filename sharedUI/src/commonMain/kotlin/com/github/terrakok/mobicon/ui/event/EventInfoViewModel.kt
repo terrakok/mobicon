@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 @AssistedInject
 internal class EventInfoViewModel(
-    @Assisted("eventId") val eventId: String,
+    @Assisted val eventId: String,
     private val dataService: DataService
 ) : ViewModel() {
     @AssistedFactory
@@ -23,7 +23,7 @@ internal class EventInfoViewModel(
     @ContributesIntoMap(AppScope::class)
     interface Factory : ManualViewModelAssistedFactory {
         fun create(
-            @Assisted("eventId") eventId: String,
+            @Assisted eventId: String,
         ): EventInfoViewModel
     }
 

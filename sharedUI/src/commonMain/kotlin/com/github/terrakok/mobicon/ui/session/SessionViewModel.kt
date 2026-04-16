@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 
 @AssistedInject
 internal class SessionViewModel(
-    @Assisted("eventId") val eventId: String,
-    @Assisted("sessionId") val sessionId: String,
+    @Assisted val eventId: String,
+    @Assisted val sessionId: String,
     private val dataService: DataService
 ) : ViewModel() {
 
@@ -29,8 +29,8 @@ internal class SessionViewModel(
     @ContributesIntoMap(AppScope::class)
     interface Factory : ManualViewModelAssistedFactory {
         fun create(
-            @Assisted("eventId") eventId: String,
-            @Assisted("sessionId") sessionId: String
+            @Assisted eventId: String,
+            @Assisted sessionId: String
         ): SessionViewModel
     }
 

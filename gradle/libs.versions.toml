@@ -1,20 +1,20 @@
 [versions]
 
-kotlin = "2.3.10"
-compose-multiplatform = "1.11.0-alpha04+dev3748"
-androidx-lifecycle = "2.10.0-alpha09+dev3670"
-androidx-nav3 = "1.1.0-alpha04+dev3748"
-androidx-adaptive = "1.3.0-alpha05"
-material3 = "1.11.0-alpha04+dev3748"
+kotlin = "2.3.20"
+compose-multiplatform = "1.11.0-beta02"
+androidx-lifecycle = "2.11.0-alpha03"
+androidx-nav3 = "1.1.0-rc01"
+androidx-adaptive = "1.3.0-alpha06"
+material3 = "1.11.0-alpha06"
 
 unstyled = "1.49.6"
 agp = "8.12.3"
-androidx-activityCompose = "1.12.4"
-kermit = "2.0.8"
-kotlinx-coroutines = "1.10.2"
-ktor = "3.4.0"
-kotlinx-serialization = "1.10.0"
-metro = "0.11.0"
+androidx-activityCompose = "1.13.0"
+kermit = "2.1.0"
+kotlinx-coroutines = "1.11.0-rc01"
+ktor = "3.4.2"
+kotlinx-serialization = "1.11.0"
+metro = "0.13.2"
 coil = "3.4.0"
 multiplatformSettings = "1.3.0"
 kotlinx-datetime = "0.7.1"
@@ -45,9 +45,6 @@ ktor-serialization-json = { module = "io.ktor:ktor-serialization-kotlinx-json", 
 ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
-ktor-client-curl = { module = "io.ktor:ktor-client-curl", version.ref = "ktor" }
-ktor-client-winhttp = { module = "io.ktor:ktor-client-winhttp", version.ref = "ktor" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-nav3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }

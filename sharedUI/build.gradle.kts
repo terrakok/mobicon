@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -23,6 +24,7 @@ kotlin {
     jvm()
 
     js { browser() }
+    @OptIn(ExperimentalWasmDsl::class)
     wasmJs { browser() }
 
     iosArm64()

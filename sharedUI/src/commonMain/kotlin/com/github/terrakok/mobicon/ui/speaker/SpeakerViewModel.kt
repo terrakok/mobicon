@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 
 @AssistedInject
 internal class SpeakerViewModel(
-    @Assisted("eventId") val eventId: String,
-    @Assisted("speakerId") val speakerId: String,
+    @Assisted val eventId: String,
+    @Assisted val speakerId: String,
     private val dataService: DataService
 ) : ViewModel() {
     @AssistedFactory
@@ -25,8 +25,8 @@ internal class SpeakerViewModel(
     @ContributesIntoMap(AppScope::class)
     interface Factory : ManualViewModelAssistedFactory {
         fun create(
-            @Assisted("eventId") eventId: String,
-            @Assisted("speakerId") speakerId: String
+            @Assisted eventId: String,
+            @Assisted speakerId: String
         ): SpeakerViewModel
     }
 
