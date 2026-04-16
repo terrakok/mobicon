@@ -1,6 +1,6 @@
 [versions]
 
-kotlin = "2.3.20"
+kotlin = "2.3.21-RC2"
 compose-multiplatform = "1.11.0-beta02"
 androidx-lifecycle = "2.11.0-alpha03"
 androidx-nav3 = "1.1.0-rc01"
@@ -8,7 +8,7 @@ androidx-adaptive = "1.3.0-alpha06"
 material3 = "1.11.0-alpha06"
 
 unstyled = "1.49.6"
-agp = "8.12.3"
+agp = "9.0.0-alpha06"
 androidx-activityCompose = "1.13.0"
 kermit = "2.1.0"
 kotlinx-coroutines = "1.11.0-rc01"
